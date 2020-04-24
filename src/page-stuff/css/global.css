@@ -1,0 +1,32 @@
+/* This is a CSS file for element modifications that will be used consistently throughout the entire website.*/
+
+body {
+    height: 100%;
+}
+
+/* Navigation Bar*/
+nav {
+    background-color: #666666 !important; /* Overriding bulma nav color*/
+    text-align: center;
+    width: 100% !important;
+}
+
+.navbar-item {
+    color: #D4D4D4;
+    transition: 0.2s;
+}
+
+.navbar-item:hover {
+    background-color: inherit !important; /* Overriding bulma background-color on hover */
+    color: #969696 !important;          /* Overriding bulma color on hover */
+    transition: 0.2s;
+}
+
+.navbar-item:focus {
+    background-color: inherit !important; /* Overriding bulma background-color on focus */
+    color: #969696 !important;          /* Overriding bulma color on focus */
+}
+
+html {
+    background-color: #C2C2C2;
+}

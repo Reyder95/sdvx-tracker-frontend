@@ -1,0 +1,161 @@
+/*Side Bar*/
+
+.side-bar {
+    background-color: #999898;
+    height: 100%;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+.navbar {
+    width: inherit !important;
+}
+
+
+.columns {
+    width: inherit;
+}
+
+img {
+    height: 205px;
+    width: 204px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.profile-image {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    display: block;
+    text-align: center;
+}
+
+.profile-image img {
+    border-radius: 50%;
+}
+
+.username-display {
+    color: #EDEDED;
+    font-weight: bold;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 1%;
+    margin-bottom: 4%;
+}
+
+.profile-stats {
+    background-color: #616161;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profile-stats p {
+    width: 100%;
+    color: #EDEDED;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 10px;
+}
+
+strong {
+    color: inherit;
+}
+
+.volforce-display h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: #EDEDED;
+    margin-bottom: -15px;
+}
+
+.volforce-display h2 {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    color: #EDEDED;
+    padding-bottom: 5%;
+}
+
+.social-media-display {
+    background-color: #616161;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.social-media-display p {
+    width: 100%;
+    color: #EDEDED;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-left: 10px;
+}
+
+/*Recent Scores*/
+
+.rightside {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.recent-display {
+    background-color: #836987;
+    color: #EDEDED;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.comp_recentsongs table {
+    background-color: inherit !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px; 
+    width: 100%;  
+}
+
+.comp_recentsongs tr, .comp_recentsongs td {
+    border: none !important;
+    color: #EDEDED;
+}
+
+.comp_recentsongs th {
+    color: #B4B4B4 !important;
+    border: none !important;
+}
+
+.recent-display h2 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.comp_volforce {
+    margin-right: 10px;
+}
+
+.comp_topscores table {
+    color: #EDEDED !important;
+    background-color: #535353;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.comp_topscores th {
+    color: #EDEDED !important;
+}
+
+.comp_topscores td {
+    border: 1px solid #000;
+}
+
+.comp_topscores th {
+    border-bottom: 1px solid #000;
+}
+
+@media only screen and (min-width: 767px) {
+    .recent-display {
+        margin-right: 10px;
+    }
+}
