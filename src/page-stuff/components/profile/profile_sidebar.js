@@ -5,7 +5,7 @@ class Sidebar extends React.Component {
         return(
             <div className="comp_sidebar">
                 <div className="profile-image">
-                    <img src="https://www.osustuff.org/img/avatars/2017-05-04/218568.jpg"/>
+                    <img src="https://zcoin.io/storage/2017/01/blank-avatar-300x300.png"/>
                 </div>
                 <h2 className="username-display">Username</h2>
                 <div className="profile-stats">
