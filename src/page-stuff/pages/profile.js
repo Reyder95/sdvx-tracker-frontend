@@ -5,7 +5,6 @@ import Grades from '../components/profile/profile_grades'
 import Volforce from '../components/profile/profile_volforce'
 import TopScores from '../components/profile/profile_topscores'
 
-
 import '../css/profile.css'
 
 class Profile extends React.Component 
@@ -13,32 +12,55 @@ class Profile extends React.Component
     render() {
         return(
             <div className="comp_profile">
-                <div className="columns main-cols is-desktop">
-                    <div className="column side-bar is-one-fifth">
+                <div className="row">
+                    <div className="column bg-tertiary">
+                        <Sidebar/>
+                    </div>
+
+                    <div className="column four-times">
+                        <div className="row recentscores bg-tertiary ml-2 p-4 mt-2 mr-2">
+                            <RecentScores />
+                        </div>
+                        <div className="row">
+                            <div className="column volforce-line bg-quintery ml-2 p-4 mt-2 mr-2">
+                                <Volforce />
+                            </div>
+                            <div className="column grade-pie bg-quintery ml-2 p-4 mt-2 mr-2">
+                                <Grades />
+                            </div>
+                        </div>
+                        
+                        <div className="row .topscores bg-tertiary ml-2 p-4 mt-2 mr-2">
+                            <TopScores />
+                        </div>
+                    </div>
+                </div>
+
+{/*                 <div className="row">
+                    <div className="column">
                         <Sidebar />
                     </div>
                     <div className="column">
-                        <div className="columns rightside">
-                            <div className="column">
+                        <div className="row">
+                            <div className="">
                                 <RecentScores />
                             </div>
                         </div>
                         
-                        <div className="columns graphs">
-                            <div className="column">
+                        <div className="row">
+                            <div className="">
                                 <Volforce />
                             </div>
-                            <div className="column col2">
+                            <div className="">
                                 <Grades />
                             </div>
                         </div>
-                        <div className="columns rightside">
-                            <div className="column">
-                                <TopScores />
+                        <div className="row">
+                            <div className="">
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }

@@ -1,0 +1,16 @@
+/* CSS file for modifying the specifics of the navigation bar */
+
+nav .link {
+    text-decoration: none;
+    padding: 0 15px 0 15px;
+    transition: 0.2s;
+}
+
+nav .link:hover {
+    color: #9D9D9D;
+    transition: 0.2s;
+}
+
+nav .link:focus {
+    color: #9D9D9D;
+}

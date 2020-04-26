@@ -1,33 +1,33 @@
 import React from 'react';
-import 'react-bulma-components/dist/react-bulma-components.min.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Profile from './page-stuff/pages/profile.js';
 
-import './page-stuff/css/global.css';
+import './page-stuff/css/global.css'
+import './page-stuff/css/navbar.css'
 
 function App() {
   return (
     <div className="App">  
       <Router>
 
-      <nav className="navbar">
-        <div id="navbarBasicExample" className="navbar-menu">
-          <div className="navbar-start">
-            <Link className="navbar-item">
+      <nav className="bg-primary p-3 font-oswald">
+        <div>
+          <div>
+            <Link className="color-secondary link">
               Home
             </Link>
 
-            <Link className="navbar-item">
+            <Link className="color-secondary link">
               Song List
             </Link>
 
-            <Link className="navbar-item">
+            <Link className="color-secondary link">
               Discord
             </Link>
           </div>
 
-          <div className="navbar-end">
-            <Link className="navbar-item">
+          <div>
+            <Link>
 
             </Link>
           </div>
