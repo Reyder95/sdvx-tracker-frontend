@@ -10,7 +10,7 @@ class RecentScores extends React.Component {
         return(
             <div className="comp_recentsongs">
                 <div className="recent-display">
-                    <h2 className="font-roboto color-quartery">Recent Scores</h2>
+                    <h2 className="font-roboto color-quartery mb-2">Recent Scores</h2>
                     <div className="columns">
                         <div className="column">
                             <table className="table font-source color-quartery">

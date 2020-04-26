@@ -20,11 +20,25 @@
     width: 100%;
 }
 
+.comp_recentsongs table tr:hover td {
+    background-color: #1C4269;
+    transition: 0.1s;
+}
+
+.comp_recentsongs table tr {
+    transition: 0.1s;
+}
+
 .recentscores, .volforce-line, .grade-pie {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
     overflow: hidden;
+}
+
+/* Top Scores */
+.comp_topscores {
+    width: 100%;
 }
 
 @media only screen and (max-width: 1024px) {

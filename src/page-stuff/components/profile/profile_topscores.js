@@ -7,8 +7,8 @@ class TopScores extends React.Component {
                 <div className="table-container">
 
 
-                    <table className="table">
-                    <h1>Top Scores</h1>
+                    <table className="table font-source color-quartery">
+                    <h2 className="font-roboto color-quartery mb-2">Top Scores</h2>
                         <tr>
                             <th className="number">#</th>
                             <th className="chart">Chart</th>
