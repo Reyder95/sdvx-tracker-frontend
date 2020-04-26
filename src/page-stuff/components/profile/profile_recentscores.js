@@ -15,7 +15,7 @@ class RecentScores extends React.Component {
                         <div className="column">
                             <table className="table font-source color-quartery">
                                  <tr>
-                                     <th>#</th>
+                                     <th className="number">#</th>
                                      <th>Chart</th>
                                      <th>Score</th>
                                  </tr>

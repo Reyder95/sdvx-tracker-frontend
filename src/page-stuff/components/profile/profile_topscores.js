@@ -6,14 +6,14 @@ class TopScores extends React.Component {
             <div className="comp_topscores">
                 <div className="table-container">
 
+                    <h2 className="font-roboto color-quartery mb-3">Top Scores</h2> 
 
                     <table className="table font-source color-quartery">
-                    <h2 className="font-roboto color-quartery mb-2">Top Scores</h2>
                         <tr>
                             <th className="number">#</th>
-                            <th className="chart">Chart</th>
-                            <th className="grade">Grade</th>
-                            <th className="volforce">Volforce</th>
+                            <th>Chart</th>
+                            <th>Grade</th>
+                            <th>Volforce</th>
                         </tr>
 
                         <tr>

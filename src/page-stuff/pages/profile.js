@@ -22,15 +22,15 @@ class Profile extends React.Component
                             <RecentScores />
                         </div>
                         <div className="row">
-                            <div className="column volforce-line bg-quintery ml-2 p-4 mt-2 mr-2">
+                            <div className="column volforce-line bg-quintery ml-2 p-4 mt-2">
                                 <Volforce />
                             </div>
-                            <div className="column grade-pie bg-quintery ml-2 p-4 mt-2 mr-2">
+                            <div className="column grade-pie bg-quintery ml-2 p-4 mt-2 mr-2 order-4">
                                 <Grades />
                             </div>
                         </div>
                         
-                        <div className="row .topscores bg-tertiary ml-2 p-4 mt-2 mr-2">
+                        <div className="row topscores bg-tertiary ml-2 p-4 mt-2 mr-2 order-3">
                             <TopScores />
                         </div>
                     </div>

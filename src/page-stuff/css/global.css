@@ -231,6 +231,22 @@ body {
     flex: 4 4 0;
 }
 
+.row .column.order-1 {
+    order: 1
+}
+
+.row .column.order-2 {
+    order: 2;
+}
+
+.row .column.order-3 {
+    order: 3;
+}
+
+.row .column.order-4 {
+    order: 4;
+}
+
 /* Headers */
 
 h1 {
@@ -267,5 +283,9 @@ td {
 @media only screen and (max-width: 1024px) {
     .row {
         display: block;
+    }
+
+    .recentscores, .volforce-line, .grade-pie, .topscores {
+        margin: 0;
     }
 }

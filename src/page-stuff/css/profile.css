@@ -29,7 +29,7 @@
     transition: 0.1s;
 }
 
-.recentscores, .volforce-line, .grade-pie {
+.recentscores, .volforce-line, .grade-pie, .topscores {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
@@ -41,8 +41,17 @@
     width: 100%;
 }
 
+.comp_topscores table .number {
+    width: 5%;
+}
+
 @media only screen and (max-width: 1024px) {
     .profile-image img {
         margin-top: 0px;
+    }
+
+    .recentscores, .volforce-line, .grade-pie, .topscores {
+        margin: 0;
+        border-radius: 0;
     }
 }
