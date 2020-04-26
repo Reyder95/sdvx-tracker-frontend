@@ -1,0 +1,34 @@
+body {
+    background-color: #27496d;
+}
+
+.comp_songtable {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.comp_songtable img {
+    vertical-align: middle;
+    width: 80%;
+}
+
+.comp_songtable .jacket {
+    width: 5%;
+    text-align: middle;
+}
+
+.comp_songtable .jacket2 {
+    text-align: center;
+}
+
+.comp_songtable th {
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+}
+
+.comp_songtable td {
+    font-family: 'Roboto', sans-serif;
+}

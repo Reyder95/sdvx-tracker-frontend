@@ -1,3 +1,8 @@
+/* Overall */
+body {
+    background-color: #CBCBCB !important;
+}
+
 /* Sidebar */
 .username-display {
     text-align: center;
