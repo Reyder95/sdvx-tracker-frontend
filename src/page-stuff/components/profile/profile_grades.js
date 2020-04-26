@@ -28,6 +28,7 @@ class Grades extends React.Component {
                         title: {
                             display: true,
                             text: 'Grades',
+                            fontColor: '#484848',
                             fontSize: 20
                         },
                         legend: {

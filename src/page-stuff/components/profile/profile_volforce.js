@@ -1,5 +1,6 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import { withRouter } from 'react-router-dom';
 
 const state = {
     labels: ['January', 'February', 'March', 'April'],
@@ -26,11 +27,27 @@ class Volforce extends React.Component {
                         title: {
                             display: true,
                             text: 'Volforce',
-                            fontSize: 20
+                            fontSize: 20,
+                            fontColor: '#484848'
                         },
                         legend: {
                             display: false,
                             position: 'right'
+                        },
+                        tooltips: {
+                            bodyFontColor: 'red'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: '#000'
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: '#000'
+                                }
+                            }]
                         }
                     }}/>
             </div>
