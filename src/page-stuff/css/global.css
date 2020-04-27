@@ -326,6 +326,10 @@ td {
     border: none;
 }
 
+.nav-right {
+    float: right;
+}
+
 @media only screen and (max-width: 1024px) {
     .row {
         display: block;

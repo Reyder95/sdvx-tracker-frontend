@@ -25,6 +25,10 @@ function App() {
             <Link className="color-secondary link">
               Discord
             </Link>
+            <div className="nav-right">
+              <Link className="color-secondary link">Login</Link>
+              <Link className="color-secondary link">Register</Link>
+            </div>
           </div>
 
           <div>
