@@ -1,0 +1,63 @@
+.comp_songtable {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.songtableclass {
+    overflow-x: auto;
+}
+
+.comp_songtable img {
+    vertical-align: middle;
+    width: 80%;
+}
+
+.comp_songtable .jacket {
+    width: 5%;
+    text-align: middle;
+}
+
+.comp_songtable .jacket2 {
+    text-align: center;
+}
+
+.comp_songtable th {
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+}
+
+.comp_songtable td {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Song List Search */
+.form-flex-item {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.comp_songtablesearch button {
+    width: 50%;
+    font-size: 20px;
+    transition: 0.2s;
+    overflow: hidden;
+}
+
+.button-flex {
+    text-align: right;
+}
+
+.comp_songtablesearch button:hover {
+    background-color: #C8C8C8;
+}
+
+@media only screen and (max-width: 1025px) {
+    .comp_songtable {
+        margin: 0;
+        border-radius: 0;
+    }
+}

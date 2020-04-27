@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #CBCBCB;
+    background-color: #27496d;
 }
 
 /* Font Imports */
@@ -110,6 +110,38 @@ body {
     padding-bottom: 0.9em;
 }
 
+.pr-1 {
+    padding-right: 0.3em;
+}
+
+.pr-2 {
+    padding-right: 0.5em;
+}
+
+.pr-3 {
+    padding-right: 0.7em;
+}
+
+.pr-4 {
+    padding-right: 0.9em;
+}
+
+.pl-1 {
+    padding-left: 0.3em;
+}
+
+.pl-2 {
+    padding-left: 0.5em;
+}
+
+.pl-3 {
+    padding-right: 0.7em;
+}
+
+.pl-4 {
+    padding-right: 0.9em;
+}
+
 /* Margin Values */
 .m-0 {
     margin: 0;
@@ -196,7 +228,7 @@ body {
 }
 
 /* Using Fonts */
-.font-oswald {
+.font-roboto-slab {
     font-family: 'Roboto Slab', serif;
     font-weight: bold;
 }
@@ -277,7 +309,25 @@ td, th {
 }
 
 td {
-    border-top: 1px solid black;
+    border-top: 1px solid;
+}
+
+/* Forms */
+.form-input {
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+}
+
+.nav-right {
+    float: right;
 }
 
 @media only screen and (max-width: 1024px) {

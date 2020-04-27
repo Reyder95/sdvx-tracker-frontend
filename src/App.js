@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import Profile from './page-stuff/pages/profile.js';
+import Profile from './page-stuff/pages/profile'
+import SongList from './page-stuff/pages/songlist'
 
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
@@ -10,20 +11,24 @@ function App() {
     <div className="App">  
       <Router>
 
-      <nav className="bg-primary p-3 font-oswald">
+      <nav className="bg-primary p-3 font-roboto-slab">
         <div>
           <div>
-            <Link className="color-secondary link">
+            <Link className="color-secondary link" to="/">
               Home
             </Link>
 
-            <Link className="color-secondary link">
+            <Link className="color-secondary link" to="/songlist">
               Song List
             </Link>
 
             <Link className="color-secondary link">
               Discord
             </Link>
+            <div className="nav-right">
+              <Link className="color-secondary link">Login</Link>
+              <Link className="color-secondary link">Register</Link>
+            </div>
           </div>
 
           <div>
@@ -37,6 +42,9 @@ function App() {
         <Switch>
           <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/songlist">
+            <SongList />
           </Route>
         </Switch>
       
