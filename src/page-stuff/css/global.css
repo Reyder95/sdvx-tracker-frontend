@@ -312,6 +312,20 @@ td {
     border-top: 1px solid;
 }
 
+/* Forms */
+.form-input {
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn {
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+}
+
 @media only screen and (max-width: 1024px) {
     .row {
         display: block;
