@@ -8,6 +8,16 @@ body {
     text-align: center;
 }
 
+.stats, .library {
+    width: 100%;
+    border-radius: 0 !important;
+    font-size: 20px;
+}
+
+.stats:hover, .library:hover {
+    background-color: #27496d;
+}
+
 .profile-image img {
     display: block;
     margin-left: auto;
@@ -34,7 +44,7 @@ body {
     transition: 0.1s;
 }
 
-.recentscores, .volforce-line, .grade-pie, .topscores {
+.recentscores, .volforce-line, .grade-pie, .topscores, .library-content {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
@@ -50,13 +60,68 @@ body {
     width: 5%;
 }
 
+.tabcontent {
+    display: none;
+    animation: fadeEffect 0.5s;
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.active {
+    background-color: #27496d;
+    outline: none;
+}
+
+#tabProfile {
+    display: block;
+}
+
+/* Library */
+.comp_library {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.comp_library table {
+    width: 100%;
+}
+
+.comp_library table tr td {
+    padding: 20px;
+}
+
+.comp_library img {
+    vertical-align: middle;
+    width: 80%;
+}
+
+.comp_library .jacket {
+    width: 8%;
+    text-align: middle;
+}
+
+.comp_library .song {
+    width: 35%;
+}
+
+.diffNOV, .diffADV, .diffEXH, .diffMXM {
+    width: 10%;
+}
+
+.comp_library table {
+    border-collapse: collapse;
+}
+
 @media only screen and (max-width: 1024px) {
     .profile-image img {
         margin-top: 0px;
     }
 
-    .recentscores, .volforce-line, .grade-pie, .topscores {
-        margin: 0;
+    .recentscores, .volforce-line, .grade-pie, .topscores, .library-content {
+        margin: 0 !important;
         border-radius: 0;
     }
 }

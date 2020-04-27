@@ -326,6 +326,11 @@ td {
     border: none;
 }
 
+/* Footer */
+.comp_footer {
+    height: 250px;
+}
+
 @media only screen and (max-width: 1024px) {
     .row {
         display: block;

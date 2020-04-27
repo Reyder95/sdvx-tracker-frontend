@@ -16,12 +16,8 @@
 }
 
 .comp_songtable .jacket {
-    width: 5%;
+    width: 8%;
     text-align: middle;
-}
-
-.comp_songtable .jacket2 {
-    text-align: center;
 }
 
 .comp_songtable th {
@@ -31,6 +27,7 @@
 
 .comp_songtable td {
     font-family: 'Roboto', sans-serif;
+    padding: 20px;
 }
 
 /* Song List Search */
