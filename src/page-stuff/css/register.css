@@ -1,0 +1,52 @@
+.comp_register form {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 25%;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.comp_register form input {
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.comp_register form .form-item {
+    margin-top: 15px;
+}
+
+.comp_register form button {
+    width: 100%;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.comp_register form button:hover {
+    transition: 0.2s;
+    background-color: #00747F;
+}
+
+@media only screen and (max-width:  1024px) {
+    form {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    form {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    form {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+}
