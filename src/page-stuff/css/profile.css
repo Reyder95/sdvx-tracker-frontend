@@ -45,9 +45,9 @@ body {
 }
 
 .recentscores, .volforce-line, .grade-pie, .topscores, .library-content {
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -96,6 +96,7 @@ body {
 .comp_library img {
     vertical-align: middle;
     width: 80%;
+    border-radius: 7px;
 }
 
 .comp_library .jacket {
