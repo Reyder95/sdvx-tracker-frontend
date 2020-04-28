@@ -1,0 +1,28 @@
+.footer-div {
+    margin: 0 auto;
+    width: 75%;
+    padding-top: 15px;
+}
+
+.comp_footer a {
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.comp_footer a:hover {
+    color: #9D9D9D;
+    transition: 0.2s;
+}
+
+.comp_footer p {
+    font-size: 20px;
+}
+
+.comp_footer .column {
+    padding: 25px;
+}
+
+.developed-by {
+    text-align: center;
+    margin-top: 30px;
+}
