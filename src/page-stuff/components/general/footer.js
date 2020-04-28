@@ -23,6 +23,7 @@ class Footer extends React.Component {
                         <div className="column">
                             <p>
                                 Wish to help development? Talk to Scarlet Red or start developing using the open source code on Github!
+                                [will be handling this in the future]
                             </p>
                         </div>
                     </div>
