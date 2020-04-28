@@ -5,9 +5,9 @@ class HomeDescription extends React.Component {
         return(
             <div className="comp_homedescription">
                 <div className="row">
-                    <div className="column bg-quintery p-2">
+                    <div className="column p-2">
                         <div className="icon-image">
-                            <a href="https://placeholder.com"><img src="https://via.placeholder.com/128"/></a>
+                            <img src="https://place-hold.it/128x128/black"/>
                         </div>
                         <h3 className="font-roboto-slab mt-2">Score Tracking</h3>
                         <p className="font-roboto mt-2">
@@ -17,20 +17,20 @@ class HomeDescription extends React.Component {
                         </p>
                     </div>
 
-                    <div className="column bg-quintery p-2">
+                    <div className="column p-2">
                         <div className="icon-image">
-                            <a href="https://placeholder.com"><img src="https://via.placeholder.com/128"/></a>
+                            <img src="https://place-hold.it/128x128/black"/>
                         </div>
                         <h3 className="font-roboto-slab mt-2">Player Curated Database</h3>
                         <p className="font-roboto mt-2">
                             The songs on our database will be player-driven. This means that all users will be able to enter in song information for songs that are not there.
-                            We hope with this we can build a big database for as many sound voltex songs as possible!
+                            We hope with this we can build a big database for as many sound voltex songs as possible! This also means customs are fully supported as well!
                         </p>
                     </div>
 
-                    <div className="column bg-quintery p-4">
+                    <div className="column p-4">
                         <div className="icon-image">
-                            <a href="https://placeholder.com"><img src="https://via.placeholder.com/128"/></a>
+                            <img src="https://place-hold.it/128x128/black"/>
                         </div>
                         <h3 className="font-roboto-slab mt-2">Personal Player Statistics</h3>
                         <p className="font-roboto mt-2">
