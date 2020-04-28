@@ -42,7 +42,7 @@ function App() {
       </nav>
 
         <Switch>
-          <Route path="/" exact>
+          <Route path="/">
             <Home />
           </Route>
           <Route path="/profile">
