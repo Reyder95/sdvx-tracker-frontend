@@ -1,0 +1,52 @@
+/* Home Top */
+
+.comp_hometop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 300px;
+    width: 100%;
+}
+
+.register-btn {
+    font-size: 20px;
+    transition: 0.2s;
+}
+
+.register-btn:hover {
+    background-color: #00747F;
+    transition: 0.2s;
+}
+
+/* Home Description */
+.comp_homedescription .column {
+    border-radius: 7px;
+    padding: 1.5em;
+}
+
+.comp_homedescription .column p {
+    line-height: 30px;
+}
+
+.comp_homedescription .column h3, .icon-image {
+    text-align: center;
+}
+
+.comp_homedescription .column img {
+    border-radius: 50%;
+}
+
+.comp_homedescription .column {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 769px) {
+    .comp_homedescription .column {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+}

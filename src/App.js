@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Profile from './page-stuff/pages/profile'
 import SongList from './page-stuff/pages/songlist'
 import Footer from './page-stuff/components/general/footer'
+import Home from './page-stuff/pages/home'
 
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
@@ -41,6 +42,9 @@ function App() {
       </nav>
 
         <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
           <Route path="/profile">
             <Profile />
           </Route>
