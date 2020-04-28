@@ -14,6 +14,7 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
 /* Background Color Scheme Use */
 .bg-primary {
@@ -241,6 +242,10 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.font-oswald {
+    font-family: 'Oswald', sans-serif;
+}
+
 /* Flexbox Stuff */
 .row {
     display: flex;
@@ -342,5 +347,11 @@ td {
 
     .recentscores, .volforce-line, .grade-pie, .topscores {
         margin: 0;
+    }
+
+    .nav-right {
+        float: none;
+        text-align: center;
+        margin-top: 15px;
     }
 }
