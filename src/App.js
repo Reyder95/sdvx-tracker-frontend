@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Profile from './page-stuff/pages/profile'
 import SongList from './page-stuff/pages/songlist'
 import Footer from './page-stuff/components/general/footer'
+import Register from './page-stuff/pages/register'
 import Home from './page-stuff/pages/home'
 
 import './page-stuff/css/global.css'
@@ -29,7 +30,7 @@ function App() {
             </Link>
             <div className="nav-right">
               <Link className="color-secondary link">Login</Link>
-              <Link className="color-secondary link">Register</Link>
+              <Link className="color-secondary link" to="/register">Register</Link>
             </div>
           </div>
 
@@ -42,7 +43,7 @@ function App() {
       </nav>
 
         <Switch>
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
           </Route>
           <Route path="/profile">
@@ -51,11 +52,13 @@ function App() {
           <Route path="/songlist">
             <SongList />
           </Route>
+
+          <Route path="/register">
+            <Register />
+          </Route>
         </Switch>
       
       </Router>
-
-      <Footer />
     </div>
   );
 }
