@@ -2,9 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Profile from './page-stuff/pages/profile'
 import SongList from './page-stuff/pages/songlist'
-import Footer from './page-stuff/components/general/footer'
 import Register from './page-stuff/pages/register'
 import Home from './page-stuff/pages/home'
+import Login from './page-stuff/pages/login'
 
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
@@ -29,7 +29,7 @@ function App() {
               Discord
             </Link>
             <div className="nav-right">
-              <Link className="color-secondary link">Login</Link>
+              <Link className="color-secondary link" to="/login">Login</Link>
               <Link className="color-secondary link" to="/register">Register</Link>
             </div>
           </div>
@@ -43,18 +43,25 @@ function App() {
       </nav>
 
         <Switch>
+
           <Route path="/" exact>
             <Home />
           </Route>
+
           <Route path="/profile">
             <Profile />
           </Route>
+
           <Route path="/songlist">
             <SongList />
           </Route>
 
           <Route path="/register">
             <Register />
+          </Route>
+
+          <Route path="/login">
+            <Login />
           </Route>
         </Switch>
       
