@@ -1,6 +1,9 @@
 ## Introduction
 This is a project developed for use with the game SOUND VOLTEX and its respective simulators (Unnamed SDVX Clone, K-Shoot Mania, and soon Neurosonic). In a tl;dr fashion, it will be a system that users can keep track of all their scores among these versions of the game and view statistics that may make them better players. Since there are many versions of the game and people switch it up, having one central system where you can manually input and keep track of scores would be a benefit. This system will also support customs for the various simulators (as you enter charts in on your own)
 
+## Have a suggestion or a bug to report?
+Check out the Issues tab above to submit an issue whether it be a bug report or a feature request. This way we can keep track of what everyone thinks about the platform and how we can work to improve it!
+
 ## Upcoming Feature List
 ### Song Entry
 At the current moment, there is a plan to allow for users to manually input songs into a global song listing. This global song listing can be viewed by all players, and it will be the start of allowing the website to keep a huge collection of official and custom chart information to be used by all players. But there are a few problems that need to be discussed.
