@@ -7,7 +7,7 @@ import '../css/songlist.css'
 class SongList extends React.Component {
     render() {
         return (
-            <div className="comp_songlist mb-4">
+            <div className="comp_songlist">
                 <SongTable />
                 <Footer />
             </div>
