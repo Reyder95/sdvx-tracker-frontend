@@ -1,11 +1,7 @@
 /* Song View Top */
 .song-block {
     display: block;
-    text-align: center;
-}
-
-.song-image, .song-info {
-    display: inline-block;
+    margin-left: 150px;
 }
 
 .comp_songviewtop img {
@@ -13,16 +9,21 @@
     border-radius: 10px;
 }
 
+.song-image .song-info, .song-image img {
+    display: inline-block;
+}
+
 .song-info {
-    width: 25%;
-    text-align: left;
     margin-left: 25px;
-    padding-bottom: 30px;
 }
 
 .comp_songviewtop p {
     font-size: 20px;
     margin-top: 10px;
+}
+
+.comp_songviewtop h2 {
+    margin-top: 0;
 }
 
 .comp_scoretable {
@@ -126,10 +127,26 @@
     .comp_scoretable button {
         border-radius: 0;
     }
+    
+    .song-block {
+        margin-left: 25px;
+    }
 }
 
 @media only screen and (max-width: 769px) {
     .comp_scoretable {
+        margin: 0;
+    }
+
+    .song-block {
+        text-align: center;
+    }
+
+    .comp_songviewtop h2 {
+        margin-top: 0;
+    }
+
+    .song-block {
         margin: 0;
     }
 }
