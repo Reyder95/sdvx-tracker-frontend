@@ -1,4 +1,4 @@
-.comp_register form {
+.comp_login form {
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -8,7 +8,7 @@
     border-radius: 10px;
 }
 
-.comp_register form input {
+.comp_login form input {
     margin-top: 10px;
     width: 100%;
     padding: 5px;
@@ -16,35 +16,35 @@
     border-radius: 5px;
 }
 
-.comp_register form .form-item {
+.comp_login form .form-item {
     margin-top: 15px;
 }
 
-.comp_register form button {
+.comp_login form button {
     width: 100%;
     margin-top: 20px;
     transition: 0.2s;
 }
 
-.comp_register form button:hover {
+.comp_login form button:hover {
     transition: 0.2s;
     background-color: #00747F;
 }
 
 @media only screen and (max-width:  1024px) {
-    .comp_register form {
+    .comp_login form {
         width: 50%;
     }
 }
 
 @media only screen and (max-width: 769px) {
-    .comp_register form {
+    .comp_login form {
         width: 75%;
     }
 }
 
 @media only screen and (max-width: 769px) {
-    .comp_register form {
+    .comp_login form {
         width: 100%;
         margin: 0;
         border-radius: 0;

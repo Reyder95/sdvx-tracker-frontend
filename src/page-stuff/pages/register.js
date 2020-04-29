@@ -33,7 +33,7 @@ class Register extends React.Component {
                         <input type="email"/>
                     </div>
 
-                    <button className="btn bg-quintery">Register!</button>
+                    <button className="btn bg-quintery">Register</button>
                 </form>
             </div>
         )
