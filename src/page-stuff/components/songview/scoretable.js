@@ -6,7 +6,7 @@ class ScoreTable extends React.Component {
             <div className="comp_scoretable">
                 
                 <div className="addscore">
-                    <button className="btn bg-quintery">Add Score</button>
+                    <button className="btn bg-quintery">+</button>
                 </div>
 
                 <div className="diff-buttons">

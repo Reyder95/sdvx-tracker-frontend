@@ -60,12 +60,19 @@
     width: 75%;
 }
 
+.addscore button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    font-size: 30px;
+}
+
 .addscore {
-    text-align: right;
+    border-radius: 50%;
 }
 
 .addscore button {
-    width: 25%;
     margin-bottom: 20px;
     transition: 0.2s;
 }
@@ -119,13 +126,13 @@
         margin-left: 100px;
         margin-right: 100px;
     }
-    
-    .addscore button {
-        width: 100%;
+
+    .addscore {
+        margin-bottom: 20px;
     }
 
     .comp_scoretable button {
-        border-radius: 0;
+        margin-bottom: 4px;
     }
     
     .song-block {

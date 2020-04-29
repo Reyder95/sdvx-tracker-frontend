@@ -6,7 +6,7 @@ class SongViewTop extends React.Component {
             <div className="comp_songviewtop bg-tertiary pb-4">
                 <div className="song-block">
                     <div className="song-image">
-                        <h2 className="font-roboto-slab color-secondary mb-2 mt-2">かめりあ feat. ななひら - 超☆超☆光☆速☆出☆前☆最☆速!!! スピード★スター★かなで</h2>
+                        <h2 className="font-roboto-slab color-secondary mb-2 pt-2">Song Title</h2>
                         <img src="https://placehold.it/128x128"/>
                         <div className="song-info font-source color-quartery">
                             <p>
