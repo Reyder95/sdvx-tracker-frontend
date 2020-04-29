@@ -1,0 +1,151 @@
+/* Song View Top */
+.song-block {
+    display: block;
+    text-align: center;
+}
+
+.song-image, .song-info {
+    display: inline-block;
+}
+
+.comp_songviewtop img {
+    width: 250px;
+    border-radius: 10px;
+}
+
+.song-info {
+    width: 25%;
+    text-align: left;
+    margin-left: 25px;
+    padding-bottom: 30px;
+}
+
+.comp_songviewtop p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.comp_scoretable {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.comp_scoretable button {
+    padding: 15px;
+}
+
+.comp_scoretable .submitscore {
+    text-align: right;
+}
+
+.comp_scoretable table {
+    background-color: #9D9D9D;
+}
+
+.comp_scoretable td, .comp_scoretable th {
+    border: 1px solid #000;
+    padding: 15px;
+    border-collapse: collapse;
+}
+
+.diff-buttons {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.diff-buttons button {
+    width: 75%;
+}
+
+.addscore {
+    text-align: right;
+}
+
+.addscore button {
+    width: 25%;
+    margin-bottom: 20px;
+    transition: 0.2s;
+}
+.addscore button:hover {
+    background-color: #00747F;
+    transition: 0.2s;
+}
+
+.nov-button {
+    background-color: #8952A7;
+    transition: 0.2s;
+}
+
+.nov-button:hover {
+    background-color: #713592;
+    transition: 0.2s;
+}
+
+.adv-button {
+    background-color: #EBD220;
+    transition: 0.2s;
+}
+
+.adv-button:hover {
+    background-color: #BEA80B;
+    transition: 0.2s;
+}
+
+.exh-button {
+    background-color: #E51F2D;
+    transition: 0.2s;
+}
+
+.exh-button:hover {
+    background-color: #B90B17;
+    transition: 0.2s;
+}
+
+.mxm-button {
+    background-color: #A6A6A6;
+    transition: 0.2s;
+}
+
+.mxm-button:hover {
+    background-color: #7A7A7A;
+    transition: 0.2s;
+}
+
+@media only screen and (max-width: 1025px) {
+    .comp_scoretable {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    
+    .addscore button {
+        width: 100%;
+    }
+
+    .comp_scoretable button {
+        border-radius: 0;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .comp_scoretable {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 415px) {
+
+    .song-image, .song-info {
+        display: block;
+    }
+
+    .song-image h2 {
+        margin-top: 0px;
+        padding-top: 10px;
+    }
+
+    .song-info {
+        width: 75%; 
+    }
+}

@@ -5,6 +5,7 @@ import SongList from './page-stuff/pages/songlist'
 import Register from './page-stuff/pages/register'
 import Home from './page-stuff/pages/home'
 import Login from './page-stuff/pages/login'
+import SongView from './page-stuff/pages/song-view'
 
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
@@ -62,6 +63,10 @@ function App() {
 
           <Route path="/login">
             <Login />
+          </Route>
+
+          <Route path="/song">
+            <SongView />
           </Route>
         </Switch>
       
