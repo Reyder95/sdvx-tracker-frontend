@@ -62,8 +62,18 @@
     transition: 0.2s;
 }
 
+.pageControls:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 #next {
     float: right;
+}
+
+#prev {
+    float: left;
 }
 
 .comp_songtablesearch button:hover {
