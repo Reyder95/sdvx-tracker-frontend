@@ -16,11 +16,12 @@ class SongTable extends React.Component {
 
     fetchApi(page) {
 
-        console.log('http://localhost:3000/api/songs?p=' + page);
         axios.get('http://localhost:3000/api/songs?p=' + page)
             .then(res => {
                 const songs = res.data.data;
                 const nextPage = res.data.next_page;
+
+                console.log(songs);
                 this.setState({
                     data: songs,
                     next_page: nextPage
@@ -105,6 +106,7 @@ class SongTable extends React.Component {
                             this.state.data.map((song, index) => (
                                 <SongEntry 
                                     nbr={index + (this.state.page * 10 - 9)}
+                                    key={song.id}
                                     songData={song}
                                 />
                             ))
