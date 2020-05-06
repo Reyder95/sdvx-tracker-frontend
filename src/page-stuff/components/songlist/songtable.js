@@ -1,11 +1,36 @@
 import React from 'react'
 import SongTableSearch from './songtablesearch'
+import SongEntry from './songlist_entry'
+import axios from 'axios'
 
 class SongTable extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: []
+        }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:3000/api/songs')
+            .then(res => {
+                const songs = res.data.data;
+                console.log(songs);
+                this.setState({data: songs}, console.log(this.state.data))
+            })
+    }
+
     render() {
         return (
             <div className="comp_songtable color-secondary bg-tertiary">
+                
+                {console.log(this.state.data)}
+
                 <SongTableSearch />
+
+                <button id="prev" className="btn pageControl bg-secondary">Previous</button>
+                <button id="next" className="btn pageControl bg-secondary">Next</button>
                
                 <div className="songtableclass">
                     <table>
@@ -20,147 +45,20 @@ class SongTable extends React.Component {
                             <th>Type</th>
                             <th>Link (if custom)</th>
                         </tr>
+        
+                        {
+                            
+                            this.state.data.map((song, index) => (
+                                <SongEntry 
+                                    nbr={index + 1}
+                                    songData={song}
+                                />
+                            ))
+                        }
 
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/e/e4/Venomous_Firefly.png/200px-Venomous_Firefly.png" />
-                            </td>
-                            <td>かめりあ - Venomous Firefly</td>
-                            <td>6</td>
-                            <td>13</td>
-                            <td>16</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td className="jacket2">
-                                <img src="https://remywiki.com/images/thumb/2/2b/Boss_Rush.png/200px-Boss_Rush.png" />
-                            </td>
-                            <td>USAO - Boss Rush</td>
-                            <td>6</td>
-                            <td>12</td>
-                            <td>15</td>
-                            <td>18</td>
-                            <td>Official</td>
-                            <td>-----</td>
-                        </tr>
                     </table>
+                    <button id="prev" className="btn pageControl bg-secondary">Previous</button>
+                <button id="next" className="btn pageControl bg-secondary">Next</button>
                 </div>
             </div>
         )

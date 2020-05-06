@@ -50,6 +50,22 @@
     text-align: right;
 }
 
+.pageControl {
+    border-radius: 2px !important;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.pageControl:hover {
+    background-color: #717171;
+    transition: 0.2s;
+}
+
+#next {
+    float: right;
+}
+
 .comp_songtablesearch button:hover {
     background-color: #C8C8C8;
 }
