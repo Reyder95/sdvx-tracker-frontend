@@ -20,39 +20,41 @@ class SongTable extends React.Component {
     fetchApi(page, search) {
         console.log('http://localhost:3000/api/songs?p=' + page + '&s=' + search)
 
+        let test = 0
+
         axios.get('http://localhost:3000/api/songs?p=' + page + '&s=' + search)
             .then(res => {
                 const songs = res.data.data;
                 const nextPage = res.data.next_page;
-
+                test = 3
                 console.log(songs);
                 this.setState({
                     data: songs,
                     next_page: nextPage
                 })
-            })
 
+                
             let previous = document.getElementsByClassName('prevButton');
             let next = document.getElementsByClassName('nextButton')
+                if (page == 1) {
+                    previous[0].style.display = 'none';
+                    previous[1].style.display = 'none';
+                }
+                else if (page > 1)
+                {
+                    previous[0].style.display = 'block';
+                    previous[1].style.display = 'block';
+                }
 
-        if (page == 1) {
-            previous[0].style.display = 'none';
-            previous[1].style.display = 'none';
-        }
-        else if (page > 1)
-        {
-            previous[0].style.display = 'block';
-            previous[1].style.display = 'block';
-        }
-
-        if (this.state.next_page) {
-            next[0].style.display = 'none';
-            next[1].style.display = 'none';
-        }
-        else if (!this.state.next_page) {
-            next[0].style.display = 'block';
-            next[1].style.display = 'block';
-        }
+                if (!this.state.next_page) {
+                    next[0].style.display = 'none';
+                    next[1].style.display = 'none';
+                }
+                else if (this.state.next_page) {
+                    next[0].style.display = 'block';
+                    next[1].style.display = 'block';
+                }
+            })
     }
 
     handleSearchChange(event) {
