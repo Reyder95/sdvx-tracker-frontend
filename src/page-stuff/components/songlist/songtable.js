@@ -10,6 +10,8 @@ class SongTable extends React.Component {
         super(props)
         this.state = {
             search: '',
+            level: 0,
+            game: '',
             next_page: '',
             page: 1,
             data: []
@@ -17,12 +19,12 @@ class SongTable extends React.Component {
     this.delayedCallback = _.debounce(this.handleSearchChange, 500)
     }
 
-    fetchApi(page, search) {
-        console.log('http://localhost:3000/api/songs?p=' + page + '&s=' + search)
+    fetchApi(page, search, level, game) {
+        console.log('http://localhost:3000/api/songs?p=' + page + '&s=' + search + '&l=' + level + '&g=' + game)
 
         let test = 0
 
-        axios.get('http://localhost:3000/api/songs?p=' + page + '&s=' + search)
+        axios.get('http://localhost:3000/api/songs?p=' + page + '&s=' + search + '&l=' + level + '&g=' + game)
             .then(res => {
                 const songs = res.data.data;
                 const nextPage = res.data.next_page;
@@ -61,11 +63,25 @@ class SongTable extends React.Component {
         const value = event.target.value
 
         this.setState({search: value})
-        this.fetchApi(1, value);
+        this.fetchApi(1, value, this.state.level, this.state.game);
+    }
+
+    handleGameChange(event) {
+        const value = event.target.value
+
+        this.setState({game: value})
+        this.fetchApi(1, this.state.search, this.state.level, value)
+    }
+
+    handleLevelChange(event) {
+        const value = event.target.value
+
+        this.setState({level: value})
+        this.fetchApi(1, this.state.search, value, this.state.game)
     }
 
     componentDidMount() {
-        this.fetchApi(this.state.page, this.state.search);
+        this.fetchApi(this.state.page, this.state.search, this.state.level, this.state.game);
     }
 
     refreshPage(next) {
@@ -76,7 +92,7 @@ class SongTable extends React.Component {
                 page: page
             })
 
-            this.fetchApi(page, this.state.search)
+            this.fetchApi(page, this.state.search, this.state.level, this.state.game)
         }
         else {
             let page = this.state.page - 1;
@@ -85,7 +101,7 @@ class SongTable extends React.Component {
                 page: page
             })
 
-            this.fetchApi(page, this.state.search)
+            this.fetchApi(page, this.state.search, this.state.level, this.state.game)
         }
     }
 
@@ -106,7 +122,7 @@ class SongTable extends React.Component {
                             <input onChange={this.onChange.bind(this)} id="song" className="form-input" placeholder="Song Search" type="text" />
                         </div>
                         <div className="form-flex-item column">
-                            <select id="level" className="form-input">
+                            <select onChange={this.handleLevelChange.bind(this)} id="level" className="form-input">
                                 <option value="" disabled selected hidden>Level Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -135,6 +151,19 @@ class SongTable extends React.Component {
                                 <option value="" disabled selected hidden>Type</option>
                                 <option value="official">Official</option>
                                 <option value="custom">Custom</option>
+                            </select>
+                        </div>
+
+                        <div className="form-flex-item column">
+                            <select onChange={this.handleGameChange.bind(this)} id="type" className="form-input">
+                                <option value="" disabled selected hidden>Game</option>
+                                <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
+                                <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
+                                <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
+                                <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
+                                <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
+                                <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
+                           
                             </select>
                         </div>
                         <div className="button-flex column">
