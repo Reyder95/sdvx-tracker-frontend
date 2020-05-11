@@ -113,6 +113,10 @@ class SongTable extends React.Component {
         }
     }
 
+    resetFilters() {
+        this.fetchApi(1, '', 0, '', '')
+    }
+
     onChange(event) {
         event.persist()
         this.delayedCallback(event)
@@ -175,7 +179,7 @@ class SongTable extends React.Component {
                             </select>
                         </div>
                         <div className="button-flex column">
-                            <button className="btn bg-quintery reset">Reset Filters</button>
+                            <button onClick={this.resetFilters.bind(this)} className="btn bg-quintery reset">Reset Filters</button>
                         </div>
                     </div>
 
