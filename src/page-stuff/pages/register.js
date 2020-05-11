@@ -16,7 +16,7 @@ class Register extends React.Component {
             email: '',
             email_confirm: '',
             current_error: '',
-            loginOK: false
+            signupOK: false
         }
     }
 
@@ -62,7 +62,7 @@ class Register extends React.Component {
         errors.style.display = "block"
     }
 
-    testState(event) {
+    register(event) {
         event.preventDefault()
 
         if (
@@ -97,7 +97,7 @@ class Register extends React.Component {
                                     .then(res => {
                                         alert("Successfully logged in!")
                                         this.setState({
-                                            loginOK: true
+                                            signupOK: true
                                         })
                                     }, (error) => {
                                         alert("Username or Email has been taken")
@@ -150,7 +150,7 @@ class Register extends React.Component {
 
     render() {
 
-        if (this.state.loginOK) {
+        if (this.state.signupOK) {
             return <Redirect push to="/login"/>
 
         }
@@ -191,7 +191,7 @@ class Register extends React.Component {
                             <input type="email" onChange={this.setEmailConfirm.bind(this)} value={this.state.email_confirm}/>
                         </div>
     
-                        <button onClick={this.testState.bind(this)} className="btn bg-quintery">Register</button>
+                        <button onClick={this.register.bind(this)} className="btn bg-quintery">Register</button>
                     </form>
                 </div>
             )
