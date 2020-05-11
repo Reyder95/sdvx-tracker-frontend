@@ -11,6 +11,7 @@ import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
 
 function App() {
+
   return (
     <div className="App">  
       <Router>
