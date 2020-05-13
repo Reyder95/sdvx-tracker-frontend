@@ -40,12 +40,14 @@ class Login extends React.Component {
             axios.post('http://localhost:3000/auth/login', {
                 key: this.state.key,
                 password: this.state.password
-            })
+            }, { withCredentials: true })
                 .then(res => {
                     alert("Successfully logged in!")
                     this.setState({
                         loginOK: true
                     })
+
+                    this.props.handleLogin(res.data)
                 }, (error) => {
                     alert("Invalid username or password!")
                 })
