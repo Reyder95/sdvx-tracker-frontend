@@ -30,13 +30,9 @@ class App extends React.Component{
       .then(res => {
         document.getElementById('loggedin').style.display = "block"
         document.getElementById('unloggedin').style.display = "none"
-        this.setState({
-          user_id: res.data.id,
-          username: res.data.username
-        })
       })
 
-    if (this.state.user_id == '')
+    if (localStorage.getItem("user_id") === null)
     {
       document.getElementById('loggedin').style.display = "none"
       document.getElementById('unloggedin').style.display = "block"
@@ -53,10 +49,22 @@ class App extends React.Component{
       user_id: data.id,
       username: data.username
     })
+
+    localStorage.setItem("user_id", data.id)
+    localStorage.setItem("username", data.username)
     
     document.getElementById('loggedin').style.display = "block";
 
     document.getElementById('unloggedin').style.display = "none";
+  }
+
+  handleLogout() {
+    axios.get('http://localhost:3000/auth/logout', { withCredentials: true })
+      .then(res => {
+        alert("Successfully logged out!")
+        document.getElementById('loggedin').style.display = "none"
+        document.getElementById('unloggedin').style.display = "block"
+      })
   }
 
   render() {
@@ -82,8 +90,8 @@ class App extends React.Component{
               
               <div id="nav-right">
                 <div id="loggedin">
-                  <Link className="color-secondary link">{this.state.username}</Link>
-                  <Link className="color-secondary link">Log Out?</Link>
+                  <Link to={'/profile?id=' + localStorage.getItem('user_id')} className="color-secondary link">{localStorage.getItem("username")}</Link>
+                  <Link onClick={this.handleLogout.bind(this)} className="color-secondary link">Log Out?</Link>
                 </div>
 
                 <div id="unloggedin">
