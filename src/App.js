@@ -56,11 +56,15 @@ class App extends React.Component{
     document.getElementById('loggedin').style.display = "block";
 
     document.getElementById('unloggedin').style.display = "none";
+
+    window.location.reload(false)
   }
 
   handleLogout() {
     axios.get('http://localhost:3000/auth/logout', { withCredentials: true })
       .then(res => {
+        localStorage.removeItem('user_id')
+        localStorage.removeItem('username')
         alert("Successfully logged out!")
         document.getElementById('loggedin').style.display = "none"
         document.getElementById('unloggedin').style.display = "block"
