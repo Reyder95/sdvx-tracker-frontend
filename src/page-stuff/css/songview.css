@@ -46,10 +46,13 @@
 }
 
 .comp_scoretable td, .comp_scoretable th {
-    width: 100%;
     border: 1px solid #000;
     padding: 15px;
     border-collapse: collapse;
+}
+
+.comp_scoretable th:first-of-type {
+    width: 5%;
 }
 
 .diff-buttons {
@@ -62,21 +65,27 @@
 }
 
 .addscore button {
+    height: 60px;
+    width: 60px;
     position: fixed;
     bottom: 20px;
     right: 20px;
     border-radius: 50%;
-    font-size: 30px;
+    font-size: 40px;
+    margin-bottom: 0px;
+    padding: 0;
 }
 
-.addscore {
-    border-radius: 50%;
+.tabcontent {
+    display: none;
+    animation: fadeEffect 0.5s;
 }
 
-.addscore button {
-    margin-bottom: 20px;
-    transition: 0.2s;
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
+
 .addscore button:hover {
     background-color: #00747F;
     transition: 0.2s;
@@ -120,6 +129,15 @@
 .mxm-button:hover {
     background-color: #7A7A7A;
     transition: 0.2s;
+}
+
+.componentScoreTable {
+    width: 100%;
+}
+
+.componentScoreTable tr th
+{
+    width: 25%;
 }
 
 @media only screen and (max-width: 1025px) {

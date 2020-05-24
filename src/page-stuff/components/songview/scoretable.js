@@ -1,6 +1,31 @@
 import React from 'react'
+import NoviceScores from './scores_novice'
+import AdvancedScores from './scores_advanced'
+import ExhaustScores from './scores_exhaust'
+import MaximumScores from './scores_maximum'
 
 class ScoreTable extends React.Component {
+    
+    openScoreboard(tabName, e) {
+        let i, tabcontent, tablinks;
+    
+        tabcontent = document.getElementsByClassName("tabcontent");
+    
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+    
+        tablinks = document.getElementsByClassName("tablinks");
+    
+        for (i = 0; i < tablinks.length; i++) { 
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+    
+        document.getElementById(tabName).style.display = "block";
+    
+        e.currentTarget.className += " active";
+    }
+    
     render() {
         return (
             <div className="comp_scoretable">
@@ -13,65 +38,41 @@ class ScoreTable extends React.Component {
                     <div className="row">
 
                         <div className="column">
-                            <button className="nov-button btn">NOVICE</button>
+                            <button onClick={(e) => this.openScoreboard('novice', e)} className="nov-button btn">NOVICE</button>
                         </div>
 
                         <div className="column">
-                            <button className="adv-button btn">ADVANCED</button>
+                            <button onClick={(e) => this.openScoreboard('advanced', e)} className="adv-button btn">ADVANCED</button>
                         </div>
 
                         <div className="column">
-                            <button className="exh-button btn">EXHAUST</button>
+                            <button onClick={(e) => this.openScoreboard('exhaust', e)} className="exh-button btn">EXHAUST</button>
                         </div>
 
                         <div className="column">
-                            <button className="mxm-button btn">MAXIMUM  </button>
+                            <button onClick={(e) => this.openScoreboard('maximum', e)} className="mxm-button btn">MAXIMUM  </button>
                         </div>
 
                     </div>
                 </div>
 
-                <table className="font-source">
-                    <tr className="font-roboto-slab">
-                        <th>#</th>
-                        <th>Score</th>
-                        <th>Clear Type</th>
-                        <th>Grade</th>
-                        <th>Date</th>
-                    </tr>
+                <div className="tabcontent" id="novice">
+                    <NoviceScores />
+                </div>
 
-                    <tr>
-                        <td>1</td>
-                        <td>9,716,888</td>
-                        <td>Clear</td>
-                        <td>AAA</td>
-                        <td>4/20/2020</td>
-                    </tr>
+                <div className="tabcontent" id="advanced">
+                    <AdvancedScores />
+                </div>
 
-                    <tr>
-                        <td>2</td>
-                        <td>9,716,888</td>
-                        <td>Clear</td>
-                        <td>AAA</td>
-                        <td>4/20/2020</td>
-                    </tr>
+                <div className="tabcontent" id="exhaust">
+                    <ExhaustScores />
+                </div>
 
-                    <tr>
-                        <td>3</td>
-                        <td>9,716,888</td>
-                        <td>Clear</td>
-                        <td>AAA</td>
-                        <td>4/20/2020</td>
-                    </tr>
+                <div className="tabcontent" id="maximum">
+                    <MaximumScores />
+                </div>
 
-                    <tr>
-                        <td>4</td>
-                        <td>9,716,888</td>
-                        <td>Clear</td>
-                        <td>AAA</td>
-                        <td>4/20/2020</td>
-                    </tr>
-                </table>
+                
             </div>
         )
     }
