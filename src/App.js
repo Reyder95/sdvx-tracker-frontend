@@ -75,7 +75,6 @@ class App extends React.Component{
     return (
       <div className="App">  
         <Router>
-  
         <nav className="bg-primary p-3 font-roboto-slab">
           <div>
             <div>
@@ -124,8 +123,7 @@ class App extends React.Component{
               <Profile />
             </Route>
   
-            <Route path="/songlist">
-              <SongList />
+            <Route path="/songlist" render={props => ( <SongList {...props}/> )}>
             </Route>
   
             <Route path="/register">
@@ -140,9 +138,7 @@ class App extends React.Component{
             >
             </Route>
   
-            <Route path="/song">
-              <SongView />
-            </Route>
+            <Route path="/song" render={props => ( <SongView {...props}/> )}/>
           </Switch>
         
         </Router>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { browserRouter } from 'react-router-dom'
 import Sidebar from '../components/profile/profile_sidebar'
 import RecentScores from '../components/profile/profile_recentscores'
 import Grades from '../components/profile/profile_grades'
@@ -14,6 +15,7 @@ class Profile extends React.Component
 
     constructor(props) {
         super(props);
+        this.state = {}
     }
 
     openCity(tabName, e) {

@@ -12,6 +12,12 @@
     overflow-x: auto;
 }
 
+.song_entry_tr:hover {
+    transition: 0.2s;
+    cursor: pointer;
+    background-color: #0E2E76
+}
+
 .comp_songtable img {
     vertical-align: middle;
     width: 80%;

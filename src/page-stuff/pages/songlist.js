@@ -5,10 +5,21 @@ import Footer from '../components/general/footer'
 import '../css/songlist.css'
 
 class SongList extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            test: ''
+        }
+    }
+    
     render() {
         return (
             <div className="comp_songlist">
-                <SongTable />
+
+                <SongTable 
+                history={this.props.history}
+                />
                 <Footer />
             </div>
         )
