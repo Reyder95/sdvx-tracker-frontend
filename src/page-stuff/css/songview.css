@@ -31,6 +31,7 @@
     margin-right: 100px;
     margin-top: 25px;
     margin-bottom: 50px;
+    min-height: 500px;
 }
 
 .comp_scoretable button {
@@ -62,6 +63,11 @@
 
 .diff-buttons button {
     width: 75%;
+    max-width: 50%;
+}
+
+.diff-buttons button:hover {
+    cursor: pointer;
 }
 
 .addscore button {
@@ -74,6 +80,131 @@
     font-size: 40px;
     margin-bottom: 0px;
     padding: 0;
+}
+
+.addscore button:hover {
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    animation-name: animateModal;
+    animation-duration: 0.4s;
+}
+
+.testlol {
+    visibility: hidden;
+}
+
+#nov-btn,
+#adv-btn,
+#exh-btn,
+#mxm-btn {
+    display: none;
+}
+
+.active:hover {
+    cursor: auto !important;
+}
+
+#nov-button.active {
+    background-color: #713592;
+    border: 3px solid rgba(0,0,0,0.5)
+}
+
+#adv-button.active {
+    background-color: #BEA80B;
+    border: 3px solid rgba(0,0,0,0.5)
+}
+
+#exh-button.active {
+    background-color: #B90B17;
+    border: 3px solid rgba(0,0,0,0.5)
+}
+
+#mxm-button.active {
+    background-color: #7A7A7A;
+    border: 3px solid rgba(0,0,0,0.5)
+}
+
+#addScoreModal label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#addScoreModal label:first-of-type {
+    margin-top: 5px;
+}
+
+#addScoreModal input {
+    display: block;
+    width: 100%;
+    height: 25px;
+    font-size: 18px;
+    padding: 15px 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.5);
+    background-color: white;
+}
+
+.modal button {
+    margin-top: 10px;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.modal button:hover {
+    background-color: #00747F;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes animateModal {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
 }
 
 .tabcontent {
@@ -140,10 +271,24 @@
     width: 25%;
 }
 
+.no-scores {
+    font-size: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.table-delete:hover {
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 1025px) {
     .comp_scoretable {
         margin-left: 100px;
         margin-right: 100px;
+    }
+
+    .modal-content {
+        width: 60%;
     }
 
     .addscore {
@@ -186,6 +331,10 @@
     .song-image h2 {
         margin-top: 0px;
         padding-top: 10px;
+    }
+
+    .modal-content {
+        width: 95%;
     }
 
     .song-info {

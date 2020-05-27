@@ -2,6 +2,7 @@ import React from 'react'
 import SongTableSearch from './songtablesearch'
 import SongEntry from './songlist_entry'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 
 class SongTable extends React.Component {
@@ -208,11 +209,13 @@ class SongTable extends React.Component {
                         {
                             
                             this.state.data.map((song, index) => (
-                                <SongEntry 
-                                    nbr={index + (this.state.page * 10 - 9)}
-                                    key={song.id}
-                                    songData={song}
-                                />
+                                    <SongEntry 
+                                        nbr={index + (this.state.page * 10 - 9)}
+                                        key={song.id}
+                                        songData={song}
+                                        history={this.props.history}
+                                    />
+                                
                             ))
                         }
 

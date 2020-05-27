@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import '../../css/songview.css'
 
@@ -16,6 +17,7 @@ class SongEntry extends React.Component {
     }
 
     componentDidMount() {
+
         this.props.songData.dfficulties.map((diff) => {
             if (diff.difficulty == "NOVICE") 
             {
@@ -47,14 +49,24 @@ class SongEntry extends React.Component {
             id: this.props.songData.id
         })
     }
+
+    redirectionLink(songID) {
+        this.props.history.push('/song?id=' + songID)
+    }
     
     render() {
         return (
-            <tr>
-                <td>{this.props.nbr}</td>
-                <td className="jacket2">
-                    <img src={this.props.songData.jacket_link} />
+            <tr className="song_entry_tr" onClick={() => this.redirectionLink(this.props.songData.id)}>
+                
+                <td>
+                        {this.props.nbr}    
                 </td>
+                
+
+                <td className="jacket2">
+                        <img src={this.props.songData.jacket_link} />
+                </td>
+
                 <td>{this.props.songData.artist} - {this.props.songData.title}</td>
                 <td>{this.state.nov}</td>
                 <td>{this.state.adv}</td>
@@ -62,6 +74,7 @@ class SongEntry extends React.Component {
                 <td>{this.state.mxm}</td>
                 <td>Official</td>
                 <td>-----</td>
+                
             </tr>
         )
     }
