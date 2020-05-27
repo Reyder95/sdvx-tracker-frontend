@@ -119,9 +119,7 @@ class App extends React.Component{
               <Home/>
             </Route>
   
-            <Route path="/profile">
-              <Profile />
-            </Route>
+            <Route path="/profile" render={props => ( <Profile {...props}/> )}/>
   
             <Route path="/songlist" render={props => ( <SongList {...props}/> )}>
             </Route>

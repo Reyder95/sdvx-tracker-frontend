@@ -3,6 +3,10 @@ import axios from 'axios';
 
 class Scores extends React.Component {
     
+    constructor(props) {
+        super(props)
+    }
+
     renderDate(date) {
         let scoreDate = new Date(date)
 
@@ -67,7 +71,6 @@ class Scores extends React.Component {
                                             </tr>
                                         ))
                                     }
-
                                 </table>
                             )
                         }

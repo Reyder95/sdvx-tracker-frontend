@@ -1,5 +1,4 @@
 import React from 'react'
-import { browserRouter } from 'react-router-dom'
 import Sidebar from '../components/profile/profile_sidebar'
 import RecentScores from '../components/profile/profile_recentscores'
 import Grades from '../components/profile/profile_grades'
@@ -7,6 +6,8 @@ import Volforce from '../components/profile/profile_volforce'
 import TopScores from '../components/profile/profile_topscores'
 import Library from '../components/profile/profile_library'
 import Footer from '../components/general/footer'
+import queryString from 'query-string'
+import axios from 'axios'
 
 import '../css/profile.css'
 
@@ -15,7 +16,13 @@ class Profile extends React.Component
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            username: '',
+            date_joined: '',
+            scoreCount: '',
+            libraryCount: '',
+            pf_picture: ''
+        }
     }
 
     openCity(tabName, e) {
@@ -38,6 +45,20 @@ class Profile extends React.Component
         e.currentTarget.className += " active";
     }
 
+    componentDidMount() {
+        let values = queryString.parse(this.props.location.search)
+        
+        axios.get('http://localhost:3000/api/user?id=' + values.id)
+            .then(res => {
+                this.setState({
+                    username: res.data.userData.username,
+                    date_joined: res.data.userData.date_joined,
+                    scoreCount: res.data.scoreData.scorenumber,
+                    libraryCount: res.data.libraryData.librarynumber
+                })
+            })
+    }
+
     render() {
         return(
             <div className="comp_profile">
@@ -51,7 +72,13 @@ class Profile extends React.Component
                                 <button className="tablinks btn library bg-primary color-secondary font-roboto-slab" onClick={(e) => this.openCity('tabLibrary', e)}>Library</button>
                             </div>
                         </div>
-                        <Sidebar/>
+                        <Sidebar
+                        username={this.state.username}
+                        date_joined={this.state.date_joined}
+                        scorecount={this.state.scoreCount}
+                        librarycount={this.state.libraryCount}
+                        pf_picture={this.state.pf_picture}
+                        />
                     </div>
 
                     <div className="column four-times">
