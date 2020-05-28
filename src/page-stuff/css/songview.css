@@ -42,8 +42,12 @@
     text-align: right;
 }
 
-.comp_scoretable table {
+.componentScoretable {
     background-color: #9D9D9D;
+}
+
+.scoreDiv {
+    background-color: #9D9D9D
 }
 
 .comp_scoretable td, .comp_scoretable th {
@@ -59,6 +63,7 @@
 .diff-buttons {
     text-align: center;
     margin-bottom: 25px;
+    margin-top: 30px;
 }
 
 .diff-buttons button {
@@ -80,6 +85,7 @@
     font-size: 40px;
     margin-bottom: 0px;
     padding: 0;
+    margin-top: -200px;
 }
 
 .addscore button:hover {
@@ -291,10 +297,6 @@
         width: 60%;
     }
 
-    .addscore {
-        margin-bottom: 20px;
-    }
-
     .comp_scoretable button {
         margin-bottom: 4px;
     }
@@ -319,6 +321,11 @@
 
     .song-block {
         margin: 0;
+    }
+
+    .no-scores {
+        margin-left: 50px;
+        margin-right: 50px;
     }
 }
 

@@ -52,29 +52,32 @@ class Scores extends React.Component {
                     if (this.props.scores[i].scores[0] !== undefined && this.props.scores[i].scores[0] != null && this.props.scores[i].scores.length > 0)
                     {
                             return (
-                                <table className="font-source componentScoreTable">
-                                    <tr className="font-roboto-slab">
-                                        <th>#</th>
-                                        <th>Score</th>
-                                        <th>Clear Type</th>
-                                        <th>Grade</th>
-                                        <th>Date</th>
-                                        <th>Delete</th>
-                                    </tr>
+                                <div className="scoreDiv">
+                                    <table className="scoreTable font-source componentScoreTable">
+                                        <tr className="font-roboto-slab">
+                                            <th>#</th>
+                                            <th>Score</th>
+                                            <th>Clear Type</th>
+                                            <th>Grade</th>
+                                            <th>Date</th>
+                                            <th>Delete</th>
+                                        </tr>
 
-                                    {
-                                        this.props.scores[i].scores.map((score, index) => (
-                                            <tr>
-                                                <td>{index + 1}</td>
-                                                <td>{score.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                                                <td>{score.type}</td>
-                                                <td>{score.grade}</td>
-                                                <td>{this.renderDate(score.date)}</td>
-                                                <td onClick={() => this.deleteData(score.id)} className="table-delete">&times;</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </table>
+                                        {
+                                            this.props.scores[i].scores.map((score, index) => (
+                                                <tr>
+                                                    <td>{index + 1}</td>
+                                                    <td>{score.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                                                    <td>{score.type}</td>
+                                                    <td>{score.grade}</td>
+                                                    <td>{this.renderDate(score.date)}</td>
+                                                    <td onClick={() => this.deleteData(score.id)} className="table-delete">&times;</td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </table>
+                                </div>
+                                
                             )
                         }
                         else {

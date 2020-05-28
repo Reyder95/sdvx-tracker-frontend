@@ -349,7 +349,11 @@ td {
         margin: 0;
     }
 
-    .nav-right {
+    nav {
+        text-align: center;
+    }
+
+    #nav-right {
         float: none;
         text-align: center;
         margin-top: 15px;
