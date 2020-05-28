@@ -105,10 +105,10 @@ class SongView extends React.Component {
                             clear_id: clearType
                         }, { withCredentials: true })
                             .then(res => {
-                                window.location.reload(false)
+                                this.closeModal()
                             })
                             .catch(err => {
-                                console.log("NOPE")
+                                console.log(err)
                             })
                     }
                     else 
@@ -139,8 +139,6 @@ class SongView extends React.Component {
                 error: 'Please make sure to not leave anything blank!'
             })
         }
-
-        
     }
 
     componentDidMount() {
@@ -159,11 +157,13 @@ class SongView extends React.Component {
                 <SongViewTop 
                 location={this.props.location}
                 />
+
                 <ScoreTable
                 location={this.props.location}
                 setCurrentDiff={this.setCurrentDiff.bind(this)}
                 setSpecificId={this.setSpecificId.bind(this)}
                 />
+                
                 <Footer />
 
                 

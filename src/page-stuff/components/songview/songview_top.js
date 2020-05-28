@@ -28,7 +28,7 @@ class SongViewTop extends React.Component {
                 bpm: res.data.data[0].bpm,
                 effector: res.data.data[0].effector,
                 game: res.data.data[0].game,
-                image: res.data.data[0].jacket_link
+                image: res.data.data[0].jacket
             })
         })
     }
