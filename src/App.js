@@ -50,8 +50,9 @@ class App extends React.Component{
       username: data.username
     })
 
-    localStorage.setItem("user_id", data.id)
-    localStorage.setItem("username", data.username)
+    localStorage.setItem("user_id", data.user[0].id)
+    localStorage.setItem("username", data.user[0].username)
+    localStorage.setItem("jwt_token", data.token)
     
     document.getElementById('loggedin').style.display = "block";
 
@@ -65,6 +66,7 @@ class App extends React.Component{
       .then(res => {
         localStorage.removeItem('user_id')
         localStorage.removeItem('username')
+        localStorage.removeItem('jwt_token')
         alert("Successfully logged out!")
         document.getElementById('loggedin').style.display = "none"
         document.getElementById('unloggedin').style.display = "block"

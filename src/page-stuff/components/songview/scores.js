@@ -31,7 +31,10 @@ class Scores extends React.Component {
         axios.post('http://localhost:3000/api/delete_score', {
             id: id
         }, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+            }
         })
         .then(res => {
             window.location.reload(false)

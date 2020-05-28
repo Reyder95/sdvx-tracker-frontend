@@ -46,7 +46,7 @@ class Login extends React.Component {
                     this.setState({
                         loginOK: true
                     })
-
+                    console.log(res.data)
                     this.props.handleLogin(res.data)
                 }, (error) => {
                     alert("Invalid username or password!")
