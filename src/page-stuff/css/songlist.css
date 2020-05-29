@@ -186,6 +186,10 @@
         border-radius: 0;
     }
 
+    #addSongModal .row {
+        display: flex;  
+    }
+
     #addSongModal .modal-content {
         width: 90%;
     }
@@ -206,7 +210,25 @@
         display: block;
     }
 
+    .comp_songtable img {
+        width: 5.5rem;
+    }
+
     #addSongModal input {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 668px) {
+    .comp_songtable img {
+        width: 5rem;
+    }
+
+    #addSongModal .row {
+        display: block;
+    }
+
+    #addSongModal select {
         width: 100%;
     }
 }

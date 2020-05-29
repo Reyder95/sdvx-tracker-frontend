@@ -278,7 +278,7 @@ class SongTable extends React.Component {
                     }
                 })
                 .then(res => {
-                    console.log(res)
+                    this.props.history.push('/song?id=' + res.data.data.id)
                 })
             }
             
@@ -409,7 +409,6 @@ class SongTable extends React.Component {
                         <hr className="mt-1"/>
 
                         <div className="modal-body font-source mt-1">
-                            {console.log(this.state)}
                             <form>
                                 <div className="row">
                                     <div className="column songimagepreview">
@@ -593,6 +592,7 @@ class SongTable extends React.Component {
                         
                     </div>
                 </div>
+                
             </div>
         )
     }
