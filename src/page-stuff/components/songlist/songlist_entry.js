@@ -64,7 +64,7 @@ class SongEntry extends React.Component {
                 
 
                 <td className="jacket2">
-                        <img src={this.props.songData.jacket} />
+                        <img src={(this.props.songData.jacket == null) ? 'http://placehold.it/128' : this.props.songData.jacket} />
                 </td>
 
                 <td>{this.props.songData.artist} - {this.props.songData.title}</td>

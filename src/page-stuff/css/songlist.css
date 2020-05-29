@@ -83,13 +83,152 @@
     float: left;
 }
 
+#addSongModal {
+    color: #000;
+}
+
+#addSongModal input {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+#addSongModal .modal-content{
+    width: 60%;
+    padding: 15px;
+}
+
+#addSongModal select {
+    width: 75%;
+    display: block;
+    margin-bottom: 15px;
+}
+
 .comp_songtablesearch button:hover {
     background-color: #C8C8C8;
+}
+
+.difficultyLevels {
+    margin: 0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.difficultyLevels input {
+    margin: auto;
+    margin-top: 10px;
+    width: 100% !important;
+}
+
+.songimagepreview {
+    text-align: center;
+}
+
+.songimagepreview input{
+    margin-top: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80% !important;
+}
+
+.diffDropdown {
+    margin-top: 10px !important;
+}
+
+#songnovice,
+#songadvanced,
+#songexhaust,
+#songmaximum {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#addSongModal {
+    padding: 0;
+    margin: 0;
+}
+
+#addSongModal .btn {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+#addSongModal .column {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#addSongModal .close {
+    margin-right: 30px;
+}
+
+#addSongModal .modal-content {
+    border-radius: 5px;
+    margin: 15% auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    animation-name: animateModal;
+    animation-duration: 0.4s;
+}
+
+#addSongModal img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 250px;
+    width: 250px;
 }
 
 @media only screen and (max-width: 1025px) {
     .comp_songtable {
         margin: 0;
         border-radius: 0;
+    }
+
+    #addSongModal .row {
+        display: flex;  
+    }
+
+    #addSongModal .modal-content {
+        width: 90%;
+    }
+
+    #addSongModal .addSongRow {
+        padding: 10px;
+    }
+
+    #addSongModal .btn {
+        width: 100%;
+    }
+
+    #addSongModal img {
+        height: 150px;
+        width: 150px !important;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .comp_songtable img {
+        width: 5.5rem;
+    }
+
+    #addSongModal input {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 668px) {
+    .comp_songtable img {
+        width: 5rem;
+    }
+
+    #addSongModal .row {
+        display: block;
+    }
+
+    #addSongModal select {
+        width: 100%;
     }
 }
