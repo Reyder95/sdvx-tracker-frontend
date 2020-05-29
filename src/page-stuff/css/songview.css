@@ -34,6 +34,10 @@
     min-height: 500px;
 }
 
+.notloggedin {
+    min-height: 500px;
+}
+
 .comp_scoretable button {
     padding: 15px;
 }
@@ -105,7 +109,7 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
+#addScoreModal .modal-content {
     background-color: #fefefe;
     border-radius: 5px;
     margin: 15% auto;
@@ -159,11 +163,11 @@
     font-weight: bold;
 }
 
-#addScoreModal label:first-of-type {
+#addScoreModal, #addSongModal label:first-of-type {
     margin-top: 5px;
 }
 
-#addScoreModal input {
+#addScoreModal, #addSongModal input {
     display: block;
     width: 100%;
     height: 25px;
@@ -187,10 +191,6 @@
 }
 
 .modal-header {
-    padding: 2px 16px;
-}
-
-.modal-body {
     padding: 2px 16px;
 }
 

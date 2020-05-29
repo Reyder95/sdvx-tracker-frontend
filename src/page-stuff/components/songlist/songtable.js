@@ -16,7 +16,8 @@ class SongTable extends React.Component {
             type: '',
             next_page: '',
             page: 1,
-            data: []
+            data: [],
+            songimageurl: 'http://placehold.it/128'
         }
     this.delayedCallback = _.debounce(this.handleSearchChange, 500)
     }
@@ -114,6 +115,18 @@ class SongTable extends React.Component {
         }
     }
 
+    openModal() {
+        let modal = document.getElementById('addSongModal')
+
+        modal.style.display = 'block'
+    }
+
+    closeModal() {
+        let modal = document.getElementById('addSongModal')
+
+        modal.style.display = 'none'
+    }
+
     resetFilters() {
         this.fetchApi(1, '', 0, '', '')
     }
@@ -123,11 +136,20 @@ class SongTable extends React.Component {
         this.delayedCallback(event)
     }
 
+    setSongImageUrl(event) {
+        if (event.target.value.trim() == '')
+            this.setState({
+                songimageurl: 'http://placehold.it/128'
+            })
+        else
+            this.setState({
+                songimageurl: event.target.value
+            })
+    }
+
     render() {
         return (
             <div className="comp_songtable color-secondary bg-tertiary">
-
-                <SongTableSearch />
 
                 <form className="form-flex">
                     <div className="row">
@@ -187,6 +209,8 @@ class SongTable extends React.Component {
                     
                 </form>
 
+                <button onClick={() => this.openModal()} className="btn">Add Song</button>
+
                 <div className="pageControls">
                     <button onClick={() => this.refreshPage(false)} id="prev" className="btn pageControl prevButton bg-secondary">Previous</button>
                     <button onClick={() => this.refreshPage(true)} id="next" className="btn pageControl nextButton bg-secondary">Next</button>
@@ -224,6 +248,114 @@ class SongTable extends React.Component {
                 <button onClick={() => this.refreshPage(false)} id="prev" className="btn pageControl prevButton bg-secondary">Previous</button>
                 <button onClick={() => this.refreshPage(true)} id="next" className="btn pageControl nextButton bg-secondary">Next</button>
                 
+                </div>
+
+                <div id="addSongModal" className="modal">
+                    <div className="modal-content bg-secondary">
+                        <span onClick={this.closeModal.bind(this)} className="close">&times;</span>
+                        <div className="modal-header font-roboto">
+                            <h2>Add a Song</h2>
+
+                            <h3 className="mt-2">Notes:</h3>
+
+                            <p className="mt-2">1. Please make sure the song you are uploading has not been uploaded previously (search for it)</p>
+                            <p className="mt-1">2. It's recommended to fill out all information, but it's not required.</p>
+                            <p className="mt-1">3. You can take a look at <a href="http://remywiki.com">Remy Wiki</a> for information when adding a song.</p>
+                            <p className="mt-1">4. Customs are allowed, but if possible provide a source to download the custom in <strong>Custom Link</strong>. and set the type to <strong>Custom</strong></p>
+                        </div>
+
+                        <hr className="mt-1"/>
+
+                        <div className="modal-body font-source mt-1">
+                            <form>
+                                <div className="row">
+                                    <div className="column songimagepreview">
+                                        <p className="mb-2">
+                                            <strong>
+                                                Image Preview
+                                            </strong>
+                                            
+                                        </p>
+                                        <img className="song-preview" src={this.state.songimageurl}/> <br/>
+
+                                        <label id="songimageurl">Song Image URL</label>
+                                        <input className="mb-4" onChange={(e) => this.setSongImageUrl(e)} type="text"/>
+                                    </div>
+
+                                    <div className="column songinformation">
+                                        <label id="songtitle">Title (required)</label>
+                                        <input className="mb-4" type="text"/>
+
+                                        <label id="songartist">Artist (required)</label>
+                                        <input className="mb-4" type="text"/>
+
+                                        <label id="songeffector">Effector</label>
+                                        <input className="mb-4" type="text"/>
+
+                                        <label id="songgame">Game</label>
+                                        <select className="mb-4" className="form-input">
+                                            <option hidden default value="">Select One</option>
+                                            <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
+                                            <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
+                                            <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
+                                            <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
+                                            <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
+                                            <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
+                                        </select>
+
+                                        <label className="mt-4" id="songtype">Type (required)</label>
+                                        <select className="mb-4" className="form-input">
+                                            <option hidden default value="">Select One</option>
+                                            <option value="official">Official</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+
+                                        <label id="songcustomlinks">Custom Link</label>
+                                        <input className="mb-4" type="text"/>
+                                    </div>
+                                    
+                                </div>
+
+                                <div className="difficultyLevels color-secondary bg-tertiary">
+                                    <p className="mb-4">
+                                        <strong>
+                                            Specify a level for each difficulty you want to upload (must at least specify one!)
+                                        </strong>
+                                    </p>
+
+                                    <div className="color-secondary row">
+                                        <div className="column">
+                                            <label id="songnovice">NOVICE</label>
+                                            <input className="testlol" className="mb-4" type="text"/>
+                                        </div>
+
+                                        <div className="column">
+                                            <label id="songadvanced">ADVANCED</label>
+                                            <input className="mb-4" type="text"/>
+                                        </div>
+
+                                        <div className="column">
+                                            <label id="songexhaust">EXHAUST</label>
+                                            <input className="mb-4" type="text"/>
+                                        </div>
+
+                                        <div className="column">
+                                            <label id="songmaximum">MAXIMUM</label>
+                                            <input className="mb-4" type="text"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="row addSongRow">
+                                    <button className="btn bg-quintery">Add Song</button>
+                                </div>
+                                
+                                
+                            </form>
+                            
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         )

@@ -155,9 +155,12 @@ class ScoreTable extends React.Component {
             )
         } else {
             return (
-                <div className="no-scores bg-primary color-secondary m-2 p-4 font-roboto-slab">
-                    You must be logged in to view your scores!
+                <div className="notloggedin">
+                    <div className="no-scores bg-primary color-secondary m-2 p-4 font-roboto-slab">
+                        You must be logged in to view your scores!
+                    </div>
                 </div>
+                
             )
         }
         
