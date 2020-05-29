@@ -70,6 +70,8 @@ class App extends React.Component{
         alert("Successfully logged out!")
         document.getElementById('loggedin').style.display = "none"
         document.getElementById('unloggedin').style.display = "block"
+
+        window.location.reload(false)
       })
   }
 
@@ -96,7 +98,7 @@ class App extends React.Component{
               <div id="nav-right">
                 <div id="loggedin">
                   <Link to={'/profile?id=' + localStorage.getItem('user_id')} className="color-secondary link">{localStorage.getItem("username")}</Link>
-                  <Link onClick={this.handleLogout.bind(this)} className="color-secondary link">Log Out?</Link>
+                  <Link to={'/'} onClick={this.handleLogout.bind(this)} className="color-secondary link">Log Out?</Link>
                 </div>
 
                 <div id="unloggedin">

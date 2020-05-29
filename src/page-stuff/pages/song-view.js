@@ -76,8 +76,6 @@ class SongView extends React.Component {
     addScore(event) {
         event.preventDefault()
 
-        console.log(localStorage.getItem('jwt_token'))
-
         if (this.state.score != '' && this.state.clear_type != '')
         {
             let score = this.state.score;
