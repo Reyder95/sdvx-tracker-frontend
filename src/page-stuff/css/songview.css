@@ -167,7 +167,7 @@
     margin-top: 5px;
 }
 
-#addScoreModal, #addSongModal input {
+#addScoreModal input, #addSongModal input {
     display: block;
     width: 100%;
     height: 25px;

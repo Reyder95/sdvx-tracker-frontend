@@ -94,6 +94,7 @@
 
 #addSongModal .modal-content{
     width: 60%;
+    padding: 15px;
 }
 
 #addSongModal select {
@@ -109,6 +110,7 @@
 .difficultyLevels {
     margin: 0;
     padding: 20px;
+    border-radius: 10px;
 }
 
 .difficultyLevels input {
@@ -127,6 +129,18 @@
     margin-left: auto;
     margin-right: auto;
     width: 80% !important;
+}
+
+.diffDropdown {
+    margin-top: 10px !important;
+}
+
+#songnovice,
+#songadvanced,
+#songexhaust,
+#songmaximum {
+    display: block;
+    margin-bottom: 5px;
 }
 
 #addSongModal {
