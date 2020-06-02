@@ -26,7 +26,7 @@ class Volforce extends React.Component {
                     options={{
                         title: {
                             display: true,
-                            text: 'Volforce',
+                            text: 'Volforce (Not Implemented Yet)',
                             fontSize: 20,
                             fontColor: '#484848'
                         },

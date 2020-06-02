@@ -143,11 +143,6 @@
     margin-bottom: 5px;
 }
 
-#addSongModal {
-    padding: 0;
-    margin: 0;
-}
-
 #addSongModal .btn {
     width: 50%;
     margin: 0 auto;

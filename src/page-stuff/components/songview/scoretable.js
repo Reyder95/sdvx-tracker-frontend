@@ -10,7 +10,10 @@ class ScoreTable extends React.Component {
 
         this.state = {
             scores: [],
-            isValidSong: false
+            isValidSong: false,
+            novDiff: 0,
+            exhDiff: 0,
+            mxmDiff: 0
         }
     }
 
@@ -71,18 +74,30 @@ class ScoreTable extends React.Component {
                 {
                     document.getElementById('nov-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'NOVICE')
+                    this.setState({
+                        novDiff: myDifficulties[i].level
+                    })
                 }
                 else if (myDifficulties[i].difficulty == 'ADVANCED') {
                     document.getElementById('adv-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'ADVANCED')
+                    this.setState({
+                        advDiff: myDifficulties[i].level
+                    })
                 }
                 else if (myDifficulties[i].difficulty == 'EXHAUST') {
                     document.getElementById('exh-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'EXHAUST')
+                    this.setState({
+                        exhDiff: myDifficulties[i].level
+                    })
                 }
                 else if (myDifficulties[i].difficulty == 'MAXIMUM') {
                     document.getElementById('mxm-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'MAXIMUM')
+                    this.setState({
+                        mxmDiff: myDifficulties[i].level
+                    })
                 }
 
             }
@@ -105,19 +120,19 @@ class ScoreTable extends React.Component {
                         <div className="row">
     
                             <div id="nov-btn" className="column">
-                                <button id="nov-button" onClick={(e) => this.openScoreboard('novice', e)} className="tablinks nov-button btn">NOVICE</button>
+                                <button id="nov-button" onClick={(e) => this.openScoreboard('novice', e)} className="tablinks nov-button btn">NOVICE - {this.state.novDiff}</button>
                             </div>
     
                             <div id="adv-btn" className="column">
-                                <button id="adv-button" onClick={(e) => this.openScoreboard('advanced', e)} className="tablinks adv-button btn">ADVANCED</button>
+                                <button id="adv-button" onClick={(e) => this.openScoreboard('advanced', e)} className="tablinks adv-button btn">ADVANCED - {this.state.advDiff}</button>
                             </div>
     
                             <div id="exh-btn" className="column">
-                                <button id="exh-button" onClick={(e) => this.openScoreboard('exhaust', e)} className="tablinks exh-button btn">EXHAUST</button>
+                                <button id="exh-button" onClick={(e) => this.openScoreboard('exhaust', e)} className="tablinks exh-button btn">EXHAUST - {this.state.exhDiff}</button>
                             </div>
     
                             <div id="mxm-btn" className="column">
-                                <button id="mxm-button" onClick={(e) => this.openScoreboard('maximum', e)} className="tablinks mxm-button btn">MAXIMUM  </button>
+                                <button id="mxm-button" onClick={(e) => this.openScoreboard('maximum', e)} className="tablinks mxm-button btn">MAXIMUM  - {this.state.mxmDiff}</button>
                             </div>
     
                         </div>

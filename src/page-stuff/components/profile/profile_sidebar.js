@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
         return(
             <div className="comp_sidebar">
                 <div className="profile-image">
-                    <img src="https://i.pinimg.com/originals/a6/f3/c5/a6f3c55ace829310723adcb7a468869b.png"/>
+                    <img src={this.props.pf_picture != null ? `http://localhost:3000/images/${this.props.pf_picture}` : 'http://placehold.it/120'}/>
                 </div>
                 <h1 className="username-display color-quartery mb-2 mt-2 font-roboto">{this.props.username}</h1>
                 <div className="color-secondary bg-primary pt-2 pb-2 font-source">
@@ -46,13 +46,13 @@ class Sidebar extends React.Component {
                 </div>
                 <div className="bg-primary font-source color-secondary pt-2 pb-2">
                     <p className="p-1">
-                        <strong>Twitter: </strong> None
+                        <strong>Twitter: </strong> <a href={'http://' + this.props.twitter}>{this.props.twitter}</a>
                     </p>
                     <p className="p-1">
-                        <strong>Discord Server: </strong> None
+                        <strong>Discord Tag: </strong> {this.props.discord}
                     </p>
                     <p className="p-1">
-                        <strong>Instagram: </strong> None
+                        <strong>Twitch: </strong> <a href={'http://' + this.props.twitch}>{this.props.twitch}</a>
                     </p>
                 </div>
             </div>

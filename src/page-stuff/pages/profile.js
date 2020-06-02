@@ -21,7 +21,11 @@ class Profile extends React.Component
             date_joined: '',
             scoreCount: '',
             libraryCount: '',
-            pf_picture: ''
+            pf_picture: '',
+            discord: '',
+            twitter: '',
+            twitch: '',
+            userID: ''
         }
     }
 
@@ -45,6 +49,10 @@ class Profile extends React.Component
         e.currentTarget.className += " active";
     }
 
+    getUserState() {
+        return this.state.userID
+    }
+
     componentDidMount() {
         let values = queryString.parse(this.props.location.search)
         
@@ -54,7 +62,12 @@ class Profile extends React.Component
                     username: res.data.userData.username,
                     date_joined: res.data.userData.date_joined,
                     scoreCount: res.data.scoreData.scorenumber,
-                    libraryCount: res.data.libraryData.librarynumber
+                    libraryCount: res.data.libraryData.librarynumber,
+                    pf_picture: res.data.userData.pf_picture,
+                    discord: res.data.userData.discord,
+                    twitter: res.data.userData.twitter,
+                    twitch: res.data.userData.twitch,
+                    userID: values.id
                 })
             })
     }
@@ -72,26 +85,31 @@ class Profile extends React.Component
                                 <button className="tablinks btn library bg-primary color-secondary font-roboto-slab" onClick={(e) => this.openCity('tabLibrary', e)}>Library</button>
                             </div>
                         </div>
+
                         <Sidebar
                         username={this.state.username}
                         date_joined={this.state.date_joined}
                         scorecount={this.state.scoreCount}
                         librarycount={this.state.libraryCount}
                         pf_picture={this.state.pf_picture}
+                        discord={this.state.discord}
+                        twitter={this.state.twitter}
+                        twitch={this.state.twitch}
                         />
                     </div>
 
                     <div className="column four-times">
                         <div id="tabProfile" className="tabcontent">
                             <div className="row recentscores bg-tertiary ml-2 p-4 mt-2 mr-2">
-                                <RecentScores />
+                                <RecentScores {...this.props}/>
                             </div>
                             <div className="row">
                                 <div className="column volforce-line bg-quintery ml-2 p-4 mt-2">
                                     <Volforce />
                                 </div>
+
                                 <div className="column grade-pie bg-quintery ml-2 p-4 mt-2 mr-2 order-4">
-                                    <Grades />
+                                    <Grades {...this.props}/>
                                 </div>
                             </div>
 
@@ -102,7 +120,9 @@ class Profile extends React.Component
 
                         <div id="tabLibrary" className="tabcontent more-library-content">
                             <div className="row library-content bg-tertiary ml-2 mr-2 p-4 mt-2 mb-2">
-                                <Library />
+                                <Library 
+                                {...this.props}
+                                />
                             </div>
                         </div>
                     </div>

@@ -20,10 +20,22 @@ body {
 
 .profile-image img {
     display: block;
+    width: 100%;
+    height: auto;
+}
+
+.profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 50%;
-    margin-top: 1em;
+    margin-top: 20px;
+    margin-bottom: 35px;
 }
 
 .volforce-display {
@@ -33,6 +45,10 @@ body {
 /* Recent Songs */
 .comp_recentsongs {
     width: 100%;
+}
+
+.comp_recentsongs table {
+    border-collapse: collapse;
 }
 
 .comp_recentsongs table tr:hover td {
@@ -68,6 +84,20 @@ body {
 @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
+}
+
+.comp_recentsongs td {
+    padding: 5px;
+}
+
+.comp_recentsongs .jacket {
+    width: 15%
+}
+
+.comp_recentsongs td img {
+    width: 35%;
+    margin-top: 5px;
+    border-radius: 3px;
 }
 
 .active {
@@ -117,12 +147,44 @@ body {
 }
 
 @media only screen and (max-width: 1024px) {
-    .profile-image img {
-        margin-top: 0px;
-    }
-
     .recentscores, .volforce-line, .grade-pie, .topscores, .library-content {
         margin: 0 !important;
         border-radius: 0;
+    }
+}
+
+@media only screen and (max-width: 726px) {
+    .recent-display {
+        overflow-x: scroll;
+    }
+
+    .comp_recentsongs .chart {
+        width: 100%;
+    }
+
+    .comp_recentsongs table {
+        width: 150%;
+        overflow-x: scroll;
+    }
+
+    .comp_recentsongs .chart {
+        width: 10rem;
+    }
+
+    .comp_recentsongs td {
+        padding: 10px;
+    }
+
+    .comp_recentsongs .jacket {
+        width: 30%;
+    }
+
+    .comp_recentsongs img {
+        display: block;
+        width: 10%;
+    }
+
+    .profile-image img {
+        margin-top: 0px;
     }
 }

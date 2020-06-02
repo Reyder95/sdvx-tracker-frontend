@@ -32,7 +32,6 @@ class Footer extends React.Component {
                         Developed by Scarlet Red
                     </h3>
                 </div>
-                
             </div>
         )
     }

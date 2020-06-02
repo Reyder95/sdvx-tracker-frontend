@@ -278,7 +278,9 @@ class SongTable extends React.Component {
                     }
                 })
                 .then(res => {
-                    this.props.history.push('/song?id=' + res.data.data.id)
+                    console.log('hi')
+                    console.log(res.data.id)
+                    this.props.history.push('/song?id=' + res.data.id)
                 })
             }
             
