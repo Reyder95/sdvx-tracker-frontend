@@ -1,5 +1,11 @@
 ## Introduction
-This is a project developed for use with the game SOUND VOLTEX and its respective simulators (Unnamed SDVX Clone, K-Shoot Mania, and soon Neurosonic). In a tl;dr fashion, it will be a system that users can keep track of all their scores among these versions of the game and view statistics that may make them better players. Since there are many versions of the game and people switch it up, having one central system where you can manually input and keep track of scores would be a benefit. This system will also support customs for the various simulators (as you enter charts in on your own)
+This is a project developed for use with the game SOUND VOLTEX and its respective simulators (Unnamed SDVX Clone, K-Shoot Mania, and soon Neurosonic). In a tl;dr fashion, it will be a system that users can keep track of all their scores among these versions of the game and view statistics that may make them better players. Since there are many versions of the game and people switch it up, having one central system where you can manually input and keep track of scores would be a benefit. This system will also support customs for the various simulators
+
+## Have a suggestion or a bug to report?
+Check out the Issues tab above to submit an issue whether it be a bug report or a feature request. This way we can keep track of what everyone thinks about the platform and how we can work to improve it!
+
+## How Does This Work?
+When you browse the Song List, you can view all charts that are currently uploaded to the website. These entries are just data, and do not have a physical chart download attached to them. If you play a song and need to upload it to the website, you would first check if whether or not the song was posted to the website already. If it was not, you would create the song first, inputting as much information as you want so other people can also use the song to post their own scores. After this, you'd be able to enter the song view page and click the Add Score button, which will bring a button that allows you to input and submit your score. This submits your score to the database and processes against the rest of your scores to check whether or not you gain volforce from this.
 
 ## Upcoming Feature List
 ### Song Entry
