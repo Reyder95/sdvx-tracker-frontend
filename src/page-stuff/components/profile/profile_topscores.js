@@ -1,3 +1,5 @@
+// NOT IMPLEMENTED YET, WILL DOCUMENT WHEN IMPLEMENTED
+
 import React from 'react'
 
 class TopScores extends React.Component {
@@ -8,6 +10,8 @@ class TopScores extends React.Component {
 
                     <h2 className="font-roboto color-quartery mb-3">Top Scores</h2> 
 
+                    <h2 className="font-roboto color-secondary">Not implemented yet!</h2>
+                    {/*
                     <table className="table font-source color-quartery">
                         <tr>
                             <th className="number">#</th>
@@ -86,6 +90,7 @@ class TopScores extends React.Component {
                             <td>0.30</td>
                         </tr>
                     </table>
+                    */}
                 </div>
             </div>
         )

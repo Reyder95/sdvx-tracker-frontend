@@ -1,6 +1,7 @@
+// NOT IMPLEMENTED YET, WILL DOCUMENT WHEN IMPLEMENTED
+
 import React from 'react'
 import { Line } from 'react-chartjs-2'
-import { withRouter } from 'react-router-dom';
 
 const state = {
     labels: ['January', 'February', 'March', 'April'],
@@ -26,7 +27,7 @@ class Volforce extends React.Component {
                     options={{
                         title: {
                             display: true,
-                            text: 'Volforce',
+                            text: 'Volforce (Not Implemented Yet)',
                             fontSize: 20,
                             fontColor: '#484848'
                         },
