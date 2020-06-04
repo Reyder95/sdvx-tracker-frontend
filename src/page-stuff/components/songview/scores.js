@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios';
+import { deleteScore } from '../../../api-calls'
 
 class Scores extends React.Component {
     
@@ -28,20 +28,7 @@ class Scores extends React.Component {
     }
 
     deleteData(id) {
-        axios.post('http://localhost:3000/api/delete_score', {
-            id: id
-        }, {
-            withCredentials: true,
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
-            }
-        })
-        .then(res => {
-            window.location.reload(false)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        deleteScore(id)
     }
 
     renderTable() {

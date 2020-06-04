@@ -1,7 +1,7 @@
 import React from 'react'
-import axios from 'axios'
 import queryString from 'query-string'
 import Scores from './scores'
+import { getScores } from '../../../api-calls'
 
 class ScoreTable extends React.Component {
     
@@ -41,10 +41,11 @@ class ScoreTable extends React.Component {
 
     componentDidMount() {
         let queryValues = queryString.parse(this.props.location.search)
-        axios.get('http://localhost:3000/api/scores?sid=' + queryValues.id + '&uid=' + localStorage.getItem('user_id'))
-        .then(res => {
+        
+        getScores(queryValues.id)
+        .then(result => {
 
-            let myDifficulties = res.data.data[0].difficulties;
+            let myDifficulties = result.data.data[0].difficulties;
 
             if (myDifficulties[0].difficulty == 'NOVICE') {
                 document.getElementById('novice').style.display = 'block'

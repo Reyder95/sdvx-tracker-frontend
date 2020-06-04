@@ -1,7 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import queryString from 'query-string'
-import { getSong } from '../../../api-calls'
+import { getSong, editScore } from '../../../api-calls'
 
 class SongViewTop extends React.Component {
     constructor(props) {
@@ -206,20 +205,8 @@ class SongViewTop extends React.Component {
 
                 if (this.state.editSong_jacket.trim() != 'https://placehold.it/128')
                     postObject.jacket = this.state.editSong_jacket.trim();
-                
-                console.log(postObject)
 
-                axios.post('http://localhost:3000/api/update_song', {
-                    postObject: postObject
-                }, {
-                    withCredentials: true,
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
-                    }
-                })
-                .then(res => {
-                    console.log(res)
-                })  
+                  editScore(postObject)
             }
     }
     
@@ -251,7 +238,7 @@ class SongViewTop extends React.Component {
                     </div>
                 </div>
 
-                <div id="editSongModal" className="modal">
+                <div id="addSongModal" className="modal">
                     <div className="modal-content bg-secondary">
                         <span onClick={this.closeModal.bind(this)} className="close">&times;</span>
                         <div className="modal-header font-roboto">

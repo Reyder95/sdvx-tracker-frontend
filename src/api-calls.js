@@ -259,6 +259,7 @@ export const addScore = async (score, diffID, clearType) => {
                             }
                         })
                         .then(() => {
+                            window.location.reload(false)
                             return true
                         })
                         .catch(err => {
@@ -266,4 +267,50 @@ export const addScore = async (score, diffID, clearType) => {
                         })
 
     return result
+}
+
+export const editScore = (postObject) => {
+    axios.post(`${api}/api/update_song`, {
+                    postObject: postObject
+                }, {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+                    }
+                })
+                .then(res => {
+                    window.location.reload(false)
+                })
+                .catch(err => {
+                    throw new Error(err)
+                })
+}
+
+export const getScores = async (songID) => {
+    let result = axios.get(`${api}/api/scores?sid=${songID}&uid=${localStorage.getItem('user_id')}`)
+                .then(apiData => {
+                    return apiData
+                })
+                .catch(err => {
+                    throw new Error(err)
+                })
+
+    return result
+}
+
+export const deleteScore = (scoreID) => {
+    axios.post(`${api}/api/delete_score`, {
+            id: scoreID
+        }, {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+            }
+        })
+        .then(() => {
+            window.location.reload(false)
+        })
+        .catch(err => {
+            throw new Error(err)
+        })
 }
