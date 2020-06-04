@@ -1,5 +1,8 @@
+// Main Component: Home
+
 import React from 'react'
 
+// The description of the website, lies underneath HomeTop
 class HomeDescription extends React.Component {
     render() {
         return(

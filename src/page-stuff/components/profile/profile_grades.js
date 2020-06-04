@@ -1,20 +1,25 @@
-import React from 'react'
-import { Pie } from 'react-chartjs-2'
-import queryString from 'query-string'
-import axios from 'axios'
+// Main Component: Profile
 
+import React from 'react'   // React stuff
+import { Pie } from 'react-chartjs-2'   // ChartJS (for displaying charts)
+import queryString from 'query-string'  // For parsing URL querystring data
+import { userGrades } from '../../../api-calls' // User grades function for API calls
 
-
+// Shows a pie chart of user's grade count
 class Grades extends React.Component {
 
     constructor(props) {
         super(props);
 
+        // Contains all the data that we are going to be sending into our pie chart
         this.state = {
+            // The labels for each part of the pie chart
             labels: ['S', 'AAA+', 'AAA', 'AA+', 'AA', 'A+', 'A', 'B', 'C', 'D'],
             datasets: [
                 {
+                    // The name of the pie chart
                     label: 'Grades',
+                    // This gets set to proper colors on data load (but it coincides with the grade array above)
                     backgroundColor: [
                         '#DFCE7D',
                         '#634FA3',
@@ -27,13 +32,16 @@ class Grades extends React.Component {
                         'yellow',
                         'pink'
                     ],
+                    // Actual data (this gets set on profile load)
                     data: [70, 88, 50, 44, 20]
                 }
             ],
+            // User's id
             userID: ''
         }
     }
 
+    // On component mount call the database and insert things into state
     componentDidMount() {
 
         let values = queryString.parse(this.props.location.search)
@@ -42,96 +50,101 @@ class Grades extends React.Component {
             userID: values.id
         })
 
-        axios.get('http://localhost:3000/api/user_grades?id=' + values.id)
-        .then(res => {
 
-            let array = [];
+        userGrades(values.id, 0)
+        .then(result => {
 
-            
-            array.push(res.data.data.s)
-            array.push(res.data.data.aaap)
-            array.push(res.data.data.aaa)
-            array.push(res.data.data.aap)
-            array.push(res.data.data.aa)
-            array.push(res.data.data.ap)
-            array.push(res.data.data.a)
-            array.push(res.data.data.b)
-            array.push(res.data.data.c)
-            array.push(res.data.data.d)
+            // A dictionary for what color each grade should be
+            const sourceColors = {
+                'S': '#FFE81D',
+                'AAA+': '#CF4A8E',
+                'AAA': '#8741A8',
+                'AA+': '#593EBE',
+                'AA': '#4785B1',
+                'A+': '#41B396',
+                'A': '#22AC47',
+                'B': '#EF885C',
+                'C': '#B48977',
+                'D': '#C3C3C3'
+            }
+
+            let labels = [] // Labels for the pie chart.
+            let counts = [] // Count of each grade
+            let colors = [] // the colors that we choose to push to the array (based on the grades that get pushed)
+
+            // For each grade that exists, give us the count and insert into the 3 arrays.
+            result.forEach(gradeCount => {
+                labels.push(gradeCount.grade)
+                counts.push(gradeCount.count)
+                colors.push(sourceColors[gradeCount.grade])
+            })
 
             this.setState({
+                labels: labels,
                 datasets: [
                     {
                         label: 'Grades',
-                        backgroundColor: [
-                            '#FFE81D',
-                            '#CF4A8E',
-                            '#8741A8',
-                            '#593EBE',
-                            '#4785B1',
-                            '#41B396',
-                            '#22AC47',
-                            '#EF885C',
-                            '#B48977',
-                            '#C3C3C3'
-                        ],
-                        data: array
+                        backgroundColor: colors,
+                        data: counts
                     }
                 ]
             })
         })
+        
     }
 
+    // Calls the API for a count of grades.
     filterGrades(event) {
-        let gradeLevel = '';
 
-        console.log(event.target.value)
+        let gradeLevel = 0;
 
         if (event.target.value.trim() != '')
-            gradeLevel = '&l=' + event.target.value
+            gradeLevel = event.target.value
 
-            console.log('http://localhost:3000/api/user_grades?id=' + this.state.userID + gradeLevel)
+            userGrades(this.state.userID, gradeLevel)
+        .then(result => {
 
-        axios.get('http://localhost:3000/api/user_grades?id=' + this.state.userID + gradeLevel)
-        .then(res => {
+            // A dictionary for what color each grade should be
+            const sourceColors = {
+                'S': '#FFE81D',
+                'AAA+': '#CF4A8E',
+                'AAA': '#8741A8',
+                'AA+': '#593EBE',
+                'AA': '#4785B1',
+                'A+': '#41B396',
+                'A': '#22AC47',
+                'B': '#EF885C',
+                'C': '#B48977',
+                'D': '#C3C3C3'
+            }
 
-            let array = [];
+            let labels = [] // Labels for the pie chart.
+            let counts = [] // Count of each grade
+            let colors = [] // the colors that we choose to push to the array (based on the grades that get pushed)
 
-            
-            array.push(res.data.data.s)
-            array.push(res.data.data.aaap)
-            array.push(res.data.data.aaa)
-            array.push(res.data.data.aap)
-            array.push(res.data.data.aa)
-            array.push(res.data.data.ap)
-            array.push(res.data.data.a)
-            array.push(res.data.data.b)
-            array.push(res.data.data.c)
-            array.push(res.data.data.d)
+            // For each grade that exists, give us the count and insert into the 3 arrays.
+            result.forEach(gradeCount => {
+                labels.push(gradeCount.grade)
+                counts.push(gradeCount.count)
+                colors.push(sourceColors[gradeCount.grade])
+            })
 
             this.setState({
+                labels: labels,
                 datasets: [
                     {
                         label: 'Grades',
-                        backgroundColor: [
-                            '#FFE81D',
-                            '#CF4A8E',
-                            '#8741A8',
-                            '#593EBE',
-                            '#4785B1',
-                            '#41B396',
-                            '#22AC47',
-                            '#EF885C',
-                            '#B48977',
-                            '#C3C3C3'
-                        ],
-                        data: array
+                        backgroundColor: colors,
+                        data: counts
                     }
                 ]
             })
         })
+
+        
     }
 
+    // Display elements to the screen
     render() {
         return (
             <div className="comp_grades">

@@ -1,7 +1,9 @@
 import React from 'react'
 
+// Import CSS File
 import '../../css/footer.css'
 
+// In the entire site. The base of the website
 class Footer extends React.Component {
     render() {
         return (

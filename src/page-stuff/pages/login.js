@@ -1,14 +1,16 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+import React from 'react'   // React Stuff
+import { Redirect } from 'react-router-dom'     // Redirect to redirect user after they login
+import { loginUser } from '../../api-calls'     // Import API function to login the user
 
+// Import CSS file
 import '../css/login.css'
 
-
+// Login Page
 class Login extends React.Component {
     constructor(props) {
         super(props)
 
+        // Contains information from the form (username and password as well as any errors and if the login is okay)
         this.state = {
             key: '',
             password: '',
@@ -17,40 +19,51 @@ class Login extends React.Component {
         }
     }
 
+    // ---State Setting---
+
+    // this.state.key
     setKey(event) {
         this.setState({
             key: event.target.value
         })
     }
 
+    // this.state.password
     setPassword(event) {
         this.setState({
             password: event.target.value
         })
     }
 
+    // Log in the user
     login(event) {
-        event.preventDefault()
 
+        event.preventDefault() // Don't refresh the page
+
+        // If the user doesn't leave any field blank, proceed
         if (
             this.state.key.trim() != '' &&  
             this.state.password.trim() != ''
             )
         {
-            axios.post('http://localhost:3000/auth/login', {
-                key: this.state.key,
-                password: this.state.password
-            }, { withCredentials: true })
-                .then(res => {
-                    alert("Successfully logged in!")
-                    this.setState({
-                        loginOK: true
-                    })
-                    console.log(res.data)
-                    this.props.handleLogin(res.data)
-                }, (error) => {
-                    alert("Invalid username or password!")
+            // Build the user object out of the key and password
+            const user = {
+                key: this.state.key.trim(),
+                password: this.state.password.trim()
+            }
+
+            // Call the API to log in the user
+            loginUser(user)
+            .then(result => {
+                // Set the state to login okay and handle the login in the App class
+                this.setState({
+                    loginOK: result.confirm
                 })
+                this.props.handleLogin(result.user)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         }
         else
         {
@@ -60,23 +73,28 @@ class Login extends React.Component {
         }
     }
 
+    // On component startup change errors to none display
     componentDidMount() {
         let errors = document.getElementById("errors")
 
         errors.style.display = "none"
     }
 
+    // When the user does something wrong display the errors
     setErrors() {
         let errors = document.getElementById("errors")
 
         errors.style.display = "block"
     }
 
+    // Render elements to the screen
     render() {
 
+        // If the login was successful, redirect to the homepage
         if (this.state.loginOK) {
             return <Redirect push to="/"/>
         }
+        // If the login wasn't successful or the user never tried logging in yet, show them the login page
         else
         {
             return(

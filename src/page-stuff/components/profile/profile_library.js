@@ -1,28 +1,38 @@
-import React from 'react'
-import queryString from 'query-string'
-import axios from 'axios'
+// Main Component: Profile
 
+import React from 'react'   // React stuff 
+import queryString from 'query-string'  // Allows parsing URL query strings
+import { userLibrary } from '../../../api-calls'    // API call to get the user library
+
+// Library component, shows all songs a user has a score on
 class Library extends React.Component {
 
     constructor(props) {
         super(props)
 
+        // Contains an array of library songs
         this.state = {
             library: []
         }
     }
 
+    // On component mount, call the API to search for a user's library
     componentDidMount() {
         let values = queryString.parse(this.props.location.search)
 
-        axios.get('http://localhost:3000/api/user_library?id=' + values.id)
-        .then(res => {
+        userLibrary(values.id)
+        .then(result => {
             this.setState({
-                library: res.data.result
+                library: result.data.result
             })
         })
+        .catch(err => {
+            console.log(err)
+        })
+
     }
 
+    // Checks if a difficulty exists and if it does, post the score of the difficulty. if it doesn't exist, post a '----'
     renderDifficulty(difficulty) {
         if (difficulty.length > 0)
             return difficulty[0].scores[0].score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -30,6 +40,7 @@ class Library extends React.Component {
             return '----'
     }
 
+    // Render elements to the screen
     render() {
         return (
             <div className="comp_library">

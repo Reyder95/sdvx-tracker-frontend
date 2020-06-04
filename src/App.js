@@ -1,22 +1,34 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import Profile from './page-stuff/pages/profile'
+import React from 'react' // This is to use react
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom' // Allows us to handle routing
+
+// Various pages (for routing purposes)
+import Profile from './page-stuff/pages/profile'  
 import SongList from './page-stuff/pages/songlist'
 import Register from './page-stuff/pages/register'
 import Home from './page-stuff/pages/home'
 import Login from './page-stuff/pages/login'
 import SongView from './page-stuff/pages/song-view'
-import axios from 'axios'
 
+// Various helper functions regarding the API
+import { 
+  getLoggedInStatus,
+  logUserOut,
+  profilePictureUpload,
+  editProfile
+} from './api-calls'
 
+// Some CSS imports
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
 
+// App class, this is the entirety of our program.
 class App extends React.Component{
 
+  // Initialize props in our constructor
   constructor(props) {
     super(props)
 
+    // Our state. Contains our user ID and some other useful information. Typically things here persist throughout the entire application
     this.state = {
       user_id: '',
       username: '',
@@ -29,130 +41,125 @@ class App extends React.Component{
     this.handleLogin = this.handleLogin.bind(this)
   }
 
+  // On component mount (basically on startup) check whether or not the user is logged in and display relative information regarding this
   componentDidMount() {
-    axios.get('http://localhost:3000/users/getloggedin', { withCredentials: true })
-      .then(res => {
-        document.getElementById('loggedin').style.display = "block"
-        document.getElementById('unloggedin').style.display = "none"
-      })
-
-    if (localStorage.getItem("user_id") === null)
-    {
-      document.getElementById('loggedin').style.display = "none"
-      document.getElementById('unloggedin').style.display = "block"
-    }
-    else
-    {
-      document.getElementById('unloggedin').style.display = "none"
-      document.getElementById('loggedin').style.display = "block"
-    }
+    getLoggedInStatus();
   }
 
-  handleLogin(data) {
-    this.setState({
-      user_id: data.id,
-      username: data.username
-    })
+  // ---State Setting---
 
-    localStorage.setItem("user_id", data.user[0].id)
-    localStorage.setItem("username", data.user[0].username)
-    localStorage.setItem("jwt_token", data.token)
-    
-    document.getElementById('loggedin').style.display = "block";
-
-    document.getElementById('unloggedin').style.display = "none";
-
-    window.location.reload(false)
-  }
-
-  handleLogout() {
-    axios.get('http://localhost:3000/auth/logout', { withCredentials: true })
-      .then(res => {
-        localStorage.removeItem('user_id')
-        localStorage.removeItem('username')
-        localStorage.removeItem('jwt_token')
-        alert("Successfully logged out!")
-        document.getElementById('loggedin').style.display = "none"
-        document.getElementById('unloggedin').style.display = "block"
-
-        window.location.reload(false)
-      })
-  }
-
-  openModal() {
-    let modal = document.getElementById('profileSettingsModal')
-
-    document.getElementById('userDropdown').classList.toggle("show")
-
-    modal.style.display = 'block'
-  }
-
-  closeModal() {
-    let modal = document.getElementById('profileSettingsModal')
-
-    modal.style.display = 'none'
-  }
-
-  userDropdown() {
-    document.getElementById('userDropdown').classList.toggle("show");
-  }
-
+  // this.state.selectedFile (happens when a user chooses a file to upload but doesn't hit the upload button yet ... for profile pictures)
   onFileChange(event) {
     this.setState({
       selectedFile: event.target.files[0]
     })
   }
 
-  onFileUpload(event) {
-    event.preventDefault()
-
-    console.log(this.state.selectedFile)
-
-    const formData = new FormData();
-
-    formData.append(
-      "profile",
-      this.state.selectedFile,
-      this.state.selectedFile.name
-    )
-
-    axios.post('http://localhost:3000/api/profile_picture/' + localStorage.getItem('user_id'), formData,{
-      withCredentials: true,
-      headers: {
-        "Authorization": `Bearer ${localStorage.getItem('jwt_token')}`,
-        "Content-Type": "multipart/form-data"
-      }
-    })
-    .then(res => {
-      console.log(res)
-    })
-  }
-
+  // this.state.twitter
   setTwitter(event) {
     this.setState({
       twitter: event.target.value
     })
   }
 
+  // this.state.discord
   setDiscord(event) {
     this.setState({
       discord: event.target.value
     })
   }
 
+  // this.state.twitch
   setTwitch(event) {
     this.setState({
       twitch: event.target.value
     })
   }
 
+  // ---Login / Logout---
+
+  // Login happens through the login page and the result of this data gets sent here.
+  handleLogin(data) {
+    
+    // Set the state properly based on the data returned
+    this.setState({
+      user_id: data.id,
+      username: data.username
+    })
+
+    localStorage.setItem("user_id", data.user[0].id)  // Set the user ID in local storage
+    localStorage.setItem("username", data.user[0].username) // Set the username in local storage (for ease of display)
+    localStorage.setItem("jwt_token", data.token)   // Set the authentication in storage so the user can make requests
+    
+    // Because the user is logged in let's display the information when the user is logged in and hide the unlogged in information.
+    document.getElementById('loggedin').style.display = "block";
+    document.getElementById('unloggedin').style.display = "none";
+
+    // Reload the page to properly display things
+    window.location.reload(false)
+  }
+
+  // When a user logs out call the API to log them out.
+  handleLogout() {
+    logUserOut()
+  }
+
+  // ---Modals---
+
+  // Open the profile settings modal to allow the user to change their settings.
+  openModal() {
+    let modal = document.getElementById('profileSettingsModal')   // Get the modal with ID 'profileSettingsModal'
+
+    this.userDropdown()  // Toggle the visibility of the dropdown. When this modal shows up the dropdown will typically be visible so we use this to hide it.
+    
+    modal.style.display = 'block' // Show the modal
+  }
+
+  // Close the profile settings modal
+  closeModal() {
+    let modal = document.getElementById('profileSettingsModal') // Get the modal with ID 'profileSettingsModal'
+
+    modal.style.display = 'none'  // Hide the modal
+  }
+
+  // ---Dropdowns---
+
+  // Either display or hide the dropdown
+  userDropdown() {
+    document.getElementById('userDropdown').classList.toggle("show");
+  }
+
+  // ---Profile Settings---
+
+  // When a user clicks the upload button
+  onFileUpload(event) {
+
+    event.preventDefault()  // Don't automatically refresh the page
+
+    const formData = new FormData();  // Create a FormData object 
+
+    // Add to the form data object the file with field "profile"
+    formData.append(
+      "profile",
+      this.state.selectedFile,
+      this.state.selectedFile.name
+    )
+
+    // Send the formData to the API so it can be processed and uploaded to the database
+    profilePictureUpload(formData)
+  }
+
+  // Submit profile edit information
   submitInformation(event) {
 
-    event.preventDefault()
+    event.preventDefault()  // Don't refresh the page
 
-    let postObject = {}
+    let postObject = {} // Create an empty object to place items into
 
+    // Only allow the user through if at least one item has been entered.
     if (this.state.discord != '' || this.state.twitter != '' || this.state.twitch != '') {
+
+      // Checks the particular field and if it has data, add it into the empty object
       if (this.state.discord != '')
         postObject.discord = this.state.discord
 
@@ -160,27 +167,17 @@ class App extends React.Component{
         postObject.twitter = this.state.twitter
 
       if (this.state.twitch != '')
-        postObject.twitch = this.state.twitch
+        postObject.twitch = this.state.twitch 
 
-      console.log(postObject)
-
-      axios.post('http://localhost:3000/api/edit_profile', {postObject}, {
-        withCredentials: true,
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem('jwt_token')}`
-        }
-      })
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+        // Call the API to send data and update the user's profile through the database
+        editProfile(postObject)
     } else {
+      // ... nope
       console.log('Nope!')
     }
   }
 
+  // Render this stuff to the screen
   render() {
     return (
       <div className="App">  

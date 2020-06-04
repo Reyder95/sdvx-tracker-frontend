@@ -1,10 +1,17 @@
+// Main Component: Profile
+
 import React from 'react'
 
+// Sidebar information, to the left of the profile page
 class Sidebar extends React.Component {
 
+    // When given a date via props it parses it into Month Date, Year format (ex. May 18th, 2020)
     renderDate() {
+
+        // Takes prop of date_joined and turns it into a date object
         let profileDate = new Date(this.props.date_joined)
 
+        // Create an array of months so depending on the specific month it can simply pull from this array
         let month = new Array();
         month[0] = "January";
         month[1] = "February";
@@ -19,9 +26,11 @@ class Sidebar extends React.Component {
         month[10] = "November";
         month[11] = "December";
 
+        // Put it all together into a proper date and return
         return month[profileDate.getMonth()] + " " + profileDate.getDate() + ", " + profileDate.getFullYear();
     }
 
+    // Display elements to the screen
     render() {
         return(
             <div className="comp_sidebar">

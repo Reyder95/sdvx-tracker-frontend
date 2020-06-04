@@ -1,25 +1,32 @@
-import React from 'react'
-import queryString from 'query-string'
-import axios from 'axios'
+// Main Component: Profile
 
+import React from 'react'   // React stuff
+import queryString from 'query-string'  // Parses query strings into objects
+import { userRecentScores } from '../../../api-calls'
+
+// Shows the recent 5 scores a user has uploaded. Is at the top of the main screen in the "Stats" tab
 class RecentScores extends React.Component {
-    chartRef = React.createRef();
 
     constructor(props) {
         super(props)
 
+        // Array of scores for display purposes
         this.state = {
             scores: []
         }
     }
 
+    // On component mount, grab the user ID and call the API for the last 5 scores
     componentDidMount() {
+
+        // Just contains ID
         let values = queryString.parse(this.props.location.search)
 
-        axios.get('http://localhost:3000/api/user_recent?id=' + values.id)
-        .then(res => {
+        // Call the api for user recent scores
+        userRecentScores(values.id)
+        .then(result => {
             this.setState({
-                scores: res.data.result
+                scores: result.data.result
             })
         })
     }

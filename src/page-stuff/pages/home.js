@@ -5,6 +5,7 @@ import Footer from '../components/general/footer'
 
 import '../css/home.css'
 
+// Home Page
 class Home extends React.Component {
 
     componentDidMount() {

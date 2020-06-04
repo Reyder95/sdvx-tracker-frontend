@@ -1,21 +1,25 @@
-import React from 'react'
-import Sidebar from '../components/profile/profile_sidebar'
-import RecentScores from '../components/profile/profile_recentscores'
-import Grades from '../components/profile/profile_grades'
-import Volforce from '../components/profile/profile_volforce'
-import TopScores from '../components/profile/profile_topscores'
-import Library from '../components/profile/profile_library'
-import Footer from '../components/general/footer'
-import queryString from 'query-string'
-import axios from 'axios'
+import React from 'react'   // React stuff
+import Sidebar from '../components/profile/profile_sidebar' // Sidebar, where some profile information goes (name, profile picture, and other smaller stats)
+import RecentScores from '../components/profile/profile_recentscores'   // Shows the latest 5 scores the user posted
+import Grades from '../components/profile/profile_grades'   // A pie chart to show the grades of a particular user
+import Volforce from '../components/profile/profile_volforce'   // Volforce line chart (not yet implemented properly)
+import TopScores from '../components/profile/profile_topscores' // Top scores based on volforce (not yet implemented properly)
+import Library from '../components/profile/profile_library'     // Library of songs, only songs users have gotten a score on will appear here
+import Footer from '../components/general/footer'   // The footer of the website
+import queryString from 'query-string'  // Allows us to extract and use the query string obtained in the URL (?id=x)      
+import { userInformation } from '../../api-calls'
 
+// Import CSS File
 import '../css/profile.css'
 
+// Profile page, everything related to a user profile
 class Profile extends React.Component 
 {
 
     constructor(props) {
         super(props);
+
+        // State containing all the information retrieved from the database. This information gets sent to various different components as props
         this.state = {
             username: '',
             date_joined: '',
@@ -28,8 +32,36 @@ class Profile extends React.Component
             userID: ''
         }
     }
+    
+    // When component loads, do this
+    componentDidMount() {
 
-    openCity(tabName, e) {
+        // Parse the query string into different values, but here we are only obtaining user ID
+        let values = queryString.parse(this.props.location.search)
+        
+        // Grab user information using the ID and set the state with it
+        userInformation(values.id)
+        .then(result => {
+            this.setState({
+                username: result.data.userData.username,
+                date_joined: result.data.userData.date_joined,
+                scoreCount: result.data.scoreData.scorenumber,
+                libraryCount: result.data.libraryData.librarynumber,
+                pf_picture: result.data.userData.pf_picture,
+                discord: result.data.userData.discord,
+                twitter: result.data.userData.twitter,
+                twitch: result.data.userData.twitch,
+                userID: values.id
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        
+    }
+
+    // Handle the tab changing from Library to Stats
+    tabChange(tabName, e) {
         let i, tabcontent, tablinks;
     
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -49,29 +81,7 @@ class Profile extends React.Component
         e.currentTarget.className += " active";
     }
 
-    getUserState() {
-        return this.state.userID
-    }
-
-    componentDidMount() {
-        let values = queryString.parse(this.props.location.search)
-        
-        axios.get('http://localhost:3000/api/user?id=' + values.id)
-            .then(res => {
-                this.setState({
-                    username: res.data.userData.username,
-                    date_joined: res.data.userData.date_joined,
-                    scoreCount: res.data.scoreData.scorenumber,
-                    libraryCount: res.data.libraryData.librarynumber,
-                    pf_picture: res.data.userData.pf_picture,
-                    discord: res.data.userData.discord,
-                    twitter: res.data.userData.twitter,
-                    twitch: res.data.userData.twitch,
-                    userID: values.id
-                })
-            })
-    }
-
+    // Display elements to the screen
     render() {
         return(
             <div className="comp_profile">
@@ -79,10 +89,10 @@ class Profile extends React.Component
                     <div className="column bg-tertiary">
                         <div className="row">
                             <div className="column">
-                                <button className="tablinks btn stats bg-primary color-secondary font-roboto-slab active" onClick={(e) => this.openCity('tabProfile', e)}>Stats</button>
+                                <button className="tablinks btn stats bg-primary color-secondary font-roboto-slab active" onClick={(e) => this.tabChange('tabProfile', e)}>Stats</button>
                             </div>
                             <div className="column">
-                                <button className="tablinks btn library bg-primary color-secondary font-roboto-slab" onClick={(e) => this.openCity('tabLibrary', e)}>Library</button>
+                                <button className="tablinks btn library bg-primary color-secondary font-roboto-slab" onClick={(e) => this.tabChange('tabLibrary', e)}>Library</button>
                             </div>
                         </div>
 
@@ -129,32 +139,6 @@ class Profile extends React.Component
                 </div>
 
                 <Footer />
-
-{/*                 <div className="row">
-                    <div className="column">
-                        <Sidebar />
-                    </div>
-                    <div className="column">
-                        <div className="row">
-                            <div className="">
-                                <RecentScores />
-                            </div>
-                        </div>
-                        
-                        <div className="row">
-                            <div className="">
-                                <Volforce />
-                            </div>
-                            <div className="">
-                                <Grades />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="">
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
             </div>
         )
     }
