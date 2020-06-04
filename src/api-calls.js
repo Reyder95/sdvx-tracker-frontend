@@ -182,6 +182,8 @@ export const userGrades = async (userID, filter) => {
     return result
 }
 
+// ---Songs and Score---
+
 // Gets a list of songs based on various parameters
 export const getSongList = async (page, search, level, game, type)  => {
 
@@ -229,6 +231,39 @@ export const addSong = async (postObject) => {
                 .catch(err => {
                     throw new Error(err)
                 })
+
+    return result
+}
+
+export const getSong = async (songID) => {
+    let result = await axios.get(`${api}/api/song_single?id=${songID}`)
+        .then(apiData => {
+                return apiData
+        })
+        .catch(err => {
+            throw new Error(err)
+        })
+
+    return result
+}
+
+export const addScore = async (score, diffID, clearType) => {
+    let result = await axios.post(`${api}/api/add_score`, {
+                            score: score,
+                            chart_id: diffID,
+                            clear_id: clearType
+                        }, { 
+                            withCredentials: true,
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+                            }
+                        })
+                        .then(() => {
+                            return true
+                        })
+                        .catch(err => {
+                            throw new Error(err)
+                        })
 
     return result
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import queryString from 'query-string'
+import { getSong } from '../../../api-calls'
 
 class SongViewTop extends React.Component {
     constructor(props) {
@@ -29,25 +30,31 @@ class SongViewTop extends React.Component {
         }
     }
     
+    // When the component mounts, get the song details from the API
     componentDidMount() {
         let queryValues = queryString.parse(this.props.location.search)
 
-        axios.get('http://localhost:3000/api/song_single?id=' + queryValues.id)
-        .then(res => {
+        getSong(queryValues.id)
+        .then(result => {
             this.setState({
-                title: res.data.data[0].title,
-                artist: res.data.data[0].artist,
-                bpm: res.data.data[0].bpm,
-                effector: res.data.data[0].effector,
-                game: res.data.data[0].game,
-                image: res.data.data[0].jacket,
+                title: result.data.data[0].title,
+                artist: result.data.data[0].artist,
+                bpm: result.data.data[0].bpm,
+                effector: result.data.data[0].effector,
+                game: result.data.data[0].game,
+                image: result.data.data[0].jacket
             })
 
-            if (res.data.data[0].user_fk == localStorage.getItem('user_id'))
+            if (result.data.data[0].user_fk == localStorage.getItem('user_id'))
                 document.getElementById('editsongbtn').style.display = 'block'
         })
+        .catch(() => {
+            alert('Something went wrong!')
+        })
+        
     }
 
+    // 
     openModal() {
         let modal = document.getElementById('addSongModal')
 
@@ -59,6 +66,8 @@ class SongViewTop extends React.Component {
 
         modal.style.display = 'none'
     }
+
+    //---State Setting---
 
     // Set state for adding a song
     setSongJacket(event) {
@@ -72,24 +81,28 @@ class SongViewTop extends React.Component {
             })
     }
 
+    // this.state.artist
     setSongArtist(event) {
         this.setState({
             editSong_artist: event.target.value
         })
     }
 
+    // this.state.title
     setSongTitle(event) {
         this.setState({
             editSong_title: event.target.value
         })
     }
 
+    // this.state.effector
     setSongEffector(event) {
         this.setState({
             editSong_effector: event.target.value
         })
     }
 
+    // this.state.game
     setSongGame(event) {
         this.setState({
             editSong_game: event.target.value
@@ -238,7 +251,7 @@ class SongViewTop extends React.Component {
                     </div>
                 </div>
 
-                <div id="addSongModal" className="modal">
+                <div id="editSongModal" className="modal">
                     <div className="modal-content bg-secondary">
                         <span onClick={this.closeModal.bind(this)} className="close">&times;</span>
                         <div className="modal-header font-roboto">
@@ -424,7 +437,7 @@ class SongViewTop extends React.Component {
                                 </div>
 
                                 <div className="row addSongRow">
-                                    <button onClick={(e) => this.submitSongInformation(e)} className="btn bg-quintery">Add Song</button>
+                                    <button onClick={(e) => this.submitSongInformation(e)} className="btn bg-quintery">Edit Song</button>
                                 </div>
                                 
                                 

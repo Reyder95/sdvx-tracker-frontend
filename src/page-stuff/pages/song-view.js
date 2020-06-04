@@ -1,8 +1,8 @@
-import React from 'react'
-import axios from 'axios'
-import SongViewTop from '../components/songview/songview_top'
-import ScoreTable from '../components/songview/scoretable'
-import Footer from '../components/general/footer'
+import React from 'react'   // React stuff
+import { addScore } from '../../api-calls'  // Add a score to the database
+import SongViewTop from '../components/songview/songview_top'   // Top of the song view page
+import ScoreTable from '../components/songview/scoretable'      // The score table
+import Footer from '../components/general/footer'               // Footer
 
 import '../css/songview.css'
 
@@ -24,12 +24,28 @@ class SongView extends React.Component {
         
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('user_id') == null)
+            document.getElementById('addScoreDiv').style.display = 'none'
+    }
+
+    // Opens the 'addScoreModal'
     openModal() {
         let modal = document.getElementById('addScoreModal')
 
         modal.style.display = 'block'
     }
 
+    // Opens the 'addSongModal'
+    closeModal() {
+        let modal = document.getElementById('addScoreModal')
+
+        modal.style.display = 'none'
+    }
+
+    // ---State Setting---
+
+    // Sets the ID for each chart
     setSpecificId(id, difficulty) {
         if (difficulty == 'NOVICE')
             this.setState({
@@ -49,45 +65,47 @@ class SongView extends React.Component {
             })
     }
 
-    closeModal() {
-        let modal = document.getElementById('addScoreModal')
-
-        modal.style.display = 'none'
-    }
-
+    // this.state.score
     setScore(event) {
         this.setState({
             score: event.target.value
         })
     }
 
+    // this.state.clear_type
     setClearType(event) {
         this.setState({
             clear_type: event.target.value
         })
     }
 
+    // this.state.currentDiff
     setCurrentDiff(data) {
         this.setState({
             currentDiff: data
         }) 
     }
 
-    addScore(event) {
-        event.preventDefault()
+    // Adding a score to the database
+    addScoreToAPI(event) {
+        event.preventDefault()  // Do not refresh the page
 
+        // Checks that the user fills in both fields
         if (this.state.score != '' && this.state.clear_type != '')
         {
-            let score = this.state.score;
+            let score = this.state.score   
             let clearType = this.state.clear_type
             let diffID = '';
     
+            // Check if user is logged in before proceeding
             if (localStorage.getItem('user_id') != null) {
                 score = score.replace(/,/g,'');
     
+                // If score can be parsed as an integer
                 if (parseInt(score, 10).toString() === score) {
                     score = parseInt(score, 10);
 
+                    // Score is between 0 and 10 million
                     if (score >= 0 && score <= 10000000)
                     {
                         if (this.state.currentDiff == 'NOVICE')
@@ -99,22 +117,10 @@ class SongView extends React.Component {
                         else if (this.state.currentDiff == 'MAXIMUM')
                             diffID = this.state.mxm_id
 
-                        axios.post('http://localhost:3000/api/add_score', {
-                            score: score,
-                            chart_id: diffID,
-                            clear_id: clearType
-                        }, { 
-                            withCredentials: true,
-                            headers: {
-                                Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
-                            }
-                        })
-                        .then(res => {
-                            this.closeModal()
-                        })
-                        .catch(err => {
-                            console.log(err)
-                        })
+                        // Call the API to add the score and then close the modal
+                        addScore(score, diffID, clearType)
+
+                        this.closeModal()
                     }
                     else 
                     {
@@ -146,11 +152,7 @@ class SongView extends React.Component {
         }
     }
 
-    componentDidMount() {
-        if (localStorage.getItem('user_id') == null)
-            document.getElementById('addScoreDiv').style.display = 'none'
-    }
-
+    // Render elements on the screen
     render() {
         return(
             <div className="comp_songview">
@@ -198,7 +200,7 @@ class SongView extends React.Component {
                                     <option value="5">Played</option>
                                 </select>
 
-                                <button onClick={(e) => this.addScore(e)} className="btn bg-quintery">Add Score!</button>
+                                <button onClick={(e) => this.addScoreToAPI(e)} className="btn bg-quintery">Add Score!</button>
                             </form>
                             
                         </div>

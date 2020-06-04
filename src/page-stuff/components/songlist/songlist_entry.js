@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import '../../css/songview.css'
 
+// For each song that gets rendered into the song list, this is what it goes through
 class SongEntry extends React.Component {
     constructor(props) {
         super(props)
@@ -16,6 +17,7 @@ class SongEntry extends React.Component {
         }
     }
 
+    // On component did mount, set the state for each level that exists within the current song
     componentDidMount() {
 
         this.props.songData.dfficulties.map((diff) => {
@@ -50,21 +52,23 @@ class SongEntry extends React.Component {
         })
     }
 
+    // Set this on the song entry. This meeans whenever a user clicks on the song it will redirect them
     redirectionLink(songID) {
         this.props.history.push('/song?id=' + songID)
     }
     
+    // Render elements to the screen
     render() {
         return (
             <tr className="song_entry_tr" onClick={() => this.redirectionLink(this.props.songData.id)}>
                 
                 <td>
-                        {this.props.nbr}    
+                    {this.props.nbr}    
                 </td>
                 
 
                 <td className="jacket2">
-                        <img src={(this.props.songData.jacket == null) ? 'http://placehold.it/128' : this.props.songData.jacket} />
+                    <img src={(this.props.songData.jacket == null) ? 'http://placehold.it/128' : this.props.songData.jacket} />
                 </td>
 
                 <td>{this.props.songData.artist} - {this.props.songData.title}</td>
