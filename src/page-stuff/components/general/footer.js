@@ -12,20 +12,19 @@ class Footer extends React.Component {
                     <div className="row">
                         <div className="column">
                             <p>
-                                Have an idea or issue? Post it on Github
+                                Have an idea or issue? Post it on <a href="https://github.com/Reyder95/sdvx-tracker-frontend">Github</a>
                             </p>
                         </div>
                         
                         <div className="column">
                             <p>
-                                Want a community of other awesome people? Check out the Discord
+                                Want a community of other awesome people? Check out the <a href="https://discord.gg/nK7A5JB">Discord</a>
                             </p>
                         </div>
 
                         <div className="column">
                             <p>
-                                Wish to help development? Talk to Scarlet Red or start developing using the open source code on Github!
-                                [will be handling this in the future]
+                                Wish to help development? Talk to Scarlet Red or start developing using the open source code on <a href="https://github.com/Reyder95/sdvx-tracker-frontend">Github! </a>
                             </p>
                         </div>
                     </div>

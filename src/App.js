@@ -192,10 +192,8 @@ class App extends React.Component{
               <Link className="color-secondary link" to="/songlist">
                 Song List
               </Link>
-  
-              <Link className="color-secondary link">
-                Discord
-              </Link>
+                
+                <a className="color-secondary link" id="discordLink" href="https://discord.gg/nK7A5JB">Discord</a>
 
 
               <div id="nav-right">
