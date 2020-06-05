@@ -5,6 +5,10 @@ class Scores extends React.Component {
     
     constructor(props) {
         super(props)
+
+        this.state = {
+            rerender: ''
+        }
     }
 
     renderDate(date) {
@@ -31,13 +35,18 @@ class Scores extends React.Component {
         deleteScore(id)
     }
 
+    rerenderTable() {
+        this.setState({
+            rerender: true
+        })
+
+        console.log('hi')
+    }
+
     renderTable() {
-        if (this.props.scores.length > 0) {
-            for (let i = 0; i < this.props.scores.length; i++)
-            {
-                if (this.props.scores[i].difficulty == this.props.diff) {
-                    if (this.props.scores[i].scores[0] !== undefined && this.props.scores[i].scores[0] != null && this.props.scores[i].scores.length > 0)
-                    {
+        console.log(this.props)
+        if (this.props.scores[0] != null) {
+                    console.log('lol')
                             return (
                                 <div className="scoreDiv">
                                     <table className="scoreTable font-source componentScoreTable">
@@ -51,7 +60,7 @@ class Scores extends React.Component {
                                         </tr>
 
                                         {
-                                            this.props.scores[i].scores.map((score, index) => (
+                                            this.props.scores.map((score, index) => (
                                                 <tr>
                                                     <td>{index + 1}</td>
                                                     <td>{score.score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
@@ -73,11 +82,11 @@ class Scores extends React.Component {
                                     <p>You have no scores on the selected difficulty!</p>
                                 </div>
                             )
-                        }
-                    }
+                        
                     
                     
-            }
+                    
+            
         }
         
         /*
@@ -125,6 +134,7 @@ class Scores extends React.Component {
     render() {
         return (
             <table className="font-source componentScoreTable">
+                    
                     {
                         this.renderTable()
                     }

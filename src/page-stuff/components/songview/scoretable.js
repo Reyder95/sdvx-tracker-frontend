@@ -9,7 +9,10 @@ class ScoreTable extends React.Component {
         super(props)
 
         this.state = {
-            scores: [],
+            novScores: [],
+            advScores: [],
+            exhScores: [],
+            mxmScores: [],
             isValidSong: false,
             novDiff: 0,
             exhDiff: 0,
@@ -39,6 +42,60 @@ class ScoreTable extends React.Component {
         this.props.setCurrentDiff(tabName.toUpperCase());
     }
 
+    updateTable(score, difficulty) {
+        console.log(difficulty)
+        let scoreObject = score.data.score
+
+        scoreObject.type = score.data.type
+
+
+        let newArray = null
+        
+        if (difficulty == 'NOVICE')
+            newArray = this.state.novScores.concat(scoreObject)
+
+        if (difficulty == 'ADVANCED')
+            newArray = this.state.advScores.concat(scoreObject)
+
+        if (difficulty == 'EXHAUST')
+            newArray = this.state.exhScores.concat(scoreObject)
+
+        if (difficulty == 'MAXIMUM')
+            newArray = this.state.mxmScores.concat(scoreObject)
+
+        if (newArray[0] != null) {
+            newArray = newArray.sort((a, b) => {
+                return b.score - a.score
+            })
+        }
+
+        if (difficulty == 'NOVICE')
+            this.setState({
+                novScores: newArray
+            })
+        
+        if (difficulty == 'ADVANCED')
+            this.setState({
+                advScores: newArray
+            })
+
+        if (difficulty == 'EXHAUST')
+            this.setState({
+                exhScores: newArray
+            })
+
+        if (difficulty == 'MAXIMUM')
+            this.setState({
+                mxmScores: newArray
+            })
+
+        console.log(newArray[0])
+
+        if (newArray[0] == null ) {
+            this.refs.render.renderTable()
+        }
+    }
+
     componentDidMount() {
         let queryValues = queryString.parse(this.props.location.search)
         
@@ -63,41 +120,47 @@ class ScoreTable extends React.Component {
                 document.getElementById('maximum').style.display = 'block'
                 this.props.setCurrentDiff('MAXIMUM')
                 document.getElementById('mxm-button').className += " active"
-            }
-            
-            this.setState({
-                scores: myDifficulties,
-                isValidSong: true
-            })
+            }   
 
             for (let i = 0; i < myDifficulties.length; i++) {
+                
+                if (myDifficulties[i].scores[0] == null)
+                        myDifficulties[i].scores = []
+
                 if (myDifficulties[i].difficulty == 'NOVICE')
                 {
                     document.getElementById('nov-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'NOVICE')
-                    this.setState({
-                        novDiff: myDifficulties[i].level
-                    })
+                        
+                        this.setState({
+                            novDiff: myDifficulties[i].level,
+                            novScores: myDifficulties[i].scores
+                        })
                 }
                 else if (myDifficulties[i].difficulty == 'ADVANCED') {
                     document.getElementById('adv-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'ADVANCED')
-                    this.setState({
-                        advDiff: myDifficulties[i].level
-                    })
+                    if (myDifficulties[i].scores[0] != null)
+                        this.setState({
+                            advDiff: myDifficulties[i].level,
+                            advScores: myDifficulties[i].scores
+                        })
+                    
                 }
                 else if (myDifficulties[i].difficulty == 'EXHAUST') {
                     document.getElementById('exh-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'EXHAUST')
                     this.setState({
-                        exhDiff: myDifficulties[i].level
+                        exhDiff: myDifficulties[i].level,
+                        exhScores: myDifficulties[i].scores
                     })
                 }
                 else if (myDifficulties[i].difficulty == 'MAXIMUM') {
                     document.getElementById('mxm-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'MAXIMUM')
                     this.setState({
-                        mxmDiff: myDifficulties[i].level
+                        mxmDiff: myDifficulties[i].level,
+                        mxmScores: myDifficulties[i].scores
                     })
                 }
 
@@ -116,7 +179,7 @@ class ScoreTable extends React.Component {
         if (localStorage.getItem('user_id') != null) {
             return (
                 <div className="comp_scoretable">
-    
+                    {console.log(this.state)}
                     <div className="diff-buttons">
                         <div className="row">
     
@@ -141,32 +204,31 @@ class ScoreTable extends React.Component {
     
                     <div className="tabcontent" id="novice">
                         <Scores 
-                        scores={this.state.scores}
-                        diff="NOVICE"
+                        scores={this.state.novScores}
                         />
                     </div>
     
                     <div className="tabcontent" id="advanced">
                         <Scores 
-                        scores={this.state.scores}
+                        scores={this.state.advScores}
                         diff="ADVANCED"
                         />
                     </div>
     
                     <div className="tabcontent" id="exhaust">
                         <Scores 
-                        scores={this.state.scores}
+                        scores={this.state.exhScores}
                         diff="EXHAUST"
                         />
                     </div>
     
                     <div className="tabcontent" id="maximum">
                         <Scores 
-                        scores={this.state.scores}
+                        scores={this.state.mxmScores}
                         diff="MAXIMUM"
                         />
                     </div>
-         
+
                 </div>
             )
         } else {
