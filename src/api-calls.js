@@ -15,6 +15,9 @@ export const getLoggedInStatus = () => {
         document.getElementById('loggedin').style.display = "block"
         document.getElementById('unloggedin').style.display = "none"
         
+        
+      })
+      .catch(err => {
         if (localStorage.getItem("user_id") === null)
         {
           document.getElementById('loggedin').style.display = "none"
@@ -26,10 +29,6 @@ export const getLoggedInStatus = () => {
           document.getElementById('loggedin').style.display = "block"
         }
       })
-      .catch(err => {
-          throw new Error(err)
-      })
-    
 }
 
 // Logs a user out of the service
@@ -258,9 +257,8 @@ export const addScore = async (score, diffID, clearType) => {
                                 Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
                             }
                         })
-                        .then(() => {
-                            window.location.reload(false)
-                            return true
+                        .then(data => {
+                            return data
                         })
                         .catch(err => {
                             throw new Error(err)
