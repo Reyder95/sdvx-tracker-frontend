@@ -119,8 +119,17 @@ class SongView extends React.Component {
 
                         // Call the API to add the score and then close the modal
                         addScore(score, diffID, clearType)
+                        .then(result => {
+                            console.log(result)
+                            this.refs.child.updateTable(result, this.state.currentDiff)
 
-                        this.closeModal()
+                            this.closeModal()
+                        })
+                        .catch(err => {
+                            console.log(err)
+                            alert("An error has occurred!")
+                        })
+
                     }
                     else 
                     {
@@ -169,6 +178,7 @@ class SongView extends React.Component {
                 location={this.props.location}
                 setCurrentDiff={this.setCurrentDiff.bind(this)}
                 setSpecificId={this.setSpecificId.bind(this)}
+                ref="child"
                 />
                 
                 <Footer />
