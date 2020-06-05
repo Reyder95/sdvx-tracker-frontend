@@ -354,6 +354,14 @@ td {
     min-height: 250px;
 }
 
+.comp_footer a {
+    color: #916DDA;
+}
+
+.comp_footer a:hover {
+    color: #5d5d5d;
+}
+
 #nav-right {
     float: right;
 }
