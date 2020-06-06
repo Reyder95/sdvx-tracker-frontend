@@ -1,6 +1,7 @@
 // Main Component: Profile
 
 import React from 'react'
+import keys from '../../../keys.json'
 
 // Sidebar information, to the left of the profile page
 class Sidebar extends React.Component {
@@ -35,7 +36,7 @@ class Sidebar extends React.Component {
         return(
             <div className="comp_sidebar">
                 <div className="profile-image">
-                    <img src={this.props.pf_picture != null ? `http://localhost:3000/images/${this.props.pf_picture}` : 'http://placehold.it/120'}/>
+                    <img src={this.props.pf_picture != null ? `${keys.api_url}/images/${this.props.pf_picture}` : 'http://placehold.it/120'}/>
                 </div>
                 <h1 className="username-display color-quartery mb-2 mt-2 font-roboto">{this.props.username}</h1>
                 <div className="color-secondary bg-primary pt-2 pb-2 font-source">
