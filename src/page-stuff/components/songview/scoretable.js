@@ -15,6 +15,7 @@ class ScoreTable extends React.Component {
             mxmScores: [],
             isValidSong: false,
             novDiff: 0,
+            advDiff: 0,
             exhDiff: 0,
             mxmDiff: 0
         }
