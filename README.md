@@ -1,3 +1,15 @@
+## Running yourself
+- Clone the repository anywhere you'd like  
+- Type `npm install` to install all the project's dependencies
+- Create a file named `keys.json` and place it inside the src folder.
+```
+{
+   "api_url": "http://localhost:3000" // This is the link to the back end API of this project
+}
+```
+- `npm start` will start the project in development mode.
+- `npm run build` will build the project. If you do this, type `npm install -g serve` and then `serve -s build` to serve a static build of the project.
+
 ## Introduction
 This is a project developed for use with the game SOUND VOLTEX and its respective simulators (Unnamed SDVX Clone, K-Shoot Mania, and soon Neurosonic). In a tl;dr fashion, it will be a system that users can keep track of all their scores among these versions of the game and view statistics that may make them better players. Since there are many versions of the game and people switch it up, having one central system where you can manually input and keep track of scores would be a benefit. This system will also support customs for the various simulators
 
