@@ -1,10 +1,11 @@
 import axios from 'axios'
+import keys from './keys.json'
 
 // API Calls made to the sepia database. Each function represents a different type of call being made.
 // If you want to build your own API call of some kinda, it should be done here
 
 // The API URL, please change this to what works for you.
-let api = 'http://localhost:3000'
+let api = keys.api_url
 
 // ---User Login---
 
