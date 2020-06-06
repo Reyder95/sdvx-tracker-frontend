@@ -43,7 +43,6 @@ class ScoreTable extends React.Component {
     }
 
     updateTable(score, difficulty) {
-        console.log(difficulty)
         let scoreObject = score.data.score
 
         scoreObject.type = score.data.type
@@ -131,36 +130,50 @@ class ScoreTable extends React.Component {
                 {
                     document.getElementById('nov-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'NOVICE')
-                        
-                        this.setState({
-                            novDiff: myDifficulties[i].level,
-                            novScores: myDifficulties[i].scores
-                        })
+                    let newArray = myDifficulties[i].scores.sort((a, b) => {
+                        return b.score - a.score
+                    })
+
+                    this.setState({
+                        novDiff: myDifficulties[i].level,
+                        novScores: newArray
+                    })
                 }
                 else if (myDifficulties[i].difficulty == 'ADVANCED') {
                     document.getElementById('adv-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'ADVANCED')
-                    if (myDifficulties[i].scores[0] != null)
-                        this.setState({
-                            advDiff: myDifficulties[i].level,
-                            advScores: myDifficulties[i].scores
-                        })
+                    let newArray = myDifficulties[i].scores.sort((a, b) => {
+                        return b.score - a.score
+                    })
+                    
+                    this.setState({
+                        advDiff: myDifficulties[i].level,
+                        advScores: newArray
+                    })
                     
                 }
                 else if (myDifficulties[i].difficulty == 'EXHAUST') {
                     document.getElementById('exh-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'EXHAUST')
+                    let newArray = myDifficulties[i].scores.sort((a, b) => {
+                        return b.score - a.score
+                    })
+                    
                     this.setState({
                         exhDiff: myDifficulties[i].level,
-                        exhScores: myDifficulties[i].scores
+                        exhScores: newArray
                     })
                 }
                 else if (myDifficulties[i].difficulty == 'MAXIMUM') {
                     document.getElementById('mxm-btn').style.display = 'block'
                     this.props.setSpecificId(myDifficulties[i].id, 'MAXIMUM')
+                    let newArray = myDifficulties[i].scores.sort((a, b) => {
+                        return b.score - a.score
+                    })
+                    
                     this.setState({
                         mxmDiff: myDifficulties[i].level,
-                        mxmScores: myDifficulties[i].scores
+                        mxmScores: newArray
                     })
                 }
 
