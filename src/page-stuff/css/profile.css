@@ -16,6 +16,11 @@ body {
 
 .stats:hover, .library:hover {
     background-color: #27496d;
+    cursor: pointer;
+}
+
+.stats:active, .library:active {
+    outline: none;  
 }
 
 .profile-image img {
@@ -100,7 +105,7 @@ body {
     border-radius: 3px;
 }
 
-.active {
+.comp_profile .active {
     background-color: #27496d;
     outline: none;
 }
