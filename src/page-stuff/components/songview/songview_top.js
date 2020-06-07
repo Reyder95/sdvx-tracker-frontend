@@ -1,6 +1,6 @@
 import React from 'react'
 import queryString from 'query-string'
-import { getSong, editScore } from '../../../api-calls'
+import { getSong, editScore, addDiffs } from '../../../api-calls'
 
 class SongViewTop extends React.Component {
     constructor(props) {
@@ -10,7 +10,6 @@ class SongViewTop extends React.Component {
             title: '',
             artist: '',
             bpm: '',
-            effector: '',
             game: '',
             image: '',
 
@@ -23,9 +22,13 @@ class SongViewTop extends React.Component {
             editSong_type: '',
             editSong_custom_link: '',
             editSong_novice: 0,
+            editSong_noviceEffector: null,
             editSong_advanced: 0,
+            editSong_advancedEffector: null,
             editSong_exhaust: 0,
-            editSong_maximum: 0
+            editSong_exhaustEffector: null,
+            editSong_maximum: 0,
+            editSong_maximumEffector: null,
         }
     }
     
@@ -39,7 +42,6 @@ class SongViewTop extends React.Component {
                 title: result.data.data[0].title,
                 artist: result.data.data[0].artist,
                 bpm: result.data.data[0].bpm,
-                effector: result.data.data[0].effector,
                 game: result.data.data[0].game,
                 image: result.data.data[0].jacket
             })
@@ -94,13 +96,6 @@ class SongViewTop extends React.Component {
         })
     }
 
-    // this.state.effector
-    setSongEffector(event) {
-        this.setState({
-            editSong_effector: event.target.value
-        })
-    }
-
     // this.state.game
     setSongGame(event) {
         this.setState({
@@ -112,6 +107,11 @@ class SongViewTop extends React.Component {
         this.setState({
             editSong_type: event.target.value
         })
+
+        if (event.target.value != 'custom')
+            this.setState({
+                editSong_custom_link: ''
+            })
     }
 
     setSongCustomLink(event) {
@@ -145,11 +145,34 @@ class SongViewTop extends React.Component {
             })
     }
 
+    setDifficultyEffector(event, difficulty) {
+        if (difficulty == 'NOVICE')
+            this.setState({
+                editSong_noviceEffector: event.target.value
+            })
+        else if (difficulty == 'ADVANCED')
+            this.setState({
+                editSong_advancedEffector: event.target.value
+            })
+        else if (difficulty == 'EXHAUST')
+            this.setState({
+                editSong_exhaustEffector: event.target.value
+            })
+        else if (difficulty == 'MAXIMUM')
+            this.setState({
+                editSong_maximumEffector: event.target.value
+            })
+    }
+
     submitSongInformation(event) {
         event.preventDefault();
         let value = queryString.parse(this.props.location.search)
 
         const postObject = {
+            id: value.id
+        }
+
+        const postObject2 = {
             id: value.id
         }
         
@@ -158,18 +181,19 @@ class SongViewTop extends React.Component {
             this.state.editSong_game.trim() != '' ||
             this.state.editSong_bpm.trim() != '' ||
             this.state.editSong_effector.trim() != '' ||
-            this.state.editSong_custom_link.trim() != '' ||
             this.state.editSong_jacket.trim() != 'https://placehold.it/128' ||
             this.state.editSong_type.trim() != '' ||
-            this.state.editSong_novice!= 0 ||
+            this.state.editSong_novice != 0 ||
             this.state.editSong_advanced != 0 ||
             this.state.editSong_exhaust != 0 ||
-            this.state.editSong_maximum != 0)
+            this.state.editSong_maximum != 0 ||
+            this.state.editSong_noviceEffector != null)
             {
                 if (parseInt(this.state.editSong_bpm, 10).toString() === this.state.editSong_bpm.trim() && this.state.editSong_bpm.trim() != '')
                     postObject.bpm = parseInt(this.state.editSong_bpm)
 
-                let difficulties = []
+                let updateDifficulties = []
+                let addDifficulties = []
 
                 if (this.state.editSong_title.trim() != '')
                     postObject.title = this.state.editSong_title
@@ -180,19 +204,48 @@ class SongViewTop extends React.Component {
                 if (this.state.editSong_type.trim() != '')
                     postObject.type = this.state.editSong_type
                 
-                if (this.state.editSong_novice != 0)
-                    difficulties.push({name: "NOVICE", level: this.state.editSong_novice})
+                if ((this.state.editSong_noviceEffector != null || this.state.editSong_novice != 0) && this.props.isDifficultyExist('NOVICE')) {
+                    
+                    updateDifficulties.push({name: "NOVICE", level: this.state.editSong_novice, effector: this.state.editSong_noviceEffector})
 
-                if (this.state.editSong_advanced != 0)
-                    difficulties.push({name: "ADVANCED", level: this.state.editSong_advanced})
+                }
+                else if (this.state.editSong_novice != 0 && !this.props.isDifficultyExist('NOVICE')) {
+                    
+                    addDifficulties.push({name: "NOVICE", level: this.state.editSong_novice, effector: this.state.editSong_noviceEffector})
+
+                }
+
+                if ((this.state.editSong_advancedEffector != null || this.state.editSong_advanced != 0) && this.props.isDifficultyExist('ADVANCED')) {
+                    
+                    updateDifficulties.push({name: "ADVANCED", level: this.state.editSong_advanced, effector: this.state.editSong_advancedEffector})
+
+                }
+                else if (this.state.editSong_advanced != 0 && !this.props.isDifficultyExist('ADVANCED')) {
+
+                    addDifficulties.push({name: "ADVANCED", level: this.state.editSong_advanced, effector: this.state.editSong_advancedEffector})
+
+                }
                 
-                if (this.state.editSong_exhaust != 0)
-                    difficulties.push({name: "EXHAUST", level: this.state.editSong_exhaust})
+                if ((this.state.editSong_exhaustEffector != null || this.state.editSong_exhaust != 0) && this.props.isDifficultyExist('EXHAUST')) {
 
-                if (this.state.editSong_maximum != 0)
-                    difficulties.push({name: "MAXIMUM", level: this.state.editSong_maximum})
+                    updateDifficulties.push({name: "EXHAUST", level: this.state.editSong_exhaust, effector: this.state.editSong_exhaustEffector})
 
-                    postObject.difficulties = difficulties
+                }
+                else if (this.state.editSong_exhaust != 0 && !this.props.isDifficultyExist('EXHAUST')) {
+
+                    addDifficulties.push({name: "EXHAUST", level: this.state.editSong_exhaust, effector: this.state.editSong_exhaustEffector})
+
+                }
+
+                if ((this.state.editSong_maximumEffector != null || this.state.editSong_maximum != 0) && this.props.isDifficultyExist('MAXIMUM')) {
+
+                    updateDifficulties.push({name: "MAXIMUM", level: this.state.editSong_maximum, effector: this.state.editSong_maximumEffector})
+                    
+                }
+                else if (this.state.editSong_maximum != 0 && !this.props.isDifficultyExist('MAXIMUM'))
+                    addDifficulties.push({name: "MAXIMUM", level: this.state.editSong_maximum, effector: this.state.editSong_maximumEffector})
+
+                    postObject.difficulties = updateDifficulties
 
                 if (this.state.editSong_game.trim() != '')
                     postObject.game = this.state.editSong_game.trim()
@@ -205,8 +258,15 @@ class SongViewTop extends React.Component {
 
                 if (this.state.editSong_jacket.trim() != 'https://placehold.it/128')
                     postObject.jacket = this.state.editSong_jacket.trim();
+                
+                console.log(postObject)
 
-                  editScore(postObject)
+                editScore(postObject)
+
+                if (addDifficulties.length > 0) {
+                    postObject2.difficulties = addDifficulties
+                    addDiffs(postObject2)
+                }
             }
     }
     
@@ -215,7 +275,6 @@ class SongViewTop extends React.Component {
             <div className="comp_songviewtop bg-tertiary pb-4">
                 <div className="song-block">
                     <div className="song-image">
-                        {console.log(this.state)}
                         
                         <div onClick={() => this.openModal()} id="editsongdiv">
                             <button id="editsongbtn" className="btn">Edit Song</button>
@@ -226,9 +285,6 @@ class SongViewTop extends React.Component {
                         <div className="song-info font-source color-quartery">
                             <p>
                                 <strong>BPM:</strong> {this.state.bpm} <br />
-                            </p>
-                            <p>
-                                <strong>Effector:</strong> {this.state.effector}
                             </p>
                             <p>
                                 <strong>Game:</strong> {this.state.game}
@@ -298,7 +354,7 @@ class SongViewTop extends React.Component {
                                         </select>
 
                                         <label id="songcustomlinks">Custom Link</label>
-                                        <input onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
+                                        <input disabled={this.state.editSong_type == 'custom' ? false : true} value={this.state.editSong_custom_link} onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
                                     </div>
                                     
                                 </div>
@@ -421,6 +477,30 @@ class SongViewTop extends React.Component {
                                         </div>
 
                                     </div>
+
+                                    <div className="color-secondary row">
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.novEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
+                                </div>
+
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.advEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
+                                </div>
+
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.exhEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
+                                </div>
+
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.mxmEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
+                                </div>
+                                
+
+                            </div>
                                 </div>
 
                                 <div className="row addSongRow">

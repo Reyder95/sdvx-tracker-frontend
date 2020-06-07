@@ -269,6 +269,8 @@ export const addScore = async (score, diffID, clearType) => {
 }
 
 export const editScore = (postObject) => {
+
+    console.log()
     axios.post(`${api}/api/update_song`, {
                     postObject: postObject
                 }, {
@@ -283,6 +285,22 @@ export const editScore = (postObject) => {
                 .catch(err => {
                     throw new Error(err)
                 })
+}
+
+export const addDiffs = (postObject) => {
+    axios.post(`${api}/api/add_difficulty`, { postObject: postObject },
+    {
+        withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+        }
+    })
+    .then(res => {
+        console.log('It worked')
+    })
+    .catch(err => {
+        throw new Error(err)
+    })
 }
 
 export const getScores = async (songID) => {

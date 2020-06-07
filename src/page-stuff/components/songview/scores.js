@@ -134,10 +134,11 @@ class Scores extends React.Component {
     render() {
         return (
             <table className="font-source componentScoreTable">
+                        {
+                            this.renderTable()
+                        }
                     
-                    {
-                        this.renderTable()
-                    }
+                    
             </table>
         )
     }

@@ -21,7 +21,7 @@ class SongView extends React.Component {
             error: ''
         }
 
-        
+        this.isDifficultyExist = this.isDifficultyExist.bind(this)
     }
 
     componentDidMount() {
@@ -84,6 +84,34 @@ class SongView extends React.Component {
         this.setState({
             currentDiff: data
         }) 
+    }
+
+    isDifficultyExist(difficulty) {
+        if (difficulty == 'NOVICE') {
+            if (this.state.nov_id == '')
+                return false
+            else
+                return true
+        }
+        else if (difficulty == 'ADVANCED') {
+            if (this.state.adv_id == '')
+                return false
+            else
+                return true
+        }
+        else if (difficulty == 'EXHAUST') {
+            if (this.state.exh_id == '')
+                return false
+            else
+                return true
+        }
+        else if (difficulty == 'MAXIMUM') {
+            if (this.state.mxm_id == '')
+                return false
+            else
+                return true
+        }
+            
     }
 
     // Adding a score to the database
@@ -172,6 +200,7 @@ class SongView extends React.Component {
 
                 <SongViewTop 
                 location={this.props.location}
+                isDifficultyExist={this.isDifficultyExist}
                 />
 
                 <ScoreTable
