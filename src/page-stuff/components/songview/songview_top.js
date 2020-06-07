@@ -145,6 +145,15 @@ class SongViewTop extends React.Component {
             })
     }
 
+    setAllEffector(event) {
+        this.setState({
+            editSong_noviceEffector: event.target.value,
+            editSong_advancedEffector: event.target.value,
+            editSong_exhaustEffector: event.target.value,
+            editSong_maximumEffector: event.target.value
+        })
+    }
+
     setDifficultyEffector(event, difficulty) {
         if (difficulty == 'NOVICE')
             this.setState({
@@ -175,6 +184,8 @@ class SongViewTop extends React.Component {
         const postObject2 = {
             id: value.id
         }
+
+        console.log('test')
         
         if (this.state.editSong_title.trim() != '' ||
             this.state.editSong_artist.trim() != '' ||
@@ -187,8 +198,13 @@ class SongViewTop extends React.Component {
             this.state.editSong_advanced != 0 ||
             this.state.editSong_exhaust != 0 ||
             this.state.editSong_maximum != 0 ||
-            this.state.editSong_noviceEffector != null)
+            this.state.editSong_noviceEffector != null ||
+            this.state.editSong_advancedEffector != null ||
+            this.state.editSong_exhaustEffector != null ||
+            this.state.editSong_maximumEffector != null
+            )
             {
+                
                 if (parseInt(this.state.editSong_bpm, 10).toString() === this.state.editSong_bpm.trim() && this.state.editSong_bpm.trim() != '')
                     postObject.bpm = parseInt(this.state.editSong_bpm)
 
@@ -261,6 +277,8 @@ class SongViewTop extends React.Component {
                 
                 console.log(postObject)
 
+                console.log(addDifficulties)
+
                 editScore(postObject)
 
                 if (addDifficulties.length > 0) {
@@ -330,7 +348,7 @@ class SongViewTop extends React.Component {
                                         <input onChange={(e) => this.setSongArtist(e)} className="mb-4" type="text"/>
 
                                         <label id="songeffector">Effector</label>
-                                        <input onChange={(e) => this.setSongEffector(e)} className="mb-4" type="text"/>
+                                        <input onChange={(e) => this.setAllEffector(e)} className="mb-4" type="text"/>
 
                                         <label id="songeffector">BPM</label>
                                         <input onChange={(e) => this.setSongBpm(e)} className="mb-4" type="text"/>
@@ -481,22 +499,22 @@ class SongViewTop extends React.Component {
                                     <div className="color-secondary row">
                                 <div className="column">
                                     <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.novEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
+                                    <input type="text" value={this.state.editSong_noviceEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
                                 </div>
 
                                 <div className="column">
                                     <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.advEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
+                                    <input type="text" value={this.state.editSong_advancedEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
                                 </div>
 
                                 <div className="column">
                                     <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.exhEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
+                                    <input type="text" value={this.state.editSong_exhaustEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
                                 </div>
 
                                 <div className="column">
                                     <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.mxmEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
+                                    <input type="text" value={this.state.editSong_maximumEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
                                 </div>
                                 
 

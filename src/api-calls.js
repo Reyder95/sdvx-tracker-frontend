@@ -296,7 +296,7 @@ export const addDiffs = (postObject) => {
         }
     })
     .then(res => {
-        console.log('It worked')
+        window.location.reload(false)
     })
     .catch(err => {
         throw new Error(err)
