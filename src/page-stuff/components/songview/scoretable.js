@@ -10,14 +10,18 @@ class ScoreTable extends React.Component {
 
         this.state = {
             novScores: [],
-            advScores: [],
-            exhScores: [],
-            mxmScores: [],
-            isValidSong: false,
+            novEffector: 'N/A',
             novDiff: 0,
+            advScores: [],
+            advEffector: 'N/A',
             advDiff: 0,
+            exhScores: [],
+            exhEffector: 'N/A',
             exhDiff: 0,
-            mxmDiff: 0
+            mxmScores: [],
+            mxmEffector: 'N/A',
+            mxmDiff: 0,
+            isValidSong: false,
         }
     }
 
@@ -37,6 +41,7 @@ class ScoreTable extends React.Component {
         }
     
         document.getElementById(tabName).style.display = "block";
+        document.getElementById(`${tabName}-eff`).style.display = "block"
     
         e.currentTarget.className += " active";
 
@@ -89,8 +94,6 @@ class ScoreTable extends React.Component {
                 mxmScores: newArray
             })
 
-        console.log(newArray[0])
-
         if (newArray[0] == null ) {
             this.refs.render.renderTable()
         }
@@ -106,18 +109,22 @@ class ScoreTable extends React.Component {
 
             if (myDifficulties[0].difficulty == 'NOVICE') {
                 document.getElementById('novice').style.display = 'block'
+                document.getElementById('novice-eff').style.display = 'block'
                 this.props.setCurrentDiff('NOVICE')
                 document.getElementById('nov-button').className += " active"
             } else if (myDifficulties[0].difficulty == 'ADVANCED') {
                 document.getElementById('advanced').style.display = 'block'
+                document.getElementById('advanced-eff').style.display = 'block'
                 this.props.setCurrentDiff('ADVANCED')
                 document.getElementById('adv-button').className += " active"
             } else if (myDifficulties[0].difficulty == 'EXHAUST') {
                 document.getElementById('exhaust').style.display = 'block'
+                document.getElementById('exhaust-eff').style.display = 'block'
                 this.props.setCurrentDiff('EXHAUST')
                 document.getElementById('exh-button').className += " active"
             } else if (myDifficulties[0].difficulty == 'MAXIMUM') {
                 document.getElementById('maximum').style.display = 'block'
+                document.getElementById('maximum-eff').style.display = 'block'
                 this.props.setCurrentDiff('MAXIMUM')
                 document.getElementById('mxm-button').className += " active"
             }   
@@ -135,9 +142,15 @@ class ScoreTable extends React.Component {
                         return b.score - a.score
                     })
 
+                    let effector = 'N/A'
+
+                    if (myDifficulties[i].effector != null)
+                        effector = myDifficulties[i].effector
+
                     this.setState({
                         novDiff: myDifficulties[i].level,
-                        novScores: newArray
+                        novScores: newArray,
+                        novEffector: effector
                     })
                 }
                 else if (myDifficulties[i].difficulty == 'ADVANCED') {
@@ -146,10 +159,16 @@ class ScoreTable extends React.Component {
                     let newArray = myDifficulties[i].scores.sort((a, b) => {
                         return b.score - a.score
                     })
+
+                    let effector = 'N/A'
+
+                    if (myDifficulties[i].effector != null)
+                        effector = myDifficulties[i].effector
                     
                     this.setState({
                         advDiff: myDifficulties[i].level,
-                        advScores: newArray
+                        advScores: newArray,
+                        advEffector: effector
                     })
                     
                 }
@@ -160,9 +179,15 @@ class ScoreTable extends React.Component {
                         return b.score - a.score
                     })
                     
+                    let effector = 'N/A'
+
+                    if (myDifficulties[i].effector != null)
+                        effector = myDifficulties[i].effector
+
                     this.setState({
                         exhDiff: myDifficulties[i].level,
-                        exhScores: newArray
+                        exhScores: newArray,
+                        exhEffector: effector
                     })
                 }
                 else if (myDifficulties[i].difficulty == 'MAXIMUM') {
@@ -171,10 +196,16 @@ class ScoreTable extends React.Component {
                     let newArray = myDifficulties[i].scores.sort((a, b) => {
                         return b.score - a.score
                     })
+
+                    let effector = 'N/A'
+
+                    if (myDifficulties[i].effector != null)
+                        effector = myDifficulties[i].effector
                     
                     this.setState({
                         mxmDiff: myDifficulties[i].level,
-                        mxmScores: newArray
+                        mxmScores: newArray,
+                        mxmEffector: effector
                     })
                 }
 
@@ -192,10 +223,17 @@ class ScoreTable extends React.Component {
 
         if (localStorage.getItem('user_id') != null) {
             return (
+                <div className="testing">
+                    <div className="font-roboto-slab bg-primary p-4 color-secondary">
+                        <h2 id="novice-eff" className="tabcontent effector-heading">Effector: {this.state.novEffector}</h2>
+                        <h2 id="advanced-eff" className="tabcontent effector-heading">Effector: {this.state.advEffector}</h2>
+                        <h2 id="exhaust-eff" className="tabcontent effector-heading">Effector: {this.state.exhEffector}</h2>
+                        <h2 id="maximum-eff" className="tabcontent effector-heading">Effector: {this.state.mxmEffector}</h2>
+                    </div>
                 <div className="comp_scoretable">
-                    {console.log(this.state)}
                     <div className="diff-buttons">
                         <div className="row">
+
     
                             <div id="nov-btn" className="column">
                                 <button id="nov-button" onClick={(e) => this.openScoreboard('novice', e)} className="tablinks nov-button btn">NOVICE - {this.state.novDiff}</button>
@@ -219,6 +257,7 @@ class ScoreTable extends React.Component {
                     <div className="tabcontent" id="novice">
                         <Scores 
                         scores={this.state.novScores}
+                        effector={this.state.novEffector}
                         />
                     </div>
     
@@ -226,6 +265,7 @@ class ScoreTable extends React.Component {
                         <Scores 
                         scores={this.state.advScores}
                         diff="ADVANCED"
+                        effector={this.state.advEffector}
                         />
                     </div>
     
@@ -233,6 +273,7 @@ class ScoreTable extends React.Component {
                         <Scores 
                         scores={this.state.exhScores}
                         diff="EXHAUST"
+                        effector={this.state.exhEffector}
                         />
                     </div>
     
@@ -240,9 +281,11 @@ class ScoreTable extends React.Component {
                         <Scores 
                         scores={this.state.mxmScores}
                         diff="MAXIMUM"
+                        effector-={this.state.mxmEffector}
                         />
                     </div>
 
+                </div>
                 </div>
             )
         } else {

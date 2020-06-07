@@ -10,11 +10,14 @@ class AddSongModal extends React.Component {
         this.state = {
             title: '',
             artist: '',
-            effector: '',
             game: '',
             type: '',
             custom_link: '',
             bpm: '',
+            novEffector: null,
+            advEffector: null,
+            exhEffector: null,
+            mxmEffector: null,
             novice: 0,
             advanced: 0,
             exhaust: 0,
@@ -57,8 +60,30 @@ class AddSongModal extends React.Component {
     // this.state.addSong_effector
     setSongEffector(event) {
         this.setState({
-            effector: event.target.value
+            novEffector: event.target.value,
+            advEffector: event.target.value,
+            exhEffector: event.target.value,
+            mxmEffector: event.target.value
         })
+    }
+
+    setDifficultyEffector(event, difficulty) {
+        if (difficulty == 'NOVICE') 
+            this.setState({
+                novEffector: event.target.value.trim() == '' ? null : event.target.value
+            })
+        else if (difficulty == 'ADVANCED')
+            this.setState({
+                advEffector: event.target.value.trim() == '' ? null : event.target.value
+            })
+        else if (difficulty == 'EXHAUST')
+            this.setState({
+                exhEffector: event.target.value.trim() == '' ? null : event.target.value
+            })
+        else if (difficulty == 'MAXIMUM')
+            this.setState({
+                mxmEffector: event.target.value.trim() == '' ? null : event.target.value
+            })
     }
 
     // this.state.addSong_game
@@ -73,6 +98,11 @@ class AddSongModal extends React.Component {
         this.setState({
             type: event.target.value
         })
+
+        if (event.target.value != 'custom')
+            this.setState({
+                custom_link: ''
+            })
     }
 
     // this.state.addSong_custom_link
@@ -91,7 +121,7 @@ class AddSongModal extends React.Component {
 
     // Sets song difficulties based on which difficulty is selected. Takes in the difficulty name and the level for that difficulty
     setSongDifficulties(event, difficulty) {
-        if (difficulty == 'NOVICE')
+        if (difficulty == 'NOVICE') 
             this.setState({
                 novice: event.target.value
             })
@@ -112,6 +142,23 @@ class AddSongModal extends React.Component {
     // Once the user is satisfied they can submit the information
     submitSongInformation(event) {
         event.preventDefault(); // Do not refresh the page
+
+        if (this.state.novEffector == '')
+            this.setState({
+                novEffector: null
+            })
+        else if (this.state.advEffector == '')
+            this.setState({
+                advEffector: null
+            })
+        else if (this.state.exhEffector == '')
+            this.setState({
+                exhEffector: null
+            })
+        else if (this.state.mxmEffector == '')
+            this.setState({
+                mxmEffector: null
+            })
 
         // Object that will be sent as a post request. Sets the default required values
         const postObject = {
@@ -135,16 +182,16 @@ class AddSongModal extends React.Component {
                 let difficulties = []
             
                 if (this.state.novice != 0)
-                    difficulties.push({name: "NOVICE", level: this.state.novice})
+                    difficulties.push({name: "NOVICE", level: this.state.novice, effector: this.state.novEffector})
     
                 if (this.state.advanced != 0)
-                    difficulties.push({name: "ADVANCED", level: this.state.advanced})
+                    difficulties.push({name: "ADVANCED", level: this.state.advanced, effector: this.state.advEffector})
                 
                 if (this.state.exhaust != 0)
-                    difficulties.push({name: "EXHAUST", level: this.state.exhaust})
+                    difficulties.push({name: "EXHAUST", level: this.state.exhaust, effector: this.state.exhEffector})
     
                 if (this.state.maximum != 0)
-                    difficulties.push({name: "MAXIMUM", level: this.state.maximum})
+                    difficulties.push({name: "MAXIMUM", level: this.state.maximum, effector: this.state.mxmEffector})
 
                 // Set difficulties in the postOject
                 postObject.difficulties = difficulties
@@ -152,9 +199,6 @@ class AddSongModal extends React.Component {
                 // Set the rest of the optional information
                 if (this.state.game.trim() != '')
                     postObject.game = this.state.game.trim()
-    
-                if(this.state.effector.trim() != '')
-                    postObject.effector = this.state.effector.trim()
 
                 if (this.state.custom_link.trim() != '')
                     postObject.custom_link = this.state.custom_link.trim()
@@ -224,10 +268,10 @@ class AddSongModal extends React.Component {
                                 <label id="songartist">Artist (required)</label>
                                 <input onChange={(e) => this.setSongArtist(e)} className="mb-4" type="text"/>
 
-                                <label id="songeffector">Effector</label>
+                                <label id="songeffector">Effector (for all difficulties)</label>
                                 <input onChange={(e) => this.setSongEffector(e)} className="mb-4" type="text"/>
 
-                                <label id="songeffector">BPM</label>
+                                <label id="songbpm">BPM</label>
                                 <input onChange={(e) => this.setSongBpm(e)} className="mb-4" type="text"/>
 
                                 <label id="songgame">Game</label>
@@ -249,7 +293,7 @@ class AddSongModal extends React.Component {
                                 </select>
 
                                 <label id="songcustomlinks">Custom Link</label>
-                                <input onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
+                                <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
                             </div>
                             
                         </div>
@@ -282,6 +326,30 @@ class AddSongModal extends React.Component {
                                 difficulty="MAXIMUM"
                                 setSongDifficulties={this.setSongDifficulties}
                                 />
+
+                            </div>
+
+                            <div className="color-secondary row">
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.novEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
+                                </div>
+
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.advEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
+                                </div>
+
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.exhEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
+                                </div>
+
+                                <div className="column">
+                                    <label id="songnovice">Effector</label>
+                                    <input type="text" value={this.state.mxmEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
+                                </div>
+                                
 
                             </div>
                         </div>

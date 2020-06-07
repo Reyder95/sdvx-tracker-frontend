@@ -345,6 +345,10 @@ td {
     text-decoration: none;
 }
 
+sub {
+    margin-top: 0 !important;
+}
+
 .show {
     display: block;
 }
