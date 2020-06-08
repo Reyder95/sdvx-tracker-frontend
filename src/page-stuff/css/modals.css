@@ -14,30 +14,47 @@
 
 .modal-header {
     padding: 2px 16px;
+    margin-bottom: 10px;
+}
+
+.modal-header a, .modal-content a {
+    text-decoration: none;
+    color: #f54291;
+    transition: 0.2s;
+}
+
+.modal-header a:hover, .modal-content a:hover  {
+    color: #B74174;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 .modal-body {
     padding: 2px 16px;
+    margin-top: 20px;
 }
 
 .modal-content {
     border-radius: 5px;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 30%;
     animation-name: animateModal;
     animation-duration: 0.4s;
-    background-color: #C6C5CC;
+    background-color: #232931;
 }
 
-.modal-content h2 {
-    color: #474747;
+.modal-content h2, .modal-content h3, .modal-content p {
+    color: #dbd8e3;
+}
+
+.modal-content hr {
+    border: 1px solid #dbd8e3;
 }
 
 .modal-content input[type=text] {
     border: none !important;
-    background-color: #DBDBDD !important;
+    background-color: #393e46 !important;
     padding: 17px !important;
     display: block;
     width: 100%;
@@ -47,11 +64,13 @@
     border-radius: 5px;
     border: 1px solid rgba(0,0,0,0.5);
     background-color: white;    
+    color: #dbd8e3;
 }
 
-.modal-content select {
+.modal-content select { 
+    color: #dbd8e3;
     border: none;
-    background-color: #DBDBDD;
+    background-color: #393e46;
 }
 
 .modal-content input[type=text]:focus, .modal-content select:focus {
@@ -61,12 +80,12 @@
 }
 
 .modal-content button {
-    background-color: #A5D2FB;
+    background-color: #4C2A79;
     transition: 0.2s;
 }
 
 .modal-content button:hover {
-    background-color: #7ABBF4;
+    background-color: #361661;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -125,4 +144,69 @@
 
 .songimagepreview input {
     width: 45% !important;
+}
+
+.difficultyLevels {
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.difficultyLevels select{
+    margin: 0 !important;
+    width: 100%;
+}
+
+.difficultyLevels input {
+    margin: 0 !important;
+}
+
+.effectors {
+    margin-top: 20px;
+}
+
+.songDropdowns {
+    margin-top: 10px;
+}
+
+/* Profile Settings */
+#profileSettingsModal .submit-info {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#profileSettingsModal .modal-content {
+    padding: 10px;
+}
+
+#profileSettingsModal .modal-body {
+    padding: 10px;
+}
+
+#profileSettingsModal input[type=text] {
+    border-radius: 5px;
+}
+
+#profileSettingsModal input[type=submit] {
+    border-radius: 2px;
+}
+
+#profileSettingsModal #file-upload-button {
+    background: black !important;
+}
+
+#profile-stuff {
+    margin-bottom: 15px;
+}
+
+#profileSettingsModal .btn {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: block;
+}
+
+.otherInfo {
+    margin-top: 30px;
 }

@@ -9,7 +9,7 @@ class SongListLevelDropdown extends React.Component {
     render() {
         return (
             <div className="column">
-                <label id="songnovice">{this.props.difficulty}</label>
+                <label id="songnovice"><strong>{this.props.difficulty}</strong></label>
                 <select onChange={(e) => this.props.setSongDifficulties(e, this.props.difficulty)} className="diffDropdown" className="mb-4" className="form-input">
                     <option default value="0">None</option>
                     <option value="1">1</option>

@@ -370,12 +370,6 @@ sub {
     float: right;
 }
 
-.settingsContainer {
-    background-color: #426486;
-    border-radius: 5px;
-    padding: 20px;
-}
-
 .profile-label {
     display: block;
 }
@@ -387,47 +381,7 @@ sub {
     margin-top: 5px;
 }
 
-#profileSettingsModal .submit-info {
-    width: 100%;
-    margin-top: 15px;
-}
-
-#profileSettingsModal .modal-content {
-    padding: 10px;
-}
-
-#profileSettingsModal .modal-body {
-    padding: 10px;
-}
-
-#profileSettingsModal input[type=text] {
-    border-radius: 5px;
-}
-
-#profileSettingsModal input[type=submit] {
-    border-radius: 2px;
-}
-
-#profileSettingsModal #file-upload-button {
-    background: black !important;
-}
-
-#pofileSettingsModal .btn {
-    background-color: #F8F8F8;
-    transition: 0.2s;
-}
-
-#profileSettingsModal .btn:hover {
-    background-color: #AAAAAA;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
 @media only screen and (max-width: 1024px) {
-
-    #profileSettingsModal .modal-content {
-        width: 60%;
-    }
 
     .row {
         display: block;
@@ -449,11 +403,5 @@ sub {
         float: none;
         text-align: center;
         margin-top: 15px;
-    }
-}
-
-@media only screen and (max-width: 415px) {
-    #profileSettingsModal .modal-content {
-        width: 90%;
     }
 }
