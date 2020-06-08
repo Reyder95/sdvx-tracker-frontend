@@ -256,47 +256,134 @@ class AddSongModal extends React.Component {
                                     
                                 </p>
                                 <img className="song-preview" src={this.state.jacket}/> <br/>
-
-                                <label id="songimageurl">Song Image URL</label>
-                                <input className="mb-4" onChange={(e) => this.setSongImageUrl(e)} type="text"/>
+                                <input className="mb-4" placeholder="Song Image URL" onChange={(e) => this.setSongImageUrl(e)} type="text"/>
                             </div>
-
-                            <div className="column songinformation">
-                                <label id="songtitle">Title (required)</label>
-                                <input onChange={(e) => this.setSongTitle(e)} className="mb-4" type="text"/>
-
-                                <label id="songartist">Artist (required)</label>
-                                <input onChange={(e) => this.setSongArtist(e)} className="mb-4" type="text"/>
-
-                                <label id="songeffector">Effector (for all difficulties)</label>
-                                <input onChange={(e) => this.setSongEffector(e)} className="mb-4" type="text"/>
-
-                                <label id="songbpm">BPM</label>
-                                <input onChange={(e) => this.setSongBpm(e)} className="mb-4" type="text"/>
-
-                                <label id="songgame">Game</label>
-                                <select onChange={(e) => this.setSongGame(e)} className="mb-4" className="form-input">
-                                    <option hidden default value="">Select One</option>
-                                    <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
-                                    <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
-                                    <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
-                                    <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
-                                    <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
-                                    <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
-                                </select>
-
-                                <label className="mt-4" id="songtype">Type (required)</label>
-                                <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
-                                    <option hidden default value="">Select One</option>
-                                    <option value="official">Official</option>
-                                    <option value="custom">Custom</option>
-                                </select>
-
-                                <label id="songcustomlinks">Custom Link</label>
-                                <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
-                            </div>
-                            
                         </div>
+
+                        <div className="main-form">
+                            <div className="row">
+
+                                <div className="column">
+                                    <input onChange={(e) => this.setSongTitle(e)} placeholder="Title (required)" className="mb-4" type="text"/>
+                                </div>
+
+                                <div className="column">
+                                    <input onChange={(e) => this.setSongArtist(e)} placeholder="Artist (required)" className="mb-4" type="text"/>
+                                </div>
+                            </div>
+
+                            <div className="row">
+
+                                <div className="column">
+                                    <select onChange={(e) => this.setSongGame(e)} className="mb-4" className="form-input">
+                                        <option hidden default value="">Game</option>
+                                        <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
+                                        <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
+                                        <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
+                                        <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
+                                        <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
+                                        <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
+                                    </select>
+                                 </div>
+            
+                                {/*<div className="column">
+                                    <input onChange={(e) => this.setSongEffector(e)} placeholder="Effector (for all difficulties)" className="mb-4" type="text"/>
+                                </div>*/}
+    
+                                <div className="column">
+                                    <input onChange={(e) => this.setSongBpm(e)} placeholder="BPM" className="mb-4" type="text"/>
+                                </div>
+
+                            </div>
+
+                            <div className="row">
+
+                                    <div className="column">
+                                        <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
+                                            <option hidden default value="">Type</option>
+                                            <option value="official">Official</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="column">
+                                            <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} placeholder="Custom Link" className="mb-4" type="text"/>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div className="row">
+                                    
+
+                                    <div className="column">
+                                            
+                                    </div>
+                                </div>
+                                {/*<div className="row">
+
+                                    <div className="column">
+                                        <label id="songtitle">Title (required)</label>
+                                        <input onChange={(e) => this.setSongTitle(e)} className="mb-4" type="text"/>
+                                    </div>
+
+                                    <div className="column">
+                                        <label id="songartist">Artist (required)</label>
+                                        <input onChange={(e) => this.setSongArtist(e)} className="mb-4" type="text"/>
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+
+                                    <div className="column">
+                                        <label id="songeffector">Effector (for all difficulties)</label>
+                                        <input onChange={(e) => this.setSongEffector(e)} className="mb-4" type="text"/>
+                                    </div>
+
+                                    <div className="column">
+                                        <label id="songbpm">BPM</label>
+                                        <input onChange={(e) => this.setSongBpm(e)} className="mb-4" type="text"/>
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+
+                                    <div className="column">
+                                        <label id="songgame">Game</label>
+                                        <select onChange={(e) => this.setSongGame(e)} className="mb-4" className="form-input">
+                                            <option hidden default value="">Select One</option>
+                                            <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
+                                            <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
+                                            <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
+                                            <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
+                                            <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
+                                            <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="column">
+                                        <label className="mt-4" id="songtype">Type (required)</label>
+                                        <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
+                                            <option hidden default value="">Select One</option>
+                                            <option value="official">Official</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+                                <div className="row">
+                                    <div className="column">
+                                        <label id="songcustomlinks">Custom Link</label>
+                                        <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
+                                    </div>
+        </div>*/}   
+
+                            </div>
 
                         <div className="difficultyLevels color-secondary bg-tertiary">
                             <p className="mb-4">

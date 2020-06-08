@@ -1,0 +1,128 @@
+/* Base modal things */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-header {
+    padding: 2px 16px;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-content {
+    border-radius: 5px;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    animation-name: animateModal;
+    animation-duration: 0.4s;
+    background-color: #C6C5CC;
+}
+
+.modal-content h2 {
+    color: #474747;
+}
+
+.modal-content input[type=text] {
+    border: none !important;
+    background-color: #DBDBDD !important;
+    padding: 17px !important;
+    display: block;
+    width: 100%;
+    height: 25px;
+    font-size: 18px;
+    padding: 15px 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.5);
+    background-color: white;    
+}
+
+.modal-content select {
+    border: none;
+    background-color: #DBDBDD;
+}
+
+.modal-content input[type=text]:focus, .modal-content select:focus {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #8F86A9 !important;
+}
+
+.modal-content button {
+    background-color: #A5D2FB;
+    transition: 0.2s;
+}
+
+.modal-content button:hover {
+    background-color: #7ABBF4;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes animateModal {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/* Add Score */
+#addScoreModal input[type=text] {
+    margin-top: 15px;
+}
+
+#addScoreModal select {
+    margin-top: 2em;
+}
+
+#addScoreModal #addScoreButton {
+    display: block;
+    text-align: middle;
+}
+
+#addScoreModal button {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: block;
+}
+
+/* Add and Edit Song */
+#addSongModal .modal-content {
+    width: 50%;
+}
+
+#addSongModal input, #addSongModal select {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.songimagepreview input {
+    width: 45% !important;
+}

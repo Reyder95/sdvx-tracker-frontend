@@ -214,24 +214,19 @@ class SongView extends React.Component {
 
                 
                 <div id="addScoreModal" className="modal">
-                    <div className="modal-content bg-secondary">
+                    <div className="modal-content">
                         <span onClick={this.closeModal.bind(this)} className="close">&times;</span>
                         <div className="modal-header font-roboto">
                             <h2>Add a Score - {this.state.currentDiff}</h2>
                         </div>
 
-                        <hr className="mt-1"/>
-
                         <div className="modal-body font-source mt-1">
                             <form>
-                                <label>Score</label>
                                 {this.state.error}
-                                <p className="mb-1">Must be a number between 0 and 10,000,000</p>
-                                <input onChange={(e) => this.setScore(e)} value={this.state.score} type="text"/>
+                                <input onChange={(e) => this.setScore(e)} placeholder="Score" value={this.state.score} type="text"/>
 
-                                <label>Clear Type</label>
                                 <select onChange={(e) => this.setClearType(e)} id="level" className="form-input">
-                                    <option value="" disabled selected hidden>Select One</option>
+                                    <option value="" disabled selected hidden>Clear Type</option>
                                     <option value="4">Effective Clear</option>
                                     <option value="3">Excessive Clear</option>
                                     <option value="1">Perfect Ultimate Chain</option>
@@ -239,7 +234,10 @@ class SongView extends React.Component {
                                     <option value="5">Played</option>
                                 </select>
 
-                                <button onClick={(e) => this.addScoreToAPI(e)} className="btn bg-quintery">Add Score!</button>
+                                <div id="addScoreButton">
+                                    <button onClick={(e) => this.addScoreToAPI(e)} className="btn">Add Score!</button>
+                                </div>
+                                    
                             </form>
                             
                         </div>

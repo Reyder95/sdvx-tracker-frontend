@@ -20,6 +20,7 @@ import {
 // Some CSS imports
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
+import './page-stuff/css/modals.css'
 
 // App class, this is the entirety of our program.
 class App extends React.Component{
