@@ -294,7 +294,7 @@ class AddSongModal extends React.Component {
 
                                     <div className="column">
                                         <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
-                                            <option hidden default value="">Type</option>
+                                            <option hidden default value="">Type (Required)</option>
                                             <option value="official">Official</option>
                                             <option value="custom">Custom</option>
                                         </select>

@@ -272,6 +272,7 @@ class App extends React.Component{
         </Router>
 
         <div id="profileSettingsModal" className="modal">
+          <div className="modalContainer">
           <div className="modal-content">
             <div className="modal-header">
               <span className="close" onClick={() => this.closeModal()}>&times;</span>
@@ -316,6 +317,7 @@ class App extends React.Component{
               </form>
             </div>
           </div>
+        </div>
         </div>
         
       </div>
