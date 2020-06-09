@@ -223,3 +223,37 @@
 .otherInfo {
     margin-top: 30px;
 }
+
+@media only screen and (max-width: 1025px) {
+    .modal-content {
+        width: 50%;
+    }
+
+    #addSongModal .modal-content {
+        width: 70% !important;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .modal-content {
+        width: 70%;
+    }
+
+    #addSongModal .modal-content {
+        width: 90% !important;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .modal-content {
+        width: 95%;
+    }
+
+    #addSongModal .modal-content {
+        width: 95% !important;
+    }
+
+    .modal-content input, .modal-content select {
+        width: 100% !important;
+    }
+}

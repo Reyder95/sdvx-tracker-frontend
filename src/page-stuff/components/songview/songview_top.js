@@ -547,7 +547,7 @@ class SongViewTop extends React.Component {
                                     <div className="effectors color-secondary row">
                                         <div className="column">
                                             <label id="songnovice"><strong>Effector</strong> <a data-tip data-for='copy' onClick={() => this.copyEffector()}>(Copy)</a></label>
-                                            <input type="text" value={this.state.editSong_noviceEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
+                                            <input placeholder="NOV" type="text" value={this.state.editSong_noviceEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
                                         
                                         <ReactTooltip id="copy" effect="solid">
                                             <span>Copies the NOVICE effector across every other difficulty.</span>
@@ -556,17 +556,17 @@ class SongViewTop extends React.Component {
 
                                         <div className="column">
                                             <label id="songnovice"><strong>Effector</strong></label>
-                                            <input type="text" value={this.state.editSong_advancedEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
+                                            <input placeholder="ADV" type="text" value={this.state.editSong_advancedEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
                                         </div>
 
                                         <div className="column">
                                             <label id="songnovice"><strong>Effector</strong></label>
-                                            <input type="text" value={this.state.editSong_exhaustEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
+                                            <input placeholder="EXH" type="text" value={this.state.editSong_exhaustEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
                                         </div>
 
                                         <div className="column">
                                             <label id="songnovice"><strong>Effector</strong></label>
-                                            <input type="text" value={this.state.editSong_maximumEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
+                                            <input placeholder="MXM" type="text" value={this.state.editSong_maximumEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
                                         </div>
 
 

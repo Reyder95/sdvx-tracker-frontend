@@ -392,22 +392,22 @@ class AddSongModal extends React.Component {
                                     <ReactTooltip id="copy" effect="solid">
                                         <span>Copies the NOVICE effector across every other difficulty.</span>
                                     </ReactTooltip>
-                                    <input type="text" value={this.state.novEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
+                                    <input placeholder="NOV" type="text" value={this.state.novEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
                                 </div>
 
                                 <div className="column">
                                     <label id="songnovice"><strong>Effector</strong></label>
-                                    <input type="text" value={this.state.advEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
+                                    <input placeholder="ADV" type="text" value={this.state.advEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
                                 </div>
 
                                 <div className="column">
                                     <label id="songnovice"><strong>Effector</strong></label>
-                                    <input type="text" value={this.state.exhEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
+                                    <input placeholder="EXH" type="text" value={this.state.exhEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
                                 </div>
 
                                 <div className="column">
                                     <label id="songnovice"><strong>Effector</strong></label>
-                                    <input type="text" value={this.state.mxmEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
+                                    <input placeholder="MXM" type="text" value={this.state.mxmEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
                                 </div>
                                 
 
