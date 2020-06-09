@@ -359,11 +359,11 @@ sub {
 }
 
 .comp_footer a {
-    color: #916DDA;
+    color: #AF96E3;
 }
 
 .comp_footer a:hover {
-    color: #5d5d5d;
+    color: #D3C3F4;
 }
 
 #nav-right {

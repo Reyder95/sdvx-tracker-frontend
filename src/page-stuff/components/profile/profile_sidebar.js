@@ -56,13 +56,13 @@ class Sidebar extends React.Component {
                 </div>
                 <div className="bg-primary font-source color-secondary pt-2 pb-2">
                     <p className="p-1">
-                        <strong>Twitter: </strong> <a href={'http://' + this.props.twitter}>{this.props.twitter}</a>
+                        <strong>Twitter: </strong> <a href={`https://twitter.com/${this.props.twitter}`}>{this.props.twitter}</a>
                     </p>
                     <p className="p-1">
                         <strong>Discord Tag: </strong> {this.props.discord}
                     </p>
                     <p className="p-1">
-                        <strong>Twitch: </strong> <a href={'http://' + this.props.twitch}>{this.props.twitch}</a>
+                        <strong>Twitch: </strong> <a href={`https://twitch.tv/${this.props.twitch}`}>{this.props.twitch}</a>
                     </p>
                 </div>
             </div>

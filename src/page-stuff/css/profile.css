@@ -45,6 +45,17 @@ body {
     text-align: center;
 }
 
+.comp_sidebar a {
+    color: #AF96E3;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.comp_sidebar a:hover {
+    color: #D3C3F4;
+    transition: 0.2s;
+}
+
 /* Recent Songs */
 .comp_recentsongs {
     width: 100%;
