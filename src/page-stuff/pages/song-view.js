@@ -175,9 +175,6 @@ class SongView extends React.Component {
         if (this.state.clear_type == '')
             errorArray.push('You must select a clear type!')
 
-        if (parseInt(this.state.score, 10).toString() !== this.state.score)
-            errorArray.push('Please enter a valid score')
-
         if (errorArray.length > 0) {
             this.setState({
                 errors: errorArray
