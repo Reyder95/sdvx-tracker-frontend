@@ -195,6 +195,11 @@
     width: 100%;
 }
 
+.individualScoreTable {
+    overflow: auto;
+    background-color: black;
+}
+
 .componentScoreTable tr th
 {
     width: 25%;
@@ -277,5 +282,10 @@
 
     .song-info {
         width: 75%; 
+    }
+
+    .effector-heading {
+        text-align: center;
+        padding: 0;
     }
 }

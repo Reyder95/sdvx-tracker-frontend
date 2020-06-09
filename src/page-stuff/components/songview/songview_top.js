@@ -14,6 +14,7 @@ class SongViewTop extends React.Component {
             bpmHigh: '',
             game: '',
             image: '',
+            submission_by: '',
 
             editSong_jacket: 'https://placehold.it/128',
             editSong_title: '',
@@ -47,7 +48,8 @@ class SongViewTop extends React.Component {
                 bpm: result.data.data[0].bpm,
                 bpmHigh: result.data.data[0].bpmend,
                 game: result.data.data[0].game,
-                image: result.data.data[0].jacket
+                image: result.data.data[0].jacket,
+                submission_by: result.data.data[0].username
             })
 
             if (result.data.data[0].user_fk == localStorage.getItem('user_id'))
@@ -314,6 +316,9 @@ class SongViewTop extends React.Component {
                             </p>
                             <p>
                                 <strong>Game:</strong> {this.state.game}
+                            </p>                            
+                            <p>
+                                <strong>Submission By:</strong> {this.state.submission_by}
                             </p>
                         </div>
 

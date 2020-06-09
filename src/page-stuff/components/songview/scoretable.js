@@ -254,14 +254,14 @@ class ScoreTable extends React.Component {
                         </div>
                     </div>
     
-                    <div className="tabcontent" id="novice">
+                    <div className="tabcontent individualScoreTable" id="novice">
                         <Scores 
                         scores={this.state.novScores}
                         effector={this.state.novEffector}
                         />
                     </div>
     
-                    <div className="tabcontent" id="advanced">
+                    <div className="tabcontent individualScoreTable" id="advanced">
                         <Scores 
                         scores={this.state.advScores}
                         diff="ADVANCED"
@@ -269,7 +269,7 @@ class ScoreTable extends React.Component {
                         />
                     </div>
     
-                    <div className="tabcontent" id="exhaust">
+                    <div className="tabcontent individualScoreTable" id="exhaust">
                         <Scores 
                         scores={this.state.exhScores}
                         diff="EXHAUST"
@@ -277,7 +277,7 @@ class ScoreTable extends React.Component {
                         />
                     </div>
     
-                    <div className="tabcontent" id="maximum">
+                    <div className="tabcontent individualScoreTable" id="maximum">
                         <Scores 
                         scores={this.state.mxmScores}
                         diff="MAXIMUM"

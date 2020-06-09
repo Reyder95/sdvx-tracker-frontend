@@ -60,6 +60,8 @@ class SongEntry extends React.Component {
     render() {
         return (
             <tr className="song_entry_tr" onClick={() => this.redirectionLink(this.props.songData.id)}>
+
+                {console.log(this.props)}
                 
                 <td>
                     {this.props.nbr}    
@@ -71,6 +73,7 @@ class SongEntry extends React.Component {
                 </td>
 
                 <td>{this.props.songData.artist} - {this.props.songData.title}</td>
+                <td id="submission">{this.props.songData.username}</td>
                 <td>{this.state.nov}</td>
                 <td>{this.state.adv}</td>
                 <td>{this.state.exh}</td>

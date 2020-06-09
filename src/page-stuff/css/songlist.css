@@ -53,6 +53,10 @@
     overflow: hidden;
 }
 
+#submission {
+    width: 10%;
+}
+
 .reset:hover {
     background-color: #00747F;
     cursor: pointer;
