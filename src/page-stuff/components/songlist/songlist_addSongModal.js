@@ -15,6 +15,7 @@ class AddSongModal extends React.Component {
             type: '',
             custom_link: '',
             bpm: '',
+            bpmHigh: '',
             novEffector: null,
             advEffector: null,
             exhEffector: null,
@@ -318,7 +319,22 @@ class AddSongModal extends React.Component {
                                 </div>*/}
     
                                 <div className="column">
-                                    <input onChange={(e) => this.setSongBpm(e)} placeholder="BPM" className="mb-4" type="text"/>
+                                    <div className="row">
+                                        <div className="column">
+                                            <input data-tip data-for="bpmlow" onChange={(e) => this.setSongBpm(e)} placeholder="BPM - Low" className="mb-4" type="text"/> 
+                                        </div>
+                                        <div className="column">
+                                            <input data-tip data-for="bpmhigh" onChange={(e) => this.setSongBpm(e)} placeholder="BPM - High" className="mb-4" type="text"/>
+                                        </div>
+
+                                        <ReactTooltip id="bpmlow" effect="solid">
+                                            <span>The lowest BPM goes here</span>
+                                        </ReactTooltip>
+
+                                        <ReactTooltip id="bpmhigh" effect="solid">
+                                            <span>The highest BPM goes here. Do not input anything here if the BPM does not change.</span>
+                                        </ReactTooltip>
+                                    </div>
                                 </div>
 
                             </div>
