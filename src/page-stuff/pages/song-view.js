@@ -146,7 +146,7 @@ class SongView extends React.Component {
             if (localStorage.getItem('user_id') != null) {
                 score = score.replace(/,/g,'');
 
-                if (score = '10000000')
+                if (score == '10000000')
                     clearType = 1
     
                 // If score can be parsed as an integer
