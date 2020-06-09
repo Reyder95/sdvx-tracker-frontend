@@ -107,18 +107,6 @@
     background-color: #C8C8C8;
 }
 
-.difficultyLevels {
-    margin: 0;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.difficultyLevels input {
-    margin: auto;
-    margin-top: 10px;
-    width: 100% !important;
-}
-
 .songimagepreview {
     text-align: center;
 }

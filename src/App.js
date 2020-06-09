@@ -20,6 +20,7 @@ import {
 // Some CSS imports
 import './page-stuff/css/global.css'
 import './page-stuff/css/navbar.css'
+import './page-stuff/css/modals.css'
 
 // App class, this is the entirety of our program.
 class App extends React.Component{
@@ -132,21 +133,22 @@ class App extends React.Component{
   // ---Profile Settings---
 
   // When a user clicks the upload button
-  onFileUpload(event) {
+  onFileUpload() {
 
-    event.preventDefault()  // Don't automatically refresh the page
+    if (this.state.selectedFile != null) {
+      const formData = new FormData();  // Create a FormData object 
 
-    const formData = new FormData();  // Create a FormData object 
-
-    // Add to the form data object the file with field "profile"
-    formData.append(
-      "profile",
-      this.state.selectedFile,
-      this.state.selectedFile.name
-    )
-
-    // Send the formData to the API so it can be processed and uploaded to the database
-    profilePictureUpload(formData)
+      // Add to the form data object the file with field "profile"
+      formData.append(
+        "profile",
+        this.state.selectedFile,
+        this.state.selectedFile.name
+      )
+  
+      // Send the formData to the API so it can be processed and uploaded to the database
+      profilePictureUpload(formData)
+    }
+    
   }
 
   // Submit profile edit information
@@ -175,6 +177,8 @@ class App extends React.Component{
       // ... nope
       console.log('Nope!')
     }
+
+    this.onFileUpload()
   }
 
   // Render this stuff to the screen
@@ -251,33 +255,34 @@ class App extends React.Component{
         </Router>
 
         <div id="profileSettingsModal" className="modal">
-          <div className="modal-content bg-secondary">
+          <div className="modal-content">
             <div className="modal-header">
               <span className="close" onClick={() => this.closeModal()}>&times;</span>
               <h2 className="mb-1 font-roboto-slab">Profile Settings</h2>
-              <hr className="bg-quintery"/>
             </div>
-            <div className="modal-body mt-2 font-roboto color-quartery">
+            <div className="modal-body mt-2 font-roboto">
               <form>
-                <div className="settingsContainer">
+                <div id="profile-stuff" className="settingsContainer mb-4">
                   <h3>Profile Picture</h3> <br />
-                  <input onChange={(e) => this.onFileChange(e)} type="file"/>
-
-                  <input onClick={(e) => this.onFileUpload(e)} type="submit" value="Upload Image" className="btn mt-2"/>
+                  
+                <hr />
+                  <input className="mt-4 color-secondary" onChange={(e) => this.onFileChange(e)} type="file"/>
                 </div>
 
-                <div className="settingsContainer mt-4">
-                  <h3>Other Information</h3> <br />
-                  <label className="profile-label">Twitter Link</label>
+
+                <div className="settingsContainer otherInfo mt-4 color-secondary">
+                  <h3>Social Settings</h3> <br />
+                  <hr/>
+                  <label className=" mt-4 profile-label">Twitter Link</label>
                   <input type='text' onChange={(e) => this.setTwitter(e)} className="profileInput"/>
 
                   <label className="mt-3 profile-label">Discord Tag</label>
-                  <input onChange={(e) => this.setDiscord(e)} className="profileInput"/>
+                  <input type='text' onChange={(e) => this.setDiscord(e)} className="profileInput"/>
 
                   <label className="mt-3 profile-label">Twitch Link</label>
-                  <input onChange={(e) => this.setTwitch(e)} className="profileInput"/>
+                  <input type='text' onChange={(e) => this.setTwitch(e)} className="profileInput"/>
 
-                  <input onClick={(e) => this.submitInformation(e)} type="submit" className="btn mt-4 submit-info" value="Submit Information"/>
+                  <button onClick={(e) => this.submitInformation(e)} className="btn mt-4 submit-info">Submit Information</button>
                 </div>
                 
               </form>

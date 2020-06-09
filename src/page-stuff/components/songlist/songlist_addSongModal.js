@@ -1,5 +1,6 @@
 import React from 'react'
 import SongListLevelDropdown from './songlist_levelDropdown'
+import ReactTooltip from 'react-tooltip'
 import { addSong } from '../../../api-calls'
 
 // Modal for adding songs
@@ -58,12 +59,11 @@ class AddSongModal extends React.Component {
     }
 
     // this.state.addSong_effector
-    setSongEffector(event) {
+    copyEffector(event) {
         this.setState({
-            novEffector: event.target.value,
-            advEffector: event.target.value,
-            exhEffector: event.target.value,
-            mxmEffector: event.target.value
+            advEffector: this.state.novEffector,
+            exhEffector: this.state.novEffector,
+            mxmEffector: this.state.novEffector
         })
     }
 
@@ -249,63 +249,86 @@ class AddSongModal extends React.Component {
                     <form>
                         <div className="row">
                             <div className="column songimagepreview">
-                                <p className="mb-2">
-                                    <strong>
-                                        Image Preview
-                                    </strong>
-                                    
-                                </p>
                                 <img className="song-preview" src={this.state.jacket}/> <br/>
-
-                                <label id="songimageurl">Song Image URL</label>
-                                <input className="mb-4" onChange={(e) => this.setSongImageUrl(e)} type="text"/>
+                                <input className="mb-4" placeholder="Song Image URL" onChange={(e) => this.setSongImageUrl(e)} type="text"/>
                             </div>
-
-                            <div className="column songinformation">
-                                <label id="songtitle">Title (required)</label>
-                                <input onChange={(e) => this.setSongTitle(e)} className="mb-4" type="text"/>
-
-                                <label id="songartist">Artist (required)</label>
-                                <input onChange={(e) => this.setSongArtist(e)} className="mb-4" type="text"/>
-
-                                <label id="songeffector">Effector (for all difficulties)</label>
-                                <input onChange={(e) => this.setSongEffector(e)} className="mb-4" type="text"/>
-
-                                <label id="songbpm">BPM</label>
-                                <input onChange={(e) => this.setSongBpm(e)} className="mb-4" type="text"/>
-
-                                <label id="songgame">Game</label>
-                                <select onChange={(e) => this.setSongGame(e)} className="mb-4" className="form-input">
-                                    <option hidden default value="">Select One</option>
-                                    <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
-                                    <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
-                                    <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
-                                    <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
-                                    <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
-                                    <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
-                                </select>
-
-                                <label className="mt-4" id="songtype">Type (required)</label>
-                                <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
-                                    <option hidden default value="">Select One</option>
-                                    <option value="official">Official</option>
-                                    <option value="custom">Custom</option>
-                                </select>
-
-                                <label id="songcustomlinks">Custom Link</label>
-                                <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
-                            </div>
-                            
                         </div>
 
-                        <div className="difficultyLevels color-secondary bg-tertiary">
+                        <div className="main-form">
+                            <div className="row">
+
+                                <div className="column">
+                                    <input onChange={(e) => this.setSongTitle(e)} placeholder="Title (required)" className="mb-4" type="text"/>
+                                </div>
+
+                                <div className="column">
+                                    <input onChange={(e) => this.setSongArtist(e)} placeholder="Artist (required)" className="mb-4" type="text"/>
+                                </div>
+                            </div>
+
+                            <div className="row">
+
+                                <div className="column">
+                                    <select onChange={(e) => this.setSongGame(e)} className="mb-4" className="form-input">
+                                        <option hidden default value="">Game</option>
+                                        <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
+                                        <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
+                                        <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
+                                        <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
+                                        <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
+                                        <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
+                                    </select>
+                                 </div>
+            
+                                {/*<div className="column">
+                                    <input onChange={(e) => this.setSongEffector(e)} placeholder="Effector (for all difficulties)" className="mb-4" type="text"/>
+                                </div>*/}
+    
+                                <div className="column">
+                                    <input onChange={(e) => this.setSongBpm(e)} placeholder="BPM" className="mb-4" type="text"/>
+                                </div>
+
+                            </div>
+
+                            <div className="row">
+
+                                    <div className="column">
+                                        <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
+                                            <option hidden default value="">Type</option>
+                                            <option value="official">Official</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="column">
+                                            <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} placeholder="Custom Link" className="mb-4" type="text"/>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div className="row">
+                                    
+
+                                    <div className="column">
+                                            
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        <div className="difficultyLevels color-secondary">
                             <p className="mb-4">
                                 <strong>
                                     Specify a level for each difficulty you want to upload (must at least specify one!)
                                 </strong>
+
                             </p>
 
-                            <div className="color-secondary row">
+                            <hr />
+
+                            <div className="songDropdowns color-secondary row">
 
                                 <SongListLevelDropdown
                                 difficulty="NOVICE"
@@ -329,24 +352,28 @@ class AddSongModal extends React.Component {
 
                             </div>
 
-                            <div className="color-secondary row">
+                            <div className="effectors color-secondary row">
                                 <div className="column">
-                                    <label id="songnovice">Effector</label>
+                                    <label id="songnovice"><strong>Effector</strong> <a data-tip data-for='copy' onClick={() => this.copyEffector()}>(Copy)</a></label>
+
+                                    <ReactTooltip id="copy" effect="solid">
+                                        <span>Copies the NOVICE effector across every other difficulty.</span>
+                                    </ReactTooltip>
                                     <input type="text" value={this.state.novEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
                                 </div>
 
                                 <div className="column">
-                                    <label id="songnovice">Effector</label>
+                                    <label id="songnovice"><strong>Effector</strong></label>
                                     <input type="text" value={this.state.advEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
                                 </div>
 
                                 <div className="column">
-                                    <label id="songnovice">Effector</label>
+                                    <label id="songnovice"><strong>Effector</strong></label>
                                     <input type="text" value={this.state.exhEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
                                 </div>
 
                                 <div className="column">
-                                    <label id="songnovice">Effector</label>
+                                    <label id="songnovice"><strong>Effector</strong></label>
                                     <input type="text" value={this.state.mxmEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
                                 </div>
                                 
@@ -357,7 +384,6 @@ class AddSongModal extends React.Component {
                         <div className="row addSongRow">
                             <button onClick={(e) => this.submitSongInformation(e)} className="btn bg-quintery">Add Song</button>
                         </div>
-                        
                         
                     </form>
                     
