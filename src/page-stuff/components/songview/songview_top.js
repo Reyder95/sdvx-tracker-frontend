@@ -11,6 +11,7 @@ class SongViewTop extends React.Component {
             title: '',
             artist: '',
             bpm: '',
+            bpmHigh: '',
             game: '',
             image: '',
 
@@ -19,6 +20,7 @@ class SongViewTop extends React.Component {
             editSong_artist: '',
             editSong_effector: '',
             editSong_bpm: '',
+            editSong_bpmHigh: '',
             editSong_game: '',
             editSong_type: '',
             editSong_custom_link: '',
@@ -43,6 +45,7 @@ class SongViewTop extends React.Component {
                 title: result.data.data[0].title,
                 artist: result.data.data[0].artist,
                 bpm: result.data.data[0].bpm,
+                bpmHigh: result.data.data[0].bpmend,
                 game: result.data.data[0].game,
                 image: result.data.data[0].jacket
             })
@@ -127,6 +130,12 @@ class SongViewTop extends React.Component {
         })
     }
 
+    setSongBpmHigh(event) {
+        this.setState({
+            editSong_bpmHigh: event.target.value
+        })
+    }
+
     setSongDifficulties(event, difficulty) {
         if (difficulty == 'NOVICE')
             this.setState({
@@ -191,6 +200,7 @@ class SongViewTop extends React.Component {
             this.state.editSong_artist.trim() != '' ||
             this.state.editSong_game.trim() != '' ||
             this.state.editSong_bpm.trim() != '' ||
+            this.state.editSong_bpmHigh.trim() != '' ||
             this.state.editSong_effector.trim() != '' ||
             this.state.editSong_jacket.trim() != 'https://placehold.it/128' ||
             this.state.editSong_type.trim() != '' ||
@@ -204,9 +214,12 @@ class SongViewTop extends React.Component {
             this.state.editSong_maximumEffector != null
             )
             {
-                
+                console.log('test2')
                 if (parseInt(this.state.editSong_bpm, 10).toString() === this.state.editSong_bpm.trim() && this.state.editSong_bpm.trim() != '')
                     postObject.bpm = parseInt(this.state.editSong_bpm)
+
+                if (parseInt(this.state.editSong_bpmHigh, 10).toString() === this.state.editSong_bpmHigh.trim() && this.state.editSong_bpmHigh.trim() != '')
+                    postObject.bpmhigh = parseInt(this.state.editSong_bpmHigh)
 
                 let updateDifficulties = []
                 let addDifficulties = []
@@ -274,10 +287,6 @@ class SongViewTop extends React.Component {
 
                 if (this.state.editSong_jacket.trim() != 'https://placehold.it/128')
                     postObject.jacket = this.state.editSong_jacket.trim();
-                
-                console.log(postObject)
-
-                console.log(addDifficulties)
 
                 editScore(postObject)
 
@@ -302,7 +311,7 @@ class SongViewTop extends React.Component {
                         <img src={this.state.image}/>
                         <div className="song-info font-source color-quartery">
                             <p>
-                                <strong>BPM:</strong> {this.state.bpm} <br />
+                                <strong>BPM:</strong> {this.state.bpmHigh == null ? this.state.bpm : `${this.state.bpm} - ${this.state.bpmHigh}`} <br />
                             </p>
                             <p>
                                 <strong>Game:</strong> {this.state.game}
@@ -361,7 +370,23 @@ class SongViewTop extends React.Component {
                                      </div>
             
                                     <div className="column">
-                                        <input onChange={(e) => this.setSongBpm(e)} placeholder="BPM" className="mb-4" type="text"/>
+                                        <div className="row">
+                                            <div className="column">
+                                                <input data-tip data-for="bpmlow" onChange={(e) => this.setSongBpm(e)} placeholder="BPM - Low" className="mb-4" type="text"/>
+                                            </div>
+
+                                            <div className="column">
+                                                <input data-tip data-for="bpmhigh" onChange={(e) => this.setSongBpmHigh(e)} placeholder="BPM - High" className="mb-4" type="text"/>
+                                            </div>
+
+                                            <ReactTooltip id="bpmlow" effect="solid">
+                                                <span>The lowest BPM goes here</span>
+                                            </ReactTooltip>
+
+                                            <ReactTooltip id="bpmhigh" effect="solid">
+                                                <span>The highest BPM goes here. If you'd like to remove this, put "0"</span>
+                                            </ReactTooltip>
+                                        </div>
                                     </div>
 
                                 </div>

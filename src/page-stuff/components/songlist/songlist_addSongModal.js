@@ -15,6 +15,7 @@ class AddSongModal extends React.Component {
             type: '',
             custom_link: '',
             bpm: '',
+            bpmHigh: '',
             novEffector: null,
             advEffector: null,
             exhEffector: null,
@@ -124,6 +125,12 @@ class AddSongModal extends React.Component {
         })
     }
 
+    setSongBpmHigh(event) {
+        this.setState({
+            bpmHigh: event.target.value
+        })
+    }
+
     // Sets song difficulties based on which difficulty is selected. Takes in the difficulty name and the level for that difficulty
     setSongDifficulties(event, difficulty) {
         if (difficulty == 'NOVICE') 
@@ -182,6 +189,9 @@ class AddSongModal extends React.Component {
             {
                 if (parseInt(this.state.bpm, 10).toString() === this.state.bpm.trim())
                     postObject.bpm = parseInt(this.state.bpm)
+
+                if (parseInt(this.state.bpmHigh, 10).toString() === this.state.bpmHigh.trim())
+                    postObject.bpmhigh = parseInt(this.state.bpmHigh)
 
                 // Create an empty difficulty array and push to the array if specific difficulties exist.
                 let difficulties = []
@@ -318,7 +328,22 @@ class AddSongModal extends React.Component {
                                 </div>*/}
     
                                 <div className="column">
-                                    <input onChange={(e) => this.setSongBpm(e)} placeholder="BPM" className="mb-4" type="text"/>
+                                    <div className="row">
+                                        <div className="column">
+                                            <input data-tip data-for="bpmlow" onChange={(e) => this.setSongBpm(e)} placeholder="BPM - Low" className="mb-4" type="text"/> 
+                                        </div>
+                                        <div className="column">
+                                            <input data-tip data-for="bpmhigh" onChange={(e) => this.setSongBpmHigh(e)} placeholder="BPM - High" className="mb-4" type="text"/>
+                                        </div>
+
+                                        <ReactTooltip id="bpmlow" effect="solid">
+                                            <span>The lowest BPM goes here</span>
+                                        </ReactTooltip>
+
+                                        <ReactTooltip id="bpmhigh" effect="solid">
+                                            <span>The highest BPM goes here. Do not input anything here if the BPM does not change.</span>
+                                        </ReactTooltip>
+                                    </div>
                                 </div>
 
                             </div>
