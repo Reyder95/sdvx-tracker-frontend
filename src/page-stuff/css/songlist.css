@@ -53,6 +53,11 @@
     overflow: hidden;
 }
 
+.reset:hover {
+    background-color: #00747F;
+    cursor: pointer;
+}
+
 .button-flex {
     text-align: right;
 }
