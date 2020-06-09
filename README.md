@@ -9,6 +9,7 @@
 ```
 - `npm start` will start the project in development mode.
 - `npm run build` will build the project. If you do this, type `npm install -g serve` and then `serve -s build` to serve a static build of the project.
+- **Remember you need the back end built correctly. Please take a look at the repository  here: https://github.com/Reyder95/sdvx-tracker-backend ...** Note: There is no database build script just yet, so this repository isn't exactly ready to be useable by the public. I will be setting this up soon with documentation.
 
 ## Introduction
 This is a project developed for use with the game SOUND VOLTEX and its respective simulators (Unnamed SDVX Clone, K-Shoot Mania, and soon Neurosonic). In a tl;dr fashion, it will be a system that users can keep track of all their scores among these versions of the game and view statistics that may make them better players. Since there are many versions of the game and people switch it up, having one central system where you can manually input and keep track of scores would be a benefit. This system will also support customs for the various simulators
