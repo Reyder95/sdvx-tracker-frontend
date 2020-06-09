@@ -189,7 +189,7 @@ class App extends React.Component{
 
     this.onFileUpload()
 
-    if (this.state.newUsername.trim() != null) {
+    if (this.state.newUsername.trim() != '') {
       changeUsername(this.state.newUsername)
     }
 
