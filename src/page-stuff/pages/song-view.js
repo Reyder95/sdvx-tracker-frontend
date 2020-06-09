@@ -18,7 +18,7 @@ class SongView extends React.Component {
             mxm_id: '',
             score: '',
             clear_type: '',
-            error: ''
+            errors: []
         }
 
         this.isDifficultyExist = this.isDifficultyExist.bind(this)
@@ -27,6 +27,8 @@ class SongView extends React.Component {
     componentDidMount() {
         if (localStorage.getItem('user_id') == null)
             document.getElementById('addScoreDiv').style.display = 'none'
+
+        document.getElementById('errors').style.display = 'none'
     }
 
     // Opens the 'addScoreModal'
@@ -159,33 +161,32 @@ class SongView extends React.Component {
                         })
 
                     }
-                    else 
-                    {
-                        this.setState({
-                            error: 'Please only input a score between 0 and 10,000,000'
-                        })
-                    }
                     
                     
                 }
-                else
-                {
-                    console.log(this.state.score)
-                    this.setState({
-                        error: 'Please use numbers or numbers with commas when inserting a score!'
-                    })
-                }
-                
-            }
-            else {
-                console.log('ACCESS DENIED: PLEASE LOG IN FIRST')
             }
         }
-        else
-        {
+
+        let errorArray = []
+
+        if (this.state.score == '')
+            errorArray.push('You must insert a score!')
+
+        if (this.state.clear_type == '')
+            errorArray.push('You must select a clear type!')
+
+        if (parseInt(this.state.score, 10).toString() !== this.state.score)
+            errorArray.push('Please enter a valid score')
+
+        if (errorArray.length > 0) {
             this.setState({
-                error: 'Please make sure to not leave anything blank!'
+                errors: errorArray
             })
+
+            document.getElementById('errors').style.display = 'block'
+        }
+        else {
+            document.getElementById('errors').style.display = 'none'
         }
     }
 
@@ -222,7 +223,11 @@ class SongView extends React.Component {
 
                         <div className="modal-body font-source mt-1">
                             <form>
-                                {this.state.error}
+                                <div id="errors" className="mb-4 font-roboto-slab">
+                                    {this.state.errors.map(error => (
+                                        <span>{error} <br/></span>
+                                    ))}
+                                </div>
                                 <input onChange={(e) => this.setScore(e)} placeholder="Score" value={this.state.score} type="text"/>
 
                                 <select onChange={(e) => this.setClearType(e)} id="level" className="form-input">

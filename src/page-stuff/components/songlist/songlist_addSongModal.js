@@ -23,10 +23,15 @@ class AddSongModal extends React.Component {
             advanced: 0,
             exhaust: 0,
             maximum: 0,
-            jacket: 'http://placehold.it/128'
+            jacket: 'http://placehold.it/128',
+            errors: []
         }
 
         this.setSongDifficulties = this.setSongDifficulties.bind(this)
+    }
+
+    componentDidMount() {
+        document.getElementById('errors').style.display = 'none'
     }
 
     // ---Add Song---
@@ -223,7 +228,30 @@ class AddSongModal extends React.Component {
 
         }
         else {
-            console.log('nope!')
+            let errorArray = []
+
+            if (postObject.title.trim() == '')
+                errorArray.push('You must enter a title!')
+
+            if (postObject.artist.trim() == '')
+                errorArray.push('You must enter an artist!')
+
+            if (postObject.type == '')
+                errorArray.push('You must select a type!')
+
+            if (this.state.novice == 0 && this.state.advanced == 0 && this.state.exhaust == 0 && this.state.maximum == 0)
+                errorArray.push('You must select at least one difficulty to submit!')
+
+            if (errorArray.length > 0) {
+                this.setState({
+                    errors: errorArray
+                })
+
+                document.getElementById('errors').style.display = 'block'
+            }
+            else {
+                document.getElementById('errors').style.display = 'none'
+            }
         }
     }
 
@@ -247,6 +275,11 @@ class AddSongModal extends React.Component {
 
                 <div className="modal-body font-source mt-1">
                     <form>
+                        <div id="errors" className="mb-4 font-roboto-slab">
+                            {this.state.errors.map(error => (
+                                <span>{error} <br/></span>
+                            ))}
+                        </div>
                         <div className="row">
                             <div className="column songimagepreview">
                                 <img className="song-preview" src={this.state.jacket}/> <br/>
