@@ -214,7 +214,6 @@ class SongViewTop extends React.Component {
             this.state.editSong_maximumEffector != null
             )
             {
-                console.log('test2')
                 if (parseInt(this.state.editSong_bpm, 10).toString() === this.state.editSong_bpm.trim() && this.state.editSong_bpm.trim() != '')
                     postObject.bpm = parseInt(this.state.editSong_bpm)
 

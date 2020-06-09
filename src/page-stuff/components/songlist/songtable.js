@@ -28,6 +28,9 @@ class SongTable extends React.Component {
     // On component mount call the API for default songs (page 1, no search parameters)
     componentDidMount() {
         this.displaySongs()
+
+        if (localStorage.getItem('user_id') == null)
+            document.getElementById('addSongBtn').style.display = 'none'
     }
 
     // ---Handling Song Data---
@@ -154,7 +157,7 @@ class SongTable extends React.Component {
                 resetFilters={this.resetFilters}
                 />
 
-                <button onClick={() => this.openModal()} className="btn">Add Song</button>
+                <button id="addSongBtn" onClick={() => this.openModal()} className="btn">Add Song</button>
 
                 <div className="pageControls">
                     <button onClick={() => this.refreshPage(false)} id="prev" className="btn pageControl prevButton bg-secondary">Previous</button>
