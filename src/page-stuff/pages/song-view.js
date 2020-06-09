@@ -72,6 +72,21 @@ class SongView extends React.Component {
         this.setState({
             score: event.target.value
         })
+
+        if (event.target.value.replace(/,/g,'') == '10000000')
+            this.setState({
+                clear_type: 1
+            })
+
+        this.checkScore()
+    } 
+
+    checkScore() {
+        if (this.state.score.replace(/,/g, '') == '10000000') {
+            return true
+        }
+
+        return false
     }
 
     // this.state.clear_type
@@ -130,6 +145,9 @@ class SongView extends React.Component {
             // Check if user is logged in before proceeding
             if (localStorage.getItem('user_id') != null) {
                 score = score.replace(/,/g,'');
+
+                if (score = '10000000')
+                    clearType = 1
     
                 // If score can be parsed as an integer
                 if (parseInt(score, 10).toString() === score) {
@@ -227,7 +245,7 @@ class SongView extends React.Component {
                                 </div>
                                 <input onChange={(e) => this.setScore(e)} placeholder="Score" value={this.state.score} type="text"/>
 
-                                <select onChange={(e) => this.setClearType(e)} id="level" className="form-input">
+                                <select onChange={(e) => this.setClearType(e)} id="level" value={this.state.clear_type} className="form-input">
                                     <option value="" disabled selected hidden>Clear Type</option>
                                     <option value="4">Effective Clear</option>
                                     <option value="3">Excessive Clear</option>
