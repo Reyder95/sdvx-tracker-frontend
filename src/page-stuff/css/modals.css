@@ -36,7 +36,6 @@
 
 .modal-content {
     border-radius: 5px;
-    margin: 15% auto;
     padding: 20px;
     width: 30%;
     animation-name: animateModal;
@@ -105,11 +104,18 @@
 }
 
 @keyframes animateModal {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+    0% { opacity: 0 }
+    100% { opacity: 1 }
 }
 
 /* Add Score */
+#addScoreModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #addScoreModal input[type=text] {
     margin-top: 15px;
 }
@@ -170,6 +176,13 @@
 }
 
 /* Profile Settings */
+#profileSettingsModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #profileSettingsModal .submit-info {
     width: 100%;
     margin-top: 15px;

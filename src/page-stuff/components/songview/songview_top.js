@@ -337,11 +337,11 @@ class SongViewTop extends React.Component {
                                 <div className="row">
 
                                     <div className="column">
-                                        <input onChange={(e) => this.setSongTitle(e)} placeholder="Title (required)" className="mb-4" type="text"/>
+                                        <input onChange={(e) => this.setSongTitle(e)} placeholder="Title" className="mb-4" type="text"/>
                                     </div>
 
                                     <div className="column">
-                                        <input onChange={(e) => this.setSongArtist(e)} placeholder="Artist (required)" className="mb-4" type="text"/>
+                                        <input onChange={(e) => this.setSongArtist(e)} placeholder="Artist" className="mb-4" type="text"/>
                                     </div>
 
                                 </div>
