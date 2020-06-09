@@ -182,6 +182,27 @@ export const userGrades = async (userID, filter) => {
     return result
 }
 
+// Change a user's username
+export const changeUsername = (username) => {
+    console.log(username)
+    axios.post(`${api}/api/username_change`, {
+        username: username
+    },
+    {
+        withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+        }
+    })
+    .then(() => {
+        localStorage.setItem('username', username)
+        window.location.reload(false)
+    })
+    .catch(err => {
+        alert('Username is taken!')
+    })
+}
+
 // ---Songs and Score---
 
 // Gets a list of songs based on various parameters
