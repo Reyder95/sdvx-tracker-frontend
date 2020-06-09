@@ -14,7 +14,8 @@ import {
   getLoggedInStatus,
   logUserOut,
   profilePictureUpload,
-  editProfile
+  editProfile,
+  changeUsername
 } from './api-calls'
 
 // Some CSS imports
@@ -36,7 +37,9 @@ class App extends React.Component{
       selectedFile: null,
       discord: '',
       twitch: '',
-      twitter: ''
+      twitter: '',
+      newUsername: '',
+      modified: false
     }
 
     this.handleLogin = this.handleLogin.bind(this)
@@ -74,6 +77,12 @@ class App extends React.Component{
   setTwitch(event) {
     this.setState({
       twitch: event.target.value
+    })
+  }
+
+  setUsername(event) {
+    this.setState({
+      newUsername: event.target.value
     })
   }
 
@@ -179,6 +188,14 @@ class App extends React.Component{
     }
 
     this.onFileUpload()
+
+    if (this.state.newUsername.trim() != null) {
+      changeUsername(this.state.newUsername)
+    }
+
+    this.setState({
+      modified: true
+    })
   }
 
   // Render this stuff to the screen
@@ -282,8 +299,19 @@ class App extends React.Component{
                   <label className="mt-3 profile-label">Twitch Link</label>
                   <input type='text' onChange={(e) => this.setTwitch(e)} className="profileInput"/>
 
-                  <button onClick={(e) => this.submitInformation(e)} className="btn mt-4 submit-info">Submit Information</button>
                 </div>
+
+
+                <div className="settingsContainer otherInfo mt-4 color-secondary">
+                  <h3>Preferences</h3> <br />
+                  <hr/>
+
+                  <label className=" mt-4 profile-label">Change Username</label>
+                  <input type='text' onChange={(e) => this.setUsername(e)} className="profileInput"/>
+                </div>
+
+                
+                <button onClick={(e) => this.submitInformation(e)} className="btn mt-4 submit-info">Submit Information</button>
                 
               </form>
             </div>
