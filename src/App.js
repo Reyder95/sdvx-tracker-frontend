@@ -291,13 +291,13 @@ class App extends React.Component{
                 <div className="settingsContainer otherInfo mt-4 color-secondary">
                   <h3>Social Settings</h3> <br />
                   <hr/>
-                  <label className=" mt-4 profile-label">Twitter Link</label>
+                  <label className=" mt-4 profile-label">Twitter Profile</label>
                   <input type='text' onChange={(e) => this.setTwitter(e)} className="profileInput"/>
 
                   <label className="mt-3 profile-label">Discord Tag</label>
                   <input type='text' onChange={(e) => this.setDiscord(e)} className="profileInput"/>
 
-                  <label className="mt-3 profile-label">Twitch Link</label>
+                  <label className="mt-3 profile-label">Twitch Channel</label>
                   <input type='text' onChange={(e) => this.setTwitch(e)} className="profileInput"/>
 
                 </div>
