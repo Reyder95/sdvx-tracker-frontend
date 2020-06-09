@@ -98,7 +98,7 @@ class Register extends React.Component {
                     if (this.state.username.trim().length <= 15)
                     {
                         // Checks if email is a valid email (is there a way to make this better lol)
-                        if (this.state.email.includes("@")) 
+                        if (this.state.email.match(RegExp("^([\\w\\-\\.]+)@([\\w\\-\\.]+)\\.([a-z]{2,5})$"))) 
                         {
                             // Checks if email and confirm email match
                             if (this.state.email === this.state.email_confirm)
