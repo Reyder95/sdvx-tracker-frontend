@@ -53,6 +53,11 @@
     overflow: hidden;
 }
 
+.reset:hover {
+    background-color: #00747F;
+    cursor: pointer;
+}
+
 .button-flex {
     text-align: right;
 }
@@ -105,18 +110,6 @@
 
 .comp_songtablesearch button:hover {
     background-color: #C8C8C8;
-}
-
-.difficultyLevels {
-    margin: 0;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.difficultyLevels input {
-    margin: auto;
-    margin-top: 10px;
-    width: 100% !important;
 }
 
 .songimagepreview {

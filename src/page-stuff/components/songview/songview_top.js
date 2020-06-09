@@ -1,5 +1,6 @@
 import React from 'react'
 import queryString from 'query-string'
+import ReactTooltip from 'react-tooltip'
 import { getSong, editScore, addDiffs } from '../../../api-calls'
 
 class SongViewTop extends React.Component {
@@ -145,12 +146,11 @@ class SongViewTop extends React.Component {
             })
     }
 
-    setAllEffector(event) {
+    copyEffector() {
         this.setState({
-            editSong_noviceEffector: event.target.value,
-            editSong_advancedEffector: event.target.value,
-            editSong_exhaustEffector: event.target.value,
-            editSong_maximumEffector: event.target.value
+            editSong_advancedEffector: this.state.editSong_noviceEffector,
+            editSong_exhaustEffector: this.state.editSong_noviceEffector,
+            editSong_maximumEffector: this.state.editSong_noviceEffector
         })
     }
 
@@ -328,19 +328,65 @@ class SongViewTop extends React.Component {
                             <form>
                                 <div className="row">
                                     <div className="column songimagepreview">
-                                        <p className="mb-2">
-                                            <strong>
-                                                Image Preview
-                                            </strong>
-                                            
-                                        </p>
                                         <img className="song-preview" src={this.state.editSong_jacket}/> <br/>
 
-                                        <label id="songimageurl">Song Image URL</label>
-                                        <input className="mb-4" onChange={(e) => this.setSongJacket(e)} type="text"/>
+                                        <input placeholder="Song Image URL" className="mb-4" onChange={(e) => this.setSongJacket(e)} type="text"/>
+                                    </div>
+                                </div>
+
+                                <div className="row">
+
+                                    <div className="column">
+                                        <input onChange={(e) => this.setSongTitle(e)} placeholder="Title" className="mb-4" type="text"/>
                                     </div>
 
-                                    <div className="column songinformation">
+                                    <div className="column">
+                                        <input onChange={(e) => this.setSongArtist(e)} placeholder="Artist" className="mb-4" type="text"/>
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+
+                                    <div className="column">
+                                        <select onChange={(e) => this.setSongGame(e)} className="mb-4" className="form-input">
+                                            <option hidden default value="">Game</option>
+                                            <option value="SOUND VOLTEX I: BOOTH">SOUND VOLTEX I: BOOTH</option>
+                                            <option value="SOUND VOLTEX II: -infinite infection-">SOUND VOLTEX II: -infinite infection-</option>
+                                            <option value="SOUND VOLTEX III: GRAVITY WARS">SOUND VOLTEX III: GRAVITY WARS</option>
+                                            <option value="SOUND VOLTEX III: GRAVITY WARS コナステ">SOUND VOLTEX III: GRAVITY WARS コナステ</option>
+                                            <option value="SOUND VOLTEX IV: HEAVENLY HAVEN">SOUND VOLTEX IV: HEAVENLY HAVEN</option>
+                                            <option value="SOUND VOLTEX V: VIVID WAVE">SOUND VOLTEX V: VIVID WAVE</option>
+                                        </select>
+                                     </div>
+            
+                                    <div className="column">
+                                        <input onChange={(e) => this.setSongBpm(e)} placeholder="BPM" className="mb-4" type="text"/>
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+
+                                    <div className="column">
+                                        <select onChange={(e) => this.setSongType(e)} className="mb-4" className="form-input">
+                                            <option hidden default value="">Type</option>
+                                            <option value="official">Official</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="column">
+                                            <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} placeholder="Custom Link" className="mb-4" type="text"/>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div className="row">
+
+                                    {/*<div className="column songinformation">
                                         <label id="songtitle">Title</label>
                                         <input onChange={(e) => this.setSongTitle(e)} className="mb-4" type="text"/>
 
@@ -373,21 +419,23 @@ class SongViewTop extends React.Component {
 
                                         <label id="songcustomlinks">Custom Link</label>
                                         <input disabled={this.state.editSong_type == 'custom' ? false : true} value={this.state.editSong_custom_link} onChange={(e) => this.setSongCustomLink(e)} className="mb-4" type="text"/>
-                                    </div>
+        </div>*/}
                                     
                                 </div>
 
-                                <div className="difficultyLevels color-secondary bg-tertiary">
+                                <div className="difficultyLevels color-secondary">
                                     <p className="mb-4">
                                         <strong>
                                             Specify a level for each difficulty you want to update
                                         </strong>
                                     </p>
 
-                                    <div className="color-secondary row">
+                                    <hr />
+
+                                    <div className="songDropdowns color-secondary row">
 
                                         <div className="column">
-                                            <label id="songnovice">NOVICE</label>
+                                            <label id="songnovice"><strong>NOVICE</strong></label>
                                             <select onChange={(e) => this.setSongDifficulties(e, 'NOVICE')} className="diffDropdown" className="mb-4" className="form-input">
                                                 <option default value="0">None</option>
                                                 <option value="1">1</option>
@@ -414,7 +462,7 @@ class SongViewTop extends React.Component {
                                         </div>
 
                                         <div className="column">
-                                            <label id="songadvanced">ADVANCED</label>
+                                            <label id="songadvanced"><strong>ADVANCED</strong></label>
                                             <select onChange={(e) => this.setSongDifficulties(e, 'ADVANCED')} className="diffDropdown" className="mb-4" className="form-input">
                                                 <option default value="0">None</option>
                                                 <option value="1">1</option>
@@ -441,7 +489,7 @@ class SongViewTop extends React.Component {
                                         </div>
 
                                         <div className="column">
-                                            <label id="songexhaust">EXHAUST</label>
+                                            <label id="songexhaust"><strong>EXHAUST</strong></label>
                                             <select onChange={(e) => this.setSongDifficulties(e, 'EXHAUST')} className="diffDropdown" className="mb-4" className="form-input">
                                                 <option default value="0">None</option>
                                                 <option value="1">1</option>
@@ -468,7 +516,7 @@ class SongViewTop extends React.Component {
                                         </div>
 
                                         <div className="column">
-                                            <label id="songmaximum">MAXIMUM</label>
+                                            <label id="songmaximum"><strong>MAXIMUM</strong></label>
                                             <select onChange={(e) => this.setSongDifficulties(e, 'MAXIMUM')} className="diffDropdown" className="mb-4" className="form-input">
                                                 <option default value="0">None</option>
                                                 <option value="1">1</option>
@@ -496,29 +544,33 @@ class SongViewTop extends React.Component {
 
                                     </div>
 
-                                    <div className="color-secondary row">
-                                <div className="column">
-                                    <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.editSong_noviceEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
-                                </div>
+                                    <div className="effectors color-secondary row">
+                                        <div className="column">
+                                            <label id="songnovice"><strong>Effector</strong> <a data-tip data-for='copy' onClick={() => this.copyEffector()}>(Copy)</a></label>
+                                            <input type="text" value={this.state.editSong_noviceEffector} onChange={(e) => this.setDifficultyEffector(e, 'NOVICE')}/>
+                                        
+                                        <ReactTooltip id="copy" effect="solid">
+                                            <span>Copies the NOVICE effector across every other difficulty.</span>
+                                        </ReactTooltip>
+                                        </div>
 
-                                <div className="column">
-                                    <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.editSong_advancedEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
-                                </div>
+                                        <div className="column">
+                                            <label id="songnovice"><strong>Effector</strong></label>
+                                            <input type="text" value={this.state.editSong_advancedEffector} onChange={(e) => this.setDifficultyEffector(e, 'ADVANCED')}/>
+                                        </div>
 
-                                <div className="column">
-                                    <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.editSong_exhaustEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
-                                </div>
+                                        <div className="column">
+                                            <label id="songnovice"><strong>Effector</strong></label>
+                                            <input type="text" value={this.state.editSong_exhaustEffector} onChange={(e) => this.setDifficultyEffector(e, 'EXHAUST')}/>
+                                        </div>
 
-                                <div className="column">
-                                    <label id="songnovice">Effector</label>
-                                    <input type="text" value={this.state.editSong_maximumEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
-                                </div>
-                                
+                                        <div className="column">
+                                            <label id="songnovice"><strong>Effector</strong></label>
+                                            <input type="text" value={this.state.editSong_maximumEffector} onChange={(e) => this.setDifficultyEffector(e, 'MAXIMUM')}/>
+                                        </div>
 
-                            </div>
+
+                                    </div>
                                 </div>
 
                                 <div className="row addSongRow">

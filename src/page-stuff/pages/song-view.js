@@ -18,7 +18,7 @@ class SongView extends React.Component {
             mxm_id: '',
             score: '',
             clear_type: '',
-            error: ''
+            errors: []
         }
 
         this.isDifficultyExist = this.isDifficultyExist.bind(this)
@@ -27,6 +27,8 @@ class SongView extends React.Component {
     componentDidMount() {
         if (localStorage.getItem('user_id') == null)
             document.getElementById('addScoreDiv').style.display = 'none'
+
+        document.getElementById('errors').style.display = 'none'
     }
 
     // Opens the 'addScoreModal'
@@ -159,33 +161,32 @@ class SongView extends React.Component {
                         })
 
                     }
-                    else 
-                    {
-                        this.setState({
-                            error: 'Please only input a score between 0 and 10,000,000'
-                        })
-                    }
                     
                     
                 }
-                else
-                {
-                    console.log(this.state.score)
-                    this.setState({
-                        error: 'Please use numbers or numbers with commas when inserting a score!'
-                    })
-                }
-                
-            }
-            else {
-                console.log('ACCESS DENIED: PLEASE LOG IN FIRST')
             }
         }
-        else
-        {
+
+        let errorArray = []
+
+        if (this.state.score == '')
+            errorArray.push('You must insert a score!')
+
+        if (this.state.clear_type == '')
+            errorArray.push('You must select a clear type!')
+
+        if (parseInt(this.state.score, 10).toString() !== this.state.score)
+            errorArray.push('Please enter a valid score')
+
+        if (errorArray.length > 0) {
             this.setState({
-                error: 'Please make sure to not leave anything blank!'
+                errors: errorArray
             })
+
+            document.getElementById('errors').style.display = 'block'
+        }
+        else {
+            document.getElementById('errors').style.display = 'none'
         }
     }
 
@@ -214,24 +215,23 @@ class SongView extends React.Component {
 
                 
                 <div id="addScoreModal" className="modal">
-                    <div className="modal-content bg-secondary">
+                    <div className="modal-content">
                         <span onClick={this.closeModal.bind(this)} className="close">&times;</span>
                         <div className="modal-header font-roboto">
                             <h2>Add a Score - {this.state.currentDiff}</h2>
                         </div>
 
-                        <hr className="mt-1"/>
-
                         <div className="modal-body font-source mt-1">
                             <form>
-                                <label>Score</label>
-                                {this.state.error}
-                                <p className="mb-1">Must be a number between 0 and 10,000,000</p>
-                                <input onChange={(e) => this.setScore(e)} value={this.state.score} type="text"/>
+                                <div id="errors" className="mb-4 font-roboto-slab">
+                                    {this.state.errors.map(error => (
+                                        <span>{error} <br/></span>
+                                    ))}
+                                </div>
+                                <input onChange={(e) => this.setScore(e)} placeholder="Score" value={this.state.score} type="text"/>
 
-                                <label>Clear Type</label>
                                 <select onChange={(e) => this.setClearType(e)} id="level" className="form-input">
-                                    <option value="" disabled selected hidden>Select One</option>
+                                    <option value="" disabled selected hidden>Clear Type</option>
                                     <option value="4">Effective Clear</option>
                                     <option value="3">Excessive Clear</option>
                                     <option value="1">Perfect Ultimate Chain</option>
@@ -239,7 +239,10 @@ class SongView extends React.Component {
                                     <option value="5">Played</option>
                                 </select>
 
-                                <button onClick={(e) => this.addScoreToAPI(e)} className="btn bg-quintery">Add Score!</button>
+                                <div id="addScoreButton">
+                                    <button onClick={(e) => this.addScoreToAPI(e)} className="btn">Add Score!</button>
+                                </div>
+                                    
                             </form>
                             
                         </div>

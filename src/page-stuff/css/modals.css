@@ -1,0 +1,225 @@
+/* Base modal things */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-header {
+    padding: 2px 16px;
+    margin-bottom: 10px;
+}
+
+.modal-header a, .modal-content a {
+    text-decoration: none;
+    color: #f54291;
+    transition: 0.2s;
+}
+
+.modal-header a:hover, .modal-content a:hover  {
+    color: #B74174;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 2px 16px;
+    margin-top: 20px;
+}
+
+.modal-content {
+    border-radius: 5px;
+    padding: 20px;
+    width: 30%;
+    animation-name: animateModal;
+    animation-duration: 0.4s;
+    background-color: #232931;
+}
+
+.modal-content h2, .modal-content h3, .modal-content p {
+    color: #dbd8e3;
+}
+
+.modal-content hr {
+    border: 1px solid #dbd8e3;
+}
+
+.modal-content input[type=text] {
+    border: none !important;
+    background-color: #393e46 !important;
+    padding: 17px !important;
+    display: block;
+    width: 100%;
+    height: 25px;
+    font-size: 18px;
+    padding: 15px 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.5);
+    background-color: white;    
+    color: #dbd8e3;
+}
+
+.modal-content select { 
+    color: #dbd8e3;
+    border: none;
+    background-color: #393e46;
+}
+
+.modal-content input[type=text]:focus, .modal-content select:focus {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #8F86A9 !important;
+}
+
+.modal-content button {
+    background-color: #4C2A79;
+    transition: 0.2s;
+}
+
+.modal-content button:hover {
+    background-color: #361661;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes animateModal {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+/* Add Score */
+#addScoreModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#addScoreModal input[type=text] {
+    margin-top: 15px;
+}
+
+#addScoreModal select {
+    margin-top: 2em;
+}
+
+#addScoreModal #addScoreButton {
+    display: block;
+    text-align: middle;
+}
+
+#addScoreModal button {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: block;
+}
+
+/* Add and Edit Song */
+#addSongModal .modal-content {
+    width: 50%;
+}
+
+#addSongModal input, #addSongModal select {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.songimagepreview input {
+    width: 45% !important;
+}
+
+.difficultyLevels {
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.difficultyLevels select{
+    margin: 0 !important;
+    width: 100%;
+}
+
+.difficultyLevels input {
+    margin: 0 !important;
+}
+
+.effectors {
+    margin-top: 20px;
+}
+
+.songDropdowns {
+    margin-top: 10px;
+}
+
+/* Profile Settings */
+#profileSettingsModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#profileSettingsModal .submit-info {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#profileSettingsModal .modal-content {
+    padding: 10px;
+}
+
+#profileSettingsModal .modal-body {
+    padding: 10px;
+}
+
+#profileSettingsModal input[type=text] {
+    border-radius: 5px;
+}
+
+#profileSettingsModal input[type=submit] {
+    border-radius: 2px;
+}
+
+#profileSettingsModal #file-upload-button {
+    background: black !important;
+}
+
+#profile-stuff {
+    margin-bottom: 15px;
+}
+
+#profileSettingsModal .btn {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    display: block;
+}
+
+.otherInfo {
+    margin-top: 30px;
+}
