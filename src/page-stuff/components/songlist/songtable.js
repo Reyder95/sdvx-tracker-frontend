@@ -170,6 +170,7 @@ class SongTable extends React.Component {
                             <th>#</th>
                             <th className="jacket">Jacket</th>
                             <th>Song</th>
+                            <th>Submission By</th>
                             <th>NOV</th>
                             <th>ADV</th>
                             <th>EXH</th>
