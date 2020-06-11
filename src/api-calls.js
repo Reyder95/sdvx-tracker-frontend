@@ -352,3 +352,12 @@ export const deleteScore = (scoreID) => {
             throw new Error(err)
         })
 }
+
+export const getUsers = async (page = 1) => {
+    let result = axios.get(`${api}/api/users?p=${page}`)
+    .then(data => {
+        return data
+    })
+
+    return result
+}

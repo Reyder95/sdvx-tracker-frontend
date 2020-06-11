@@ -1,0 +1,128 @@
+.user-container {
+    margin-left: 300px;
+    margin-right: 300px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.user-container table {
+    border-collapse: collapse;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.user-container td {
+    border-bottom: 1px solid #AFB1C4;
+}
+
+.user-container table td {
+    padding: 20px;
+}
+
+.user-container tbody tr {
+    transition: 0.1s;
+}
+
+.user-container tbody tr:hover {
+    background-color: #E3E3E3;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+#table-number {
+    width: 1%;
+}
+
+#table-user {
+    width: 15%;
+}
+
+.user-container h2 {
+    border-bottom: 1px solid #000;
+    margin-top: 30px;
+}
+
+.table-head {
+    background-color: #B5C8EF;
+    text-align: center;
+}
+
+.table-body {
+    background-color: #eee;
+    text-align: center;
+}
+
+.component_usersearch, .component_usersort {
+    margin-left: 20px;
+}
+
+.filter-heading {
+    background-color: #B5C8EF;
+    padding: 10px;
+    padding-left: 10px;
+    border-bottom: 1px solid #000;
+}
+
+.filter-body {
+    background-color: #eee;
+    padding: 15px;
+}
+
+.filter-body input[type=text] {
+    padding: 6px;
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px #5C5C5C solid;
+}
+
+.filter-body input[type=text]:focus {
+    outline: none;
+    border: 1px #27496d solid;
+}
+
+.filter-body input[type=text]::placeholder {
+    color: #27496d;
+}
+
+.component_usersort {
+    margin-top: 20px;
+}
+
+input[type=radio] {
+    background-color: #83A4C7 !important;
+}
+
+label {
+    font-weight: bold;
+}
+
+.pfp img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.pfp {
+    display: inline;
+    vertical-align: middle;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+
+.name {
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+#profile-image {
+    width: 10%;
+}
+
+.table_link {
+    text-decoration: none;
+}
