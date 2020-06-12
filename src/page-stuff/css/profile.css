@@ -24,19 +24,20 @@ body {
 }
 
 .profile-image img {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
+    width: auto;
+    height: 100%;
 }
 
 .profile-image {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 100%;
+    align-items: center;  
+    height: 250px;
+    width: 250px; 
+    border-radius: 50%; 
     overflow: hidden;
     margin-right: auto;
+    margin-left: auto;
     margin-top: 20px;
     margin-bottom: 35px;
 }
@@ -65,17 +66,13 @@ body {
     border-collapse: collapse;
 }
 
-.comp_recentsongs table tr:hover td, .comp_library table tr:hover td {
+.comp_recentsongs table tr:hover td {
     background-color: #1C4269;
     transition: 0.1s;
 }
 
 .comp_recentsongs table tr {
     transition: 0.1s;
-}
-
-.comp_recentsongs table tr:hover, .comp_library table tr:hover {
-    cursor: pointer;
 }
 
 .recentscores, .volforce-line, .grade-pie, .topscores, .library-content {
