@@ -40,6 +40,10 @@ class Library extends React.Component {
             return '----'
     }
 
+    redirectionLink(id) {
+        this.props.history.push(`/song?id=${id}`)
+    }
+
     // Render elements to the screen
     render() {
         return (
@@ -58,7 +62,7 @@ class Library extends React.Component {
 
                         {
                             this.state.library.map((song, index) => (
-                                <tr>
+                                <tr onClick={() => this.redirectionLink(song.id)}>
                                 <td>{index + 1}</td>
                                 <td className="jacket2">
                                     <img src={song.jacket} />
