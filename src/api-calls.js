@@ -353,8 +353,19 @@ export const deleteScore = (scoreID) => {
         })
 }
 
-export const getUsers = async (page = 1) => {
-    let result = axios.get(`${api}/api/users?p=${page}`)
+export const getUsers = async (page = 1, sort, search) => {
+    let sortQuery = ''
+    let searchQuery = ''
+
+    if (sort != null)
+        sortQuery = `&sort=${sort}`
+
+    if (search != null)
+        searchQuery = `&search=${search}`
+
+    console.log(`${api}/api/users?p=${page}${sortQuery}${searchQuery}`)
+
+    let result = axios.get(`${api}/api/users?p=${page}${sortQuery}${searchQuery}`)
     .then(data => {
         return data
     })

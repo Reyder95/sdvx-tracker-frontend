@@ -9,6 +9,22 @@ import UserSort from '../components/userlist/usersort'
 import '../css/users.css'
 
 class UserList extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+        this.setSort = this.setSort.bind(this)
+        this.handleSearchChange = this.handleSearchChange.bind(this)
+    }
+
+    setSort(sort) {
+        this.refs.child.setSort(sort)
+    }
+
+    handleSearchChange(event) {
+        this.refs.child.setSearch(event)
+    }
+
     render() {
         return (
             <div className="component_userlist">
@@ -17,11 +33,11 @@ class UserList extends React.Component {
 
                 <div className="row mt-4">
                     <div className="column four-times">
-                        <UserTable props={this.props}/>
+                        <UserTable props={this.props} ref="child"/>
                     </div>
                     <div className="column filtering">
-                        <UserSearch />
-                        <UserSort />
+                        <UserSearch handleSearchChange={this.handleSearchChange}/>
+                        <UserSort setSort={this.setSort}/>
                     </div>
                 </div>
 

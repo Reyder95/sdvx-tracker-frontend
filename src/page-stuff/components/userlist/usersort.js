@@ -9,24 +9,10 @@ class UserSort extends React.Component {
                 </div>
                 <div className="filter-body font-source">
                     <form>
-                        <div className="row">
-                            <div className="column">
-                                <input type="radio" name="sort"/> <label>Scores</label> 
-                            </div>
-                            <div className="column">
-                                <input type="radio" name="sort"/> <label>Songs</label> 
-                            </div>
-                        </div>
-                        
-                        <div className="row mt-4">
-                            <div className="column">
-                                <input type="radio" name="sort"/> <label>Alphabetical</label> 
-                            </div>
-                            <div className="column">
-                                <input type="radio" name="sort"/> <label>Library</label> 
-                            </div>
-                        </div>
-
+                        <input id="alphabetical" onChange={() => this.props.setSort('alphabet')} type="radio" name="sort"/> <label for="alphabetical">Alphabetical</label> <br />
+                        <input id="library" onChange={() => this.props.setSort('library')} type="radio" name="sort"/> <label for="library">Library</label> <br />
+                        <input id="scores" onChange={() => this.props.setSort('score')} type="radio" name="sort"/> <label for="scores">Scores</label> <br />
+                        <input id="submissions" onChange={() => this.props.setSort('submission')} type="radio" name="sort"/> <label for="submissions">Submissions</label> <br />
                     </form>
                 </div>
             </div>

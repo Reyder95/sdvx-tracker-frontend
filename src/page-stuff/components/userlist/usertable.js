@@ -12,17 +12,49 @@ class UserTable extends React.Component {
 
         this.state = {
             data: [],
-            page: 1
+            page: 1,
+            sort: null,
+            search: null
         }
 
         this.appendUsers = this.appendUsers.bind(this)
+
+        this.setSort = this.setSort.bind(this)
+        this.setSearch = this.setSearch.bind(this)
     }
 
     componentDidMount() {
         getUsers()
         .then(result => {
+            this.setState({
+                data: result.data.data
+            })
+        })
+    }
 
-            console.log(result.data.data)
+    setSort(sort) {
+        this.setState({
+            sort: sort,
+            page: 1
+        })
+
+        getUsers(1, sort, this.state.search) 
+        .then(result => {
+            this.setState({
+                data: result.data.data
+            })
+        })
+    }
+
+    setSearch(event) {
+        console.log('HELLO' + this.state.sort)
+        this.setState({
+            search: event.target.value,
+            page: 1
+        })
+
+        getUsers(1, this.state.sort, event.target.value)
+        .then(result => {
             this.setState({
                 data: result.data.data
             })
@@ -30,7 +62,7 @@ class UserTable extends React.Component {
     }
 
     appendUsers() {
-        getUsers(this.state.page + 1)
+        getUsers(this.state.page + 1, this.state.sort)
         .then(result => {
             let moreUsers = this.state.data.concat(result.data.data)
             this.setState({
@@ -43,13 +75,60 @@ class UserTable extends React.Component {
     }
 
     renderCount(item, user) {
-        for (let i = 0; i < user.info.length; i++) {
-            if (item == 'score' && Object.keys(user.info[i] == 'scorenumber'))
-                return user.info[i].scorenumber
-            else if (item == 'library' && Object.keys(user.info[i]) == 'librarynumber')
-                return user.info[i].librarynumber
-            else if (item == 'submission' && Object.keys(user.info[i]) == 'count')
-                return user.info[i].count
+        if (this.state.sort == null || this.state.sort == 'alphabet') {
+            for (let i = 0; i < user.info.length; i++) {
+                if (item == 'score' && Object.keys(user.info[i] == 'scorecount')) {
+                    
+                    return user.info[i].scorecount
+                }
+                else if (item == 'library' && Object.keys(user.info[i]) == 'librarycount') {
+    
+                    return user.info[i].librarycount
+                }
+                else if (item == 'submission' && Object.keys(user.info[i]) == 'submissioncount') {
+    
+                    return user.info[i].submissioncount
+                }
+            }
+        } else {
+            if (this.state.sort == 'score') {
+                if (item == 'score')
+                    return user.scorecount
+
+                for (let i = 0; i < user.info.length; i++) {
+                    if (item == 'library' && Object.keys(user.info[i]) == 'librarycount') {
+                        return user.info[i].librarycount
+                    }
+                    else if (item == 'submission' && Object.keys(user.info[i]) == 'submissioncount') {
+                        return user.info[i].submissioncount
+                    }
+                }
+            } else if (this.state.sort == 'submission') {
+                for (let i = 0; i < user.info.length; i++) {
+                    if (item == 'submission')
+                        return user.submissioncount
+
+                    if (item == 'library' && Object.keys(user.info[i]) == 'librarycount') {
+                        return user.info[i].librarycount
+                    }
+                    else if (item == 'score' && Object.keys(user.info[i]) == 'scorecount') {
+                        return user.info[i].scorecount
+                    }
+                }
+            } else if (this.state.sort == 'library') {
+                for (let i = 0; i < user.info.length; i++) {
+                    if (item == 'library')
+                    return user.librarycount == null ? '0' : user.librarycount
+
+                    if (item == 'submission' && Object.keys(user.info[i]) == 'submissioncount') {
+                    return user.info[i].submissioncount
+                    }
+                    else if (item == 'score' && Object.keys(user.info[i]) == 'scorecount') {
+                    return user.info[i].scorecount
+                    }
+                
+                }
+            }
         }
     }
 
