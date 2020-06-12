@@ -12,9 +12,10 @@ class UserTable extends React.Component {
 
         this.state = {
             data: [],
-            page: 1,
+            page: 0,
             sort: null,
-            search: null
+            search: null,
+            next_page: true
         }
 
         this.appendUsers = this.appendUsers.bind(this)
@@ -24,12 +25,6 @@ class UserTable extends React.Component {
     }
 
     componentDidMount() {
-        getUsers()
-        .then(result => {
-            this.setState({
-                data: result.data.data
-            })
-        })
     }
 
     setSort(sort) {
@@ -47,7 +42,6 @@ class UserTable extends React.Component {
     }
 
     setSearch(event) {
-        console.log('HELLO' + this.state.sort)
         this.setState({
             search: event.target.value,
             page: 1
@@ -62,16 +56,28 @@ class UserTable extends React.Component {
     }
 
     appendUsers() {
-        getUsers(this.state.page + 1, this.state.sort)
-        .then(result => {
-            let moreUsers = this.state.data.concat(result.data.data)
-            this.setState({
-                data: moreUsers
+        if (this.state.next_page) {
+            getUsers(this.state.page + 1, this.state.sort)
+            .then(result => {
+
+                let nextPage = true
+
+                if (result.data.data.length < 20)  
+                    nextPage = false
+
+                    let moreUsers = this.state.data.concat(result.data.data)
+                    this.setState({
+                        data: moreUsers,
+                        page: this.state.page + 1,
+                        next_page: nextPage
+                    })
             })
-        })
-        this.setState({
-            page: this.state.page + 1
-        })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+        
+
     }
 
     renderCount(item, user) {
