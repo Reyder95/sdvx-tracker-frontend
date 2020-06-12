@@ -8,6 +8,7 @@ import Register from './page-stuff/pages/register'
 import Home from './page-stuff/pages/home'
 import Login from './page-stuff/pages/login'
 import SongView from './page-stuff/pages/song-view'
+import UserList from './page-stuff/pages/userlist'
 
 // Various helper functions regarding the API
 import { 
@@ -213,6 +214,10 @@ class App extends React.Component{
               <Link className="color-secondary link" to="/songlist">
                 Song List
               </Link>
+
+              <Link className="color-secondary link" to="/users">
+                Users
+              </Link>
                 
                 <a className="color-secondary link" id="discordLink" href="https://discord.gg/nK7A5JB">Discord</a>
 
@@ -267,6 +272,8 @@ class App extends React.Component{
             </Route>
   
             <Route path="/song" render={props => ( <SongView {...props}/> )}/>
+
+            <Route path="/users" render={props => ( <UserList {...props}/>)}/>
           </Switch>
         
         </Router>
