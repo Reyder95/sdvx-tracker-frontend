@@ -31,13 +31,18 @@ class UserList extends React.Component {
             <div className="user-container">
                 <h2 className="font-roboto-slab"><strong>Users</strong></h2>
 
-                <div className="row mt-4">
-                    <div className="column four-times">
-                        <UserTable props={this.props} ref="child"/>
-                    </div>
-                    <div className="column filtering">
+                <div className="row mt-4 ">
+                    
+                    <div className="column filtering testing">
                         <UserSearch handleSearchChange={this.handleSearchChange}/>
                         <UserSort setSort={this.setSort}/>
+                    </div>
+
+                    <div className="column four-times">
+                        <div className="table-scroll">
+                            <UserTable props={this.props} ref="child"/>
+                        </div>
+
                     </div>
                 </div>
 

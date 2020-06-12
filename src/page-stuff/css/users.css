@@ -126,3 +126,55 @@ label {
 .table_link {
     text-decoration: none;
 }
+
+.user-container .row {
+    flex-direction: row-reverse
+}
+
+@media only screen and (max-width: 1025px) {
+    .user-container {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .user-container .row {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .user-container .row {
+        display: block;
+        width: 100%;
+    }
+
+    .component_usersearch, .component_usersort {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+
+    .component_usersort {
+        margin-bottom: 20px;
+    }
+    
+    .user-container {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .user-container {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .user-container .table-scroll {
+        overflow: scroll;
+    }
+
+    .component_usersearch, .component_usersort {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
