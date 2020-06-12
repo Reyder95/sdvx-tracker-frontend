@@ -30,6 +30,10 @@ class RecentScores extends React.Component {
             })
         })
     }
+
+    redirectionLink(id) {
+        this.props.history.push(`/song?id=${id}`)
+    }
     
     render() {
         return(
@@ -50,7 +54,7 @@ class RecentScores extends React.Component {
                                  </tr>
 
                                 {this.state.scores.map((score, index) => (
-                                    <tr>
+                                    <tr onClick={() => this.redirectionLink(score.id)}>
                                         <td>{index + 1}</td>
 
                                         <td>
