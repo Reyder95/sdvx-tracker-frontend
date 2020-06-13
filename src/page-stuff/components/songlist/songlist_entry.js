@@ -16,6 +16,12 @@ class SongEntry extends React.Component {
         }
     }
 
+    testFunction() {
+        let test = 'mytest';
+
+        console.log(test.charAt(0).toUpperCase() + test.slice(1))
+    }
+
     // On component did mount, set the state for each level that exists within the current song
     componentDidMount() {
 
@@ -78,9 +84,12 @@ class SongEntry extends React.Component {
                 <td>{this.state.adv}</td>
                 <td>{this.state.exh}</td>
                 <td>{this.state.mxm}</td>
-                <td>Official</td>
-                <td>-----</td>
+                <td>{this.props.songData.type.charAt(0).toUpperCase() + this.props.songData.type.slice(1)}</td>
+                <td><a href={this.props.songData.type == 'custom' ? this.props.songData.custom_link : '#'}>{this.props.songData.type == 'custom' && this.props.songData.custom_link != null ? this.props.songData.custom_link : '-----'}</a></td>
                 
+                {
+                   this.testFunction()
+                }
             </tr>
         )
     }
