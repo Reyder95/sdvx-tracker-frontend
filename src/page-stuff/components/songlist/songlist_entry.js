@@ -85,7 +85,7 @@ class SongEntry extends React.Component {
                 <td>{this.state.exh}</td>
                 <td>{this.state.mxm}</td>
                 <td>{this.props.songData.type.charAt(0).toUpperCase() + this.props.songData.type.slice(1)}</td>
-                <td>{this.props.songData.type == 'custom' && this.props.songData.custom_link != null ? this.props.songData.custom_link : '-----'}</td>
+                <td><a href={this.props.songData.type == 'custom' ? this.props.songData.custom_link : '#'}>{this.props.songData.type == 'custom' && this.props.songData.custom_link != null ? this.props.songData.custom_link : '-----'}</a></td>
                 
                 {
                    this.testFunction()
