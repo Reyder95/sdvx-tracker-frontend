@@ -406,7 +406,7 @@ class SongViewTop extends React.Component {
                                     </div>
 
                                     <div className="column">
-                                            <input disabled={this.state.type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} placeholder="Custom Link" className="mb-4" type="text"/>
+                                            <input disabled={this.state.editSong_type == 'custom' ? false : true} value={this.state.custom_link} onChange={(e) => this.setSongCustomLink(e)} placeholder="Custom Link" className="mb-4" type="text"/>
                                     </div>
 
 

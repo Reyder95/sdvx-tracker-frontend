@@ -221,7 +221,7 @@ class AddSongModal extends React.Component {
                 if (this.state.jacket.trim() != '')
                     postObject.jacket = this.state.jacket.trim();
                 
-
+                console.log(postObject)
                 
                 
                 // Add the song using the built up postObject
