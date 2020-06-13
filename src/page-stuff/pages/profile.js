@@ -42,11 +42,12 @@ class Profile extends React.Component
         // Grab user information using the ID and set the state with it
         userInformation(values.id)
         .then(result => {
+            console.log(result)
             this.setState({
                 username: result.data.userData.username,
                 date_joined: result.data.userData.date_joined,
-                scoreCount: result.data.scoreData.scorenumber,
-                libraryCount: result.data.libraryData.librarynumber,
+                scoreCount: result.data.scoreData.scorecount,
+                libraryCount: result.data.libraryData.librarycount,
                 pf_picture: result.data.userData.pf_picture,
                 discord: result.data.userData.discord,
                 twitter: result.data.userData.twitter,
