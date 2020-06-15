@@ -61,6 +61,11 @@ class Profile extends React.Component
         
     }
 
+    profileRefresh() {
+        if (this.props.location.pathname == '/profile')
+            window.location.reload(false)
+    }
+
     // Handle the tab changing from Library to Stats
     tabChange(tabName, e) {
         let i, tabcontent, tablinks;
@@ -80,6 +85,14 @@ class Profile extends React.Component
         document.getElementById(tabName).style.display = "block";
     
         e.currentTarget.className += " active";
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        let prevValue = queryString.parse(prevProps.location.search)
+        let currValue = queryString.parse(this.props.location.search)
+
+        if (prevValue.id != currValue.id)
+            window.location.reload(false)
     }
 
     // Display elements to the screen

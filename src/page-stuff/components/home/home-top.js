@@ -6,10 +6,18 @@ import { Link } from 'react-router-dom' // Add link to go to another route when 
 // Top of the Homepage
 class HomeTop extends React.Component {
 
+    constructor(props) {
+        super(props)
+    }
+
     // If the user is logged in, remove the "Register Now" button from the homepage
     componentDidMount() {
         if (localStorage.getItem('user_id') != null)
             document.getElementById('register').style.display = 'none'
+    }
+
+    justLoggedIn() {
+        document.getElementById('register').style.display = 'none'
     }
 
     // Render elements to the screen

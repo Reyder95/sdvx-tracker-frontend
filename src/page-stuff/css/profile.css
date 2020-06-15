@@ -72,6 +72,7 @@ body {
 .comp_recentsongs table tr:hover td {
     background-color: #1C4269;
     transition: 0.1s;
+    cursor: pointer;
 }
 
 .comp_recentsongs table tr {
@@ -135,10 +136,21 @@ body {
 
 .comp_library table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 .comp_library table tr td {
     padding: 20px;
+}
+
+.comp_library table tr {
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.comp_library table tr:hover td {
+    background-color: #1C4269;
+    transition: 0.1s;
 }
 
 .comp_library img {
