@@ -40,7 +40,7 @@ class App extends React.Component{
       twitch: '',
       twitter: '',
       newUsername: '',
-      modified: false
+      loginChange: false
     }
 
     this.handleLogin = this.handleLogin.bind(this)
@@ -106,8 +106,12 @@ class App extends React.Component{
     document.getElementById('loggedin').style.display = "block";
     document.getElementById('unloggedin').style.display = "none";
 
-    // Reload the page to properly display things
-    window.location.reload(false)
+    this.setState({
+      loginChange: true
+    })
+
+    this.refs.child.justLoggedIn()
+
   }
 
   // When a user logs out call the API to log them out.
@@ -193,10 +197,6 @@ class App extends React.Component{
     if (this.state.newUsername.trim() != '') {
       changeUsername(this.state.newUsername)
     }
-
-    this.setState({
-      modified: true
-    })
   }
 
   // Render this stuff to the screen
@@ -251,7 +251,7 @@ class App extends React.Component{
           <Switch>
   
             <Route path="/" exact>
-              <Home/>
+              <Home ref="child"/>
             </Route>
   
             <Route path="/profile" render={props => ( <Profile {...props}/> )}/>

@@ -172,7 +172,7 @@ class Register extends React.Component {
 
         // If the signup was successful, go to the login page to log in
         if (this.state.signupOK) {
-            return <Redirect push to="/login"/>
+            return <Redirect push to="/login?l=1"/>
 
         }
         // If it wasn't successful or the user didn't sign up yet, display the sign up page

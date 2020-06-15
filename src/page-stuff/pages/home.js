@@ -12,10 +12,14 @@ class Home extends React.Component {
         console.log(this.props.user_id)
     }
 
+    justLoggedIn() {
+        this.refs.child.justLoggedIn()
+    }
+
     render() {
         return(
             <div className="comp_home">
-                <HomeTop />
+                <HomeTop ref="child"/>
                 <HomeDescription />
                 <Footer />
             </div>

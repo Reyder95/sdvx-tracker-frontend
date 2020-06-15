@@ -1,6 +1,7 @@
 import React from 'react'   // React Stuff
 import { Redirect } from 'react-router-dom'     // Redirect to redirect user after they login
 import { loginUser } from '../../api-calls'     // Import API function to login the user
+import queryString from 'query-string'
 
 // Import CSS file
 import '../css/login.css'
@@ -15,7 +16,8 @@ class Login extends React.Component {
             key: '',
             password: '',
             current_error: '',
-            loginOK: false
+            loginOK: false,
+            userID: ''
         }
     }
 
@@ -55,9 +57,12 @@ class Login extends React.Component {
             // Call the API to log in the user
             loginUser(user)
             .then(result => {
+                console.log(result.user.user[0].id)
+
                 // Set the state to login okay and handle the login in the App class
                 this.setState({
-                    loginOK: result.confirm
+                    loginOK: result.confirm,
+                    userID: result.user.user[0].id
                 })
                 this.props.handleLogin(result.user)
             })
@@ -78,6 +83,13 @@ class Login extends React.Component {
         let errors = document.getElementById("errors")
 
         errors.style.display = "none"
+
+        let values = queryString.parse(this.props.location.search)
+
+        if (values.l == 1) 
+            document.getElementById('signed-up').style.display = 'block'
+        else
+            document.getElementById('signed-up').style.display = 'none'
     }
 
     // When the user does something wrong display the errors
@@ -92,7 +104,7 @@ class Login extends React.Component {
 
         // If the login was successful, redirect to the homepage
         if (this.state.loginOK) {
-            return <Redirect push to="/"/>
+            return <Redirect push to={`/profile?id=${this.state.userID}`}/>
         }
         // If the login wasn't successful or the user never tried logging in yet, show them the login page
         else
@@ -104,6 +116,10 @@ class Login extends React.Component {
                         
                         <div id="errors">
                             {this.state.current_error}
+                        </div>
+
+                        <div id="signed-up">
+                            You have successfully signed up
                         </div>
     
                         <div className="form-item color-secondary">
