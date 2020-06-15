@@ -41,8 +41,6 @@ export const logUserOut = () => {
         localStorage.removeItem('username')
         localStorage.removeItem('jwt_token')
 
-        alert("Successfully logged out!")
-
         document.getElementById('loggedin').style.display = "none"
         document.getElementById('unloggedin').style.display = "block"
 
