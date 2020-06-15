@@ -61,7 +61,6 @@ export const registerUser = async (user) => {
         email: user.email
      })
         .then(() => {
-            alert("Successfully registered!")
             return true
         })
         .catch(err => {
@@ -79,7 +78,6 @@ export const loginUser = async (user) => {
         password: user.password
     }, { withCredentials: true })
         .then(apiData => {
-            alert("Successfully logged in!")
             return {confirm: true, user: apiData.data}
         })
         .catch(() => {
