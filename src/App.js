@@ -1,5 +1,5 @@
 import React from 'react' // This is to use react
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom' // Allows us to handle routing
+import { BrowserRouter as Router, Switch, Route, Link, withRouter } from 'react-router-dom' // Allows us to handle routing
 
 // Various pages (for routing purposes)
 import Profile from './page-stuff/pages/profile'  
@@ -144,6 +144,10 @@ class App extends React.Component{
     document.getElementById('userDropdown').classList.toggle("show");
   }
 
+  profileClick() {
+    document.getElementById('userDropdown').classList.toggle("show")
+  }
+
   // ---Profile Settings---
 
   // When a user clicks the upload button
@@ -226,7 +230,7 @@ class App extends React.Component{
                 <div id="loggedin">
                   <p id="profileDropdown" onClick={() => this.userDropdown()} className="color-secondary link">Welcome, {localStorage.getItem("username")}</p>
                   <div id="userDropdown" className="dropdown-content color-secondary font-roboto-slab bg-primary">
-                    <Link to={'/profile?id=' + localStorage.getItem('user_id')} onClick={() => this.userDropdown()} className="test color-secondary link">Profile</Link>
+                    <Link to={'/profile?id=' + localStorage.getItem('user_id')} onClick={() => this.profileClick()} className="test color-secondary link">Profile</Link>
                     <p onClick={() => this.openModal()} className="test color-secondary link">Settings</p>
                     <Link to={'/'} onClick={this.handleLogout.bind(this)} className="test color-secondary link">Logout</Link>
                   </div>
@@ -254,7 +258,7 @@ class App extends React.Component{
               <Home ref="child"/>
             </Route>
   
-            <Route path="/profile" render={props => ( <Profile {...props}/> )}/>
+            <Route path="/profile" render={props => ( <Profile {...props} /> )}/>
   
             <Route path="/songlist" render={props => ( <SongList {...props}/> )}>
             </Route>
