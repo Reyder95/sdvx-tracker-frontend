@@ -1,3 +1,6 @@
+# Archive Note
+This project was my first real project working with a back end and front end, and I even published it online working with cloud computing and such. I am going to archive this project showing it off as it was a really cool start into further improving my development skills!
+
 ## Running yourself
 - Clone the repository anywhere you'd like  
 - Type `npm install` to install all the project's dependencies
